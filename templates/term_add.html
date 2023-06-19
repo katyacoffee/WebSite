@@ -1,0 +1,230 @@
+{% extends "base_page.html" %}
+
+{% block pagetitle %}
+Add word
+{% endblock %}
+
+{% block page-title %}
+<p style="font-size:50px;">Добавить слово </p>
+{% endblock %}
+
+{% block page-lead %}
+<p class="fst-italic" style="font-size:25px;">Вы можете пополнить базу слов и переводов к ним </p>
+{% endblock %}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="calendar-14/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="calendar-14/css/rome.css">
+
+    <link rel="stylesheet" href="calendar-14/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="calendar-14/css/style.css">
+    <title>Calendar #4</title>
+    <script nonce="32dcd3e0-9538-4533-8fc9-9f40e9dc58a2">
+    (function(w, d) {
+        !function(dK, dL, dM, dN) {
+            dK[dM] = dK[dM] || {};
+            dK[dM].executed = [];
+            dK.zaraz = {
+                deferred: [],
+                listeners: []
+            };
+            dK.zaraz.q = [];
+            dK.zaraz._f = function(dO) {
+                return function() {
+                    var dP = Array.prototype.slice.call(arguments);
+                    dK.zaraz.q.push({
+                        m: dO,
+                        a: dP
+                    })
+                }
+            };
+            for (const dQ of ["track", "set", "debug"])
+                dK.zaraz[dQ] = dK.zaraz._f(dQ);
+            dK.zaraz.init = () => {
+                var dR = dL.getElementsByTagName(dN)[0],
+                    dS = dL.createElement(dN),
+                    dT = dL.getElementsByTagName("title")[0];
+                dT && (dK[dM].t = dL.getElementsByTagName("title")[0].text);
+                dK[dM].x = Math.random();
+                dK[dM].w = dK.screen.width;
+                dK[dM].h = dK.screen.height;
+                dK[dM].j = dK.innerHeight;
+                dK[dM].e = dK.innerWidth;
+                dK[dM].l = dK.location.href;
+                dK[dM].r = dL.referrer;
+                dK[dM].k = dK.screen.colorDepth;
+                dK[dM].n = dL.characterSet;
+                dK[dM].o = (new Date).getTimezoneOffset();
+                if (dK.dataLayer)
+                    for (const dX of Object.entries(Object.entries(dataLayer).reduce(((dY, dZ) => ({
+                        ...dY[1],
+                        ...dZ[1]
+                    })), {})))
+                        zaraz.set(dX[0], dX[1], {
+                            scope: "page"
+                        });
+                dK[dM].q = [];
+                for (; dK.zaraz.q.length;) {
+                    const d_ = dK.zaraz.q.shift();
+                    dK[dM].q.push(d_)
+                }
+                dS.defer = !0;
+                for (const ea of [localStorage, sessionStorage])
+                    Object.keys(ea || {}).filter((ec => ec.startsWith("_zaraz_"))).forEach((eb => {
+                        try {
+                            dK[dM]["z_" + eb.slice(7)] = JSON.parse(ea.getItem(eb))
+                        } catch {
+                            dK[dM]["z_" + eb.slice(7)] = ea.getItem(eb)
+                        }
+                    }));
+                dS.referrerPolicy = "origin";
+                dS.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(dK[dM])));
+                dR.parentNode.insertBefore(dS, dR)
+            };
+            ["complete", "interactive"].includes(dL.readyState) ? zaraz.init() : dK.addEventListener("DOMContentLoaded", zaraz.init)
+        }(w, d, "zarazData", "script");
+    })(window, document);
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="container text-left">
+            <div class="row justify-content-center">
+                <div class="col-lg-3">
+                    <h2 class="mb-5 text-center">Calendar #4</h2>
+                    <form action="#" class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+<!--                                <label for="input_from">Select Date</label>-->
+                                <input type="text" class="form-control" id="input">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/rome.js"></script>
+    <script src="js/main.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d9bad6918d59195","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.4.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    Выберите дату-->
+<!--  </div>-->
+<!--  <br />-->
+<!--    <div class="row">-->
+<!--        <div class='col-sm-3'>-->
+<!--            <div class="form-group">-->
+<!--                <div class='input-group date' id='datetimepicker1'>-->
+<!--                    <input type='text' class="form-control" />-->
+<!--                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>-->
+<!--                    </span>-->
+<!--                    <script>-->
+<!--                         $(function () {-->
+<!--                           var bindDatePicker = function() {-->
+<!--                                $(".date").datetimepicker({-->
+<!--                                format:'YYYY-MM-DD',-->
+<!--                                    icons: {-->
+<!--                                        time: "fa fa-clock-o",-->
+<!--                                        date: "fa fa-calendar",-->
+<!--                                        up: "fa fa-arrow-up",-->
+<!--                                        down: "fa fa-arrow-down"-->
+<!--                                    }-->
+<!--                                }).find('input:first').on("blur",function () {-->
+<!--                                    // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.-->
+<!--                                    // update the format if it's yyyy-mm-dd-->
+<!--                                    var date = parseDate($(this).val());-->
+
+<!--                                    if (! isValidDate(date)) {-->
+<!--                                        //create date based on momentjs (we have that)-->
+<!--                                        date = moment().format('YYYY-MM-DD');-->
+<!--                                    }-->
+
+<!--                                    $(this).val(date);-->
+<!--                                });-->
+<!--                            }-->
+
+<!--                           var isValidDate = function(value, format) {-->
+<!--                                format = format || false;-->
+<!--                                // lets parse the date to the best of our knowledge-->
+<!--                                if (format) {-->
+<!--                                    value = parseDate(value);-->
+<!--                                }-->
+
+<!--                                var timestamp = Date.parse(value);-->
+
+<!--                                return isNaN(timestamp) == false;-->
+<!--                           }-->
+
+<!--                           var parseDate = function(value) {-->
+<!--                                var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);-->
+<!--                                if (m)-->
+<!--                                    value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);-->
+
+<!--                                return value;-->
+<!--                           }-->
+
+<!--                           bindDatePicker();-->
+<!--                         });-->
+<!--                    </script>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="container-sm px-5 py-5" id="term-form">
+    <form method="post">
+        <div class="row px-5 py-2">
+            <h3>Ваши контактные данные</h3>
+        </div>
+        <div class="row px-5 py-2">
+            <div class="col-md-6">
+                <label for="name">Ваше имя:</label>
+                <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Иван" value required>
+            </div>
+            <div class="col-md-6">
+                <label for="email">Ваш контактный email:</label>
+                <input type="text" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>
+            </div>
+        </div>
+        <div class="row px-5 py-2">
+            <h3>Ваше слово</h3>
+        </div>
+        <div class="row px-5 py-2">
+            <div class="col-md-4">
+                <label for="lesson_id">Номер урока</label>
+                <input type="text" class="form-control input-lg" name="lesson_id" id="lesson_id">
+            </div>
+            <div class="col-md-4">
+                <label for="lesson">Тема урока</label>
+                <input type="text" class="form-control input-lg" name="lesson" id="lesson">
+            </div>
+            <div class="col-md-4">
+                <label for="new_term">Слово</label>
+                <input type="text" class="form-control input-lg" name="new_term" id="new_term">
+            </div>
+            <div class="col-md-8">
+                <label for="new_definition">Перевод слова</label>
+                <textarea type="text" class="form-control input-lg" name="new_definition" id="new_definition" aria-describedby="definition_note" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row px-5 py-2">
+            <button type="submit" class="btn btn-info" formaction="/send-term">Отправить</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

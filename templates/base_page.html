@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'fav-graph-2.png' %}"/>
+    <link rel="apple-touch-icon" href="{% static 'fav-graph-2.png' %}" >
+    <title>{% block pagetitle %}{% endblock %}</title>
+     <!-- CSS -->
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+<main>
+    <div class="container">
+<!--        <header class="border-bottom">-->
+        <header class="header">
+<!--            <div class="fs-2 mb-3">-->
+<!--                <a href="/sign_in" class="btn btn-primary" style="float: right;">-->
+<!--                    Зарегистрироваться-->
+<!--                </a>-->
+<!--            </div>-->
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <div class="fs-2 mb-3">
+                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32" style="font-size:100px"/>
+                    <span>Geophysical Observatory Mikhnevo</span>
+                </div>
+            </a>
+        </header>
+<!--        <div class="p-5 mb-4 bg-light rounded-3" id="title-box">-->
+<!--            <div class="container-fluid py-5">-->
+<!--                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>-->
+<!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="dropup">
+          <button class="dropbtn">Всплывающее</button>
+          <div class="dropup-content">
+            <a href="#">Ссылка 1</a>
+            <a href="#">Ссылка 2</a>
+            <a href="#">Ссылка 3</a>
+          </div>
+            <style>
+                                /* Кнопка падение вверх */
+                .dropbtn {
+                  background-color: #3498DB;
+                  color: white;
+                  padding: 16px;
+                  font-size: 16px;
+                  border: none;
+                }
+
+                /* Контейнер <div> - необходим для размещения всплывающег содержимого */
+                .dropup {
+                  position: relative;
+                  display: inline-block;
+                }
+
+                /* Всплывающее содержимое (скрыто по умолчанию) */
+                .dropup-content {
+                  display: none;
+                  position: absolute;
+                  bottom: 50px;
+                  background-color: #f1f1f1;
+                  min-width: 160px;
+                  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                  z-index: 1;
+                }
+
+                /* Ссылки внутри всплывающего списка */
+                .dropup-content a {
+                  color: black;
+                  padding: 12px 16px;
+                  text-decoration: none;
+                  display: block;
+                }
+
+                /* Изменение цвета всплывающих ссылок при наведении курсора */
+                .dropup-content a:hover {background-color: #ddd}
+
+                /* Показывать всплывающее меню при наведении курсора */
+                .dropup:hover .dropup-content {
+                  display: block;
+                }
+
+                /* Изменение цвета фона кнопки раскрывающегося списка при отображении всплывающего содержимого */
+                .dropup:hover .dropbtn {
+                  background-color: #2980B9;
+                }
+            </style>
+        </div>
+        {% block content %}{% endblock %}
+        <footer class="footer pt-3 mt-4 text-muted border-top">© 2023</footer>
+    </div>
+</main>
+</body>
+</html>

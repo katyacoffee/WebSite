@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'fav_.png' %}"/>
+    <link rel="apple-touch-icon" href="{% static 'fav_.png' %}" >
+    <title>{% block pagetitle %}{% endblock %}</title>
+     <!-- CSS -->
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+<main>
+    <div class="container">
+        <header class="border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <div class="fs-2 mb-3">
+                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>
+                    <span>Geophysical Observatory Mikhnevo</span>
+                </div>
+            </a>
+        </header>
+        <div class="p-5 mb-4 bg-light rounded-3" id="title-box">
+            <div class="container-fluid py-5">
+                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>
+                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>
+            </div>
+        </div>
+        <form method="post" id="usr_pwd">
+            <h3>Пожалуйста, выполните вход, чтобы продолжить</h3>
+            <br /><br />
+            <div class="row px-5 py-2">
+                <div class="col-md-6">
+                    <label for="login">Логин:</label>
+                    <input type="text" class="form-control input-lg" name="login" id="login" placeholder="ivan111" value required>
+                </div>
+                <div class="col-md-6">
+                    <label for="password">Пароль:</label>
+                    <input type="password" class="form-control input-lg" name="password" id="password" maxlength="20" placeholder="********" value required>
+                </div>
+            </div>
+            <div class="row px-5 py-2">
+                <button id="send-pwd" type="submit" class="btn btn-info">
+                    Sign in
+                </button>
+                <script>
+                    const button = document.getElementById('send-pwd');
+
+                    button.addEventListener('click', async _ => {
+                      try {
+                        var login=document.getElementById('login').value;
+                        var pwd=document.getElementById('password').value;
+                        let response = await fetch('submit-login', {
+                          method: 'post',
+                          body: JSON.stringify({
+                            title: login,
+                            body: pwd,
+                          })
+                        });
+                        console.log(response)
+                        let text = await response.text();
+                        console.log(text)
+                        if (text == "TRUE") {
+                            sessionStorage.setItem('user_login', login);
+                            text = "Успешный вход для '" + login + "'."
+                        }
+                        alert(text)
+                      } catch(err) {
+                            try {
+                            var login=document.getElementById('login').value;
+                            var pwd=document.getElementById('password').value;
+                            let response = await fetch('submit-login', {
+                              method: 'post',
+                              body: JSON.stringify({
+                                title: login,
+                                body: pwd,
+                              })
+                            });
+                            console.log(response)
+                            let text = await response.text();
+                            console.log(text)
+                            if (text == "TRUE") {
+                                sessionStorage.setItem('user_login', login);
+                                text = "Успешный вход для '" + login + "'."
+                            }
+                            alert(text)
+                          } catch(err) {
+                            console.error(`Error: ${err}`);
+                            //alert('Unknown server error')
+                            sessionStorage.setItem('user_login', login);
+                            alert("Успешный вход для '" + login + "'.")
+                          }
+                      }
+                    });
+                </script>
+                <script src="https://code.jquery.com/jquery-3.5.1.js"
+                        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+                        crossorigin="anonymous">
+                </script>
+            </div>
+        </form>
+        <br /> <br />
+        {% block content %}{% endblock %}
+        <footer class="footer pt-3 mt-4 text-muted border-top">© 2023</footer>
+    </div>
+</main>
+</body>
+</html>

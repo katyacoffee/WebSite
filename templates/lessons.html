@@ -1,0 +1,101 @@
+{% extends "base_page.html" %}
+
+{% block pagetitle %}
+Learn words
+{% endblock %}
+
+{% block page-title %}
+<p style="font-size:50px;">Список слов по урокам </p>
+{% endblock %}
+
+{% block page-lead %}
+<p class="fst-italic" style="font-size:25px;">Здесь Вы можете выучить новые слова, а потом проверить себя с помощью теста </p>
+{% endblock %}
+
+{% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<div class="container px-4 py-5" id="terms-table">
+    <div class="table-responsive">
+        <style>
+            table {border-spacing: 0;
+            empty-cells: hide;
+            }
+            td {
+            padding: 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1B2631;
+            }
+            td:first-child {
+            text-align: left;
+            border-bottom: 1px solid #1B2631;
+            color: #3D3511;
+            font-weight: bold;
+            }
+            th {
+            padding: 10px 20px;
+            color: #1B2631;
+            border-bottom: 1px solid #D7BDE2;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            }
+            td:nth-child(even) {
+            background: #FDFEFE;
+            }
+            td:nth-child(odd) {
+            background: #FDFEFE;
+            }
+            th:nth-child(even)  {
+            background: #D7BDE2;
+            }
+            th:nth-child(odd)  {
+            background: #D7BDE2;
+            }
+            .round-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            }
+            tr:hover td{
+            background: #D6DBDF;
+            font-weight: bold;
+            }
+        </style>
+          <table class="zebra" width="100%" >
+          <thead>
+            <tr>
+              <th scope="col" class="round-top">Номер урока</th>
+              <th scope="col" class="round-top">Тема урока</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lesson_id, topic in lessons %}
+            <tr>
+                <td class="round-bottom">{{ lesson_id }}</td>
+                <td class="round-bottom">{{ topic }}</td>
+                <td class="round-bottom">
+                    <div>
+                        <a id="cards_button_{{ lesson_id }}" href="/cards"
+                           class="btn btn-secondary">Карточки</a>
+                        <script>
+                            document.getElementById('cards_button_{{ lesson_id }}').addEventListener("click", function(){
+                                sessionStorage.setItem('lesson_id', {{ lesson_id }});
+                            })
+                        </script>
+                    </div>
+                </td>
+                <td class="py-3">
+                    <div>
+                        <a id="test_button_{{ lesson_id }}" href="/test" class="btn btn-secondary">Тест</a>
+                        <script>
+                            document.getElementById('test_button_{{ lesson_id }}').addEventListener("click", function(){
+                                sessionStorage.setItem('lesson_id', {{ lesson_id }});
+                            })
+                        </script>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</div>
+{% endblock %}

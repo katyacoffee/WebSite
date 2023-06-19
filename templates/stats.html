@@ -1,0 +1,63 @@
+{% extends "with_login.html" %}
+
+{% block pagetitle %}
+Results
+{% endblock %}
+
+{% block page-title %}
+<p style="font-size:50px;">Статистика по терминам </p>
+{% endblock %}
+
+{% block page-lead %}
+<p class="fst-italic" style="font-size:25px;">Здесь Вы можете ознакомиться со своими результатами после прохождения тестов </p>
+{% endblock %}
+
+{% block content %}
+<div class="container px-3 py-5" id="stats">
+    <div>
+        <h3 class="px-3" id="result_head" style="font-size:30px;">Результаты</h3>
+        <h6 class="px-3">За каждый урок можно набрать до 100 баллов</h6>
+        <h6 class="px-3">Итоговый балл - сумма всех баллов по урокам</h6>
+    </div>
+    <div class="row text-center">
+        <div class="col d-flex" style="flex-direction: column;">
+            <h4 id="total">0</h4>
+            <br />
+            <p class="text-muted">итоговый балл</p>
+        </div>
+        <div class="col d-flex" style="flex-direction: column;">
+            <h4 id="avg">0</h4>
+            <br />
+            <p class="text-muted">средний балл</p>
+        </div>
+        <div class="col d-flex" style="flex-direction: column;">
+            <h4 id="maximum">0</h4>
+            <br />
+            <p class="text-muted">максимум</p>
+        </div>
+        <div class="col d-flex" style="flex-direction: column;">
+            <h4 id="minimum">0</h4>
+            <br />
+            <p class="text-muted">минимум</p>
+        </div>
+    </div>
+    <script>
+            const total = document.getElementById('total');
+            const avg = document.getElementById('avg');
+            const maximum = document.getElementById('maximum');
+            const minimum = document.getElementById('minimum');
+            const res_head = document.getElementById('result_head');
+            let user = sessionStorage.getItem('user_login')
+            res_head.innerHTML = 'Результаты пользователя ' + user
+            {% for user_id, summary, average, maximum, minimum in results %}
+            if ('{{ user_id }}' === user){
+                total.innerHTML = '{{ summary }}';
+                avg.innerHTML = '{{ average }}';
+                maximum.innerHTML = '{{ maximum }}';
+                minimum.innerHTML = '{{ minimum }}';
+            }
+            {% endfor %}
+    </script>
+</div>
+{% endblock %}
+
