@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Website Menu #6</title>
+    <script nonce="e1151e8e-d97c-4fa6-a881-9203aa6d118c">
+    (function(w, d) {
+        !function(dK, dL, dM, dN) {
+            dK[dM] = dK[dM] || {};
+            dK[dM].executed = [];
+            dK.zaraz = {
+                deferred: [],
+                listeners: []
+            };
+            dK.zaraz.q = [];
+            dK.zaraz._f = function(dO) {
+                return function() {
+                    var dP = Array.prototype.slice.call(arguments);
+                    dK.zaraz.q.push({
+                        m: dO,
+                        a: dP
+                    })
+                }
+            };
+            for (const dQ of ["track", "set", "debug"])
+                dK.zaraz[dQ] = dK.zaraz._f(dQ);
+            dK.zaraz.init = () => {
+                var dR = dL.getElementsByTagName(dN)[0],
+                    dS = dL.createElement(dN),
+                    dT = dL.getElementsByTagName("title")[0];
+                dT && (dK[dM].t = dL.getElementsByTagName("title")[0].text);
+                dK[dM].x = Math.random();
+                dK[dM].w = dK.screen.width;
+                dK[dM].h = dK.screen.height;
+                dK[dM].j = dK.innerHeight;
+                dK[dM].e = dK.innerWidth;
+                dK[dM].l = dK.location.href;
+                dK[dM].r = dL.referrer;
+                dK[dM].k = dK.screen.colorDepth;
+                dK[dM].n = dL.characterSet;
+                dK[dM].o = (new Date).getTimezoneOffset();
+                if (dK.dataLayer)
+                    for (const dX of Object.entries(Object.entries(dataLayer).reduce(((dY, dZ) => ({
+                        ...dY[1],
+                        ...dZ[1]
+                    })), {})))
+                        zaraz.set(dX[0], dX[1], {
+                            scope: "page"
+                        });
+                dK[dM].q = [];
+                for (; dK.zaraz.q.length;) {
+                    const d_ = dK.zaraz.q.shift();
+                    dK[dM].q.push(d_)
+                }
+                dS.defer = !0;
+                for (const ea of [localStorage, sessionStorage])
+                    Object.keys(ea || {}).filter((ec => ec.startsWith("_zaraz_"))).forEach((eb => {
+                        try {
+                            dK[dM]["z_" + eb.slice(7)] = JSON.parse(ea.getItem(eb))
+                        } catch {
+                            dK[dM]["z_" + eb.slice(7)] = ea.getItem(eb)
+                        }
+                    }));
+                dS.referrerPolicy = "origin";
+                dS.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(dK[dM])));
+                dR.parentNode.insertBefore(dS, dR)
+            };
+            ["complete", "interactive"].includes(dL.readyState) ? zaraz.init() : dK.addEventListener("DOMContentLoaded", zaraz.init)
+        }(w, d, "zarazData", "script");
+    })(window, document);
+    </script>
+</head>
+<body>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <header class="site-navbar site-navbar-target py-4" role="banner">
+        <div class="container">
+            <div class="row align-items-center position-relative">
+                <div class="col-3 ml-auto text-right order-2">
+                    <div class="site-logo">
+                        <a href="index.html" class="font-weight-bold text-white">Brand</a>
+                    </div>
+                </div>
+                <div class="col-9 order-1 text-left mr-auto">
+                    <span class="d-inline-block d-lg-block">
+                        <a href="#" class="text-black site-menu-toggle js-menu-toggle py-5">
+                            <span class="icon-menu h3 text-white"></span>
+                        </a>
+                    </span>
+                    <nav class="site-navigation text-right ml-auto d-none d-lg-none" role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                            <li class="active">
+                                <a href="index.html" class="nav-link">Home</a>
+                            </li>
+                            <li>
+                                <a href="about.html" class="nav-link">About</a>
+                            </li>
+                            <li>
+                                <a href="services.html" class="nav-link">Services</a>
+                            </li>
+                            <li>
+                                <a href="blog.html" class="nav-link">Blog</a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="nav-link">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="hero" style="background-color: #898686"></div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/main.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d9d55386bab9be9","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.4.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
+

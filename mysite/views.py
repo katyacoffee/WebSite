@@ -25,6 +25,10 @@ def index(request):
     return render(request, "index.html")
 
 
+def get_menu(request):
+    return render(request, "menu.html")
+
+
 def lessons_list(request):
     words = core.cards_to_tuple(core.get_all_cards())
     return render(request, "lessons_list.html", context={"words": words})

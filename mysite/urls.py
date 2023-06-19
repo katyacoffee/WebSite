@@ -32,4 +32,5 @@ urlpatterns = [
     path('submit-login', views.submit_login),
     path('sign_in', views.sign_in),
     path('submit-register', views.submit_register),
+    path('menu', views.get_menu),
 ]
