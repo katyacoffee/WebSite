@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ac05ab67-6ae1-4edf-9879-8af6b6cbf27b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lessons_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lessons_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/term_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/term_add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lessons_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/term_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/date_selection.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +124,7 @@
       <workItem from="1687180395746" duration="6133000" />
       <workItem from="1687193077242" duration="15897000" />
       <workItem from="1687245809640" duration="90000" />
-      <workItem from="1687245912164" duration="25758000" />
+      <workItem from="1687245912164" duration="31362000" />
     </task>
     <servers />
   </component>

@@ -21,10 +21,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('add-term', views.add_term),
+    path('date-selection', views.date_selection),
     path('send-term', views.send_term),
     path('stats', views.show_stats),
-    path('lessons-list', views.lessons_list),
+    path('contacts', views.contacts),
     path('lessons', views.lessons),
     path('cards', views.cards),
     path('test', views.test),

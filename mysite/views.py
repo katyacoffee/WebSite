@@ -30,12 +30,17 @@ def get_menu(request):
 
 
 def get_vlf_data(request):
+    if request.method == "POST":
+        cache.clear()
+        date = request.POST.get("mydate")
+        #TODO: сделать по аналогии с send_answers!
+        print(date)
     return render(request, "vlf_data.html")
 
 
-def lessons_list(request):
+def contacts(request):
     words = core.cards_to_tuple(core.get_all_cards())
-    return render(request, "lessons_list.html", context={"words": words})
+    return render(request, "contacts.html", context={"words": words})
 
 
 def lessons(request):
@@ -53,8 +58,8 @@ def test(request):
     return render(request, "test.html", context={"words": words})
 
 
-def add_term(request):
-    return render(request, "term_add.html")
+def date_selection(request):
+    return render(request, "date_selection.html")
 
 
 def send_term(request):
