@@ -33,4 +33,5 @@ urlpatterns = [
     path('sign_in', views.sign_in),
     path('submit-register', views.submit_register),
     path('menu', views.get_menu),
+    path('vlf-data', views.get_vlf_data),
 ]

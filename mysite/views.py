@@ -29,6 +29,10 @@ def get_menu(request):
     return render(request, "menu.html")
 
 
+def get_vlf_data(request):
+    return render(request, "vlf_data.html")
+
+
 def lessons_list(request):
     words = core.cards_to_tuple(core.get_all_cards())
     return render(request, "lessons_list.html", context={"words": words})

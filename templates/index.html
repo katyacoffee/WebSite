@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="shortcut icon" type="image/png" href="{% static 'fav-graph-2.png' %}"/>
-    <link rel="apple-touch-icon" href="{% static 'fav-graph-2.png' %}" >
+    <link rel="shortcut icon" type="image/png" href="{% static 'fav-planet.png' %}"/>
+    <link rel="apple-touch-icon" href="{% static 'fav-planet.png' %}" >
         <title>Main</title>
      <!-- CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
@@ -39,7 +39,7 @@
           display: block;
           transition: 0.4s;
           white-space: nowrap;
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
 
         .sidenav a:hover {
@@ -72,7 +72,8 @@
 
         /* Add a black background color to the top navigation */
         .topnav {
-          background-color: #316e8d;
+          {#background-color: #316e8d;#}
+          background-color:#5a728a;
           overflow: hidden;
           vertical-align: center;
           align-content: center;
@@ -96,7 +97,7 @@
 
         /* Change the color of links on hover */
         .topnav a:hover {
-          background-color: #316e8d;
+          background-color: #5a728a;
           color: #5e5b5b;
         }
 
@@ -163,16 +164,17 @@
     <nav class="topnav">
       <header class="header">
           <div class="fs-1">
-              <a href="#" class="ham-icon">
+              <a href="#" class="ham-icon" style="align-items: center;">
                     <svg width="30" height="30">
                         <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
                         <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
                         <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
                     </svg>
               </a>
-              <a href="/" class="header_1">
-                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>
-                  <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; font-size: 3vw;">Geophysical Observatory Mikhnevo</span>
+              <a href="/" class="header_1" style="text-align: center">
+{#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
+                  <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 3vw;">Geophysical Observatory Mikhnevo</span>
+{#              font-size: 3vw;#}
               </a>
           </div>
 {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
@@ -228,25 +230,13 @@
 <!--        </div>-->
         <img class="img1" src="{% static 'map.jpg' %}">
         <div class="container px-4 py-5" id="main-contents">
-            <h2 class="pb-2 border-bottom">Меню</h2>
+            <h2 class="pb-2 border-bottom" style="font-size: 3vw;">Меню</h2>
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
                 <div class="col d-flex">
                     <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#cpu-fill"></use>
-                        </svg>
-                    </div>
-                    <div>
-<!--                        <h3 class="fs-2">Контакты</h3>-->
-<!--                        <p class="fst-italic">Общая таблица со всеми словами из карточек. </p>-->
-                        <a href="/lessons-list" class="btn btn-primary">Контакты</a>
-                    </div>
-                </div>
-                <div class="col d-flex">
-                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                        <svg class="bi" width="1em" height="1em">
-                            <use xlink:href="#cpu-fill"></use>
-                        </svg>
+{#                        <svg class="bi" width="1em" height="1em">#}
+{#                            <use xlink:href="#cpu-fill"></use>#}
+{#                        </svg>#}
                     </div>
 <!--                    <div>-->
 <!--                        <h3 class="fs-2">Уроки</h3>-->
@@ -264,25 +254,55 @@
                     <div>
 <!--                        <h3 class="fs-2">Форма для добавления слова</h3>-->
 <!--                        <p class="fst-italic">Вы можете добавить свое слово, его перевод и иллюстрацию по желанию. </p>-->
-                        <a href="/add-term" class="btn btn-primary">
-                            СДВ данные
+                        <a href="/add-term" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                            VLF data
                         </a>
                     </div>
                 </div>
-<!--                <div class="col d-flex">-->
-<!--                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">-->
-<!--                        <svg class="bi" width="1em" height="1em">-->
-<!--                            <use xlink:href="#cpu-fill"></use>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <div>-->
+                <div class="col d-flex">
+                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+{#                        <svg class="bi" width="1em" height="1em">#}
+{#                            <use xlink:href="#cpu-fill"></use>#}
+{#                        </svg>#}
+                    </div>
+                    <div>
 <!--                        <h3 class="fs-2">Статистика</h3>-->
 <!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
-<!--                        <a href="/stats" class="btn btn-primary">-->
-<!--                            Изучить-->
-<!--                        </a>-->
+                        <a href="/stats" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                            Equipment
+                        </a>
 <!--                    </div>-->
-<!--                </div>-->
+                    </div>
+                </div>
+                <div class="col d-flex">
+                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+{#                        <svg class="bi" width="1em" height="1em">#}
+{#                            <use xlink:href="#cpu-fill"></use>#}
+{#                        </svg>#}
+                    </div>
+                    <div>
+<!--                        <h3 class="fs-2">Статистика</h3>-->
+<!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
+                        <a href="/stats" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                            Data
+                        </a>
+<!--                    </div>-->
+                    </div>
+                </div>
+                <div class="col d-flex">
+                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+{#                        <svg class="bi" width="1em" height="1em">#}
+{#                            <use xlink:href="#cpu-fill"></use>#}
+{#                        </svg>#}
+                    </div>
+                    <div>
+<!--                        <h3 class="fs-2">Контакты</h3>-->
+<!--                        <p class="fst-italic">Общая таблица со всеми словами из карточек. </p>-->
+                        <a href="/lessons-list" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                            Contacts
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <footer class="footer pt-3 mt-4 text-muted border-top">© 2023</footer>

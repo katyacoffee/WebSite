@@ -14,217 +14,656 @@ Add word
 
 
 {% block content %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="calendar-14/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="calendar-14/css/rome.css">
+    <body>
 
-    <link rel="stylesheet" href="calendar-14/css/bootstrap.min.css">
+<br>
+</br>
 
-    <link rel="stylesheet" href="calendar-14/css/style.css">
-    <title>Calendar #4</title>
-    <script nonce="32dcd3e0-9538-4533-8fc9-9f40e9dc58a2">
-    (function(w, d) {
-        !function(dK, dL, dM, dN) {
-            dK[dM] = dK[dM] || {};
-            dK[dM].executed = [];
-            dK.zaraz = {
-                deferred: [],
-                listeners: []
-            };
-            dK.zaraz.q = [];
-            dK.zaraz._f = function(dO) {
-                return function() {
-                    var dP = Array.prototype.slice.call(arguments);
-                    dK.zaraz.q.push({
-                        m: dO,
-                        a: dP
-                    })
-                }
-            };
-            for (const dQ of ["track", "set", "debug"])
-                dK.zaraz[dQ] = dK.zaraz._f(dQ);
-            dK.zaraz.init = () => {
-                var dR = dL.getElementsByTagName(dN)[0],
-                    dS = dL.createElement(dN),
-                    dT = dL.getElementsByTagName("title")[0];
-                dT && (dK[dM].t = dL.getElementsByTagName("title")[0].text);
-                dK[dM].x = Math.random();
-                dK[dM].w = dK.screen.width;
-                dK[dM].h = dK.screen.height;
-                dK[dM].j = dK.innerHeight;
-                dK[dM].e = dK.innerWidth;
-                dK[dM].l = dK.location.href;
-                dK[dM].r = dL.referrer;
-                dK[dM].k = dK.screen.colorDepth;
-                dK[dM].n = dL.characterSet;
-                dK[dM].o = (new Date).getTimezoneOffset();
-                if (dK.dataLayer)
-                    for (const dX of Object.entries(Object.entries(dataLayer).reduce(((dY, dZ) => ({
-                        ...dY[1],
-                        ...dZ[1]
-                    })), {})))
-                        zaraz.set(dX[0], dX[1], {
-                            scope: "page"
-                        });
-                dK[dM].q = [];
-                for (; dK.zaraz.q.length;) {
-                    const d_ = dK.zaraz.q.shift();
-                    dK[dM].q.push(d_)
-                }
-                dS.defer = !0;
-                for (const ea of [localStorage, sessionStorage])
-                    Object.keys(ea || {}).filter((ec => ec.startsWith("_zaraz_"))).forEach((eb => {
-                        try {
-                            dK[dM]["z_" + eb.slice(7)] = JSON.parse(ea.getItem(eb))
-                        } catch {
-                            dK[dM]["z_" + eb.slice(7)] = ea.getItem(eb)
-                        }
-                    }));
-                dS.referrerPolicy = "origin";
-                dS.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(dK[dM])));
-                dR.parentNode.insertBefore(dS, dR)
-            };
-            ["complete", "interactive"].includes(dL.readyState) ? zaraz.init() : dK.addEventListener("DOMContentLoaded", zaraz.init)
-        }(w, d, "zarazData", "script");
-    })(window, document);
-    </script>
-</head>
+
+  <div class="form-group" style="margin: 0 auto; width: 280px; height: 45px;">
+
+{#    <label for="mydate">Calendar date:</label>#}
+	  <div style="position:relative">
+    <input id="mydate" type="text" class="form-control" data-date-format="dd/mm/yyyy" placeholder="Select a Date">
+	  <span style="font-size: 20px;
+    				position: absolute;
+    				margin: 0 auto;
+    				display: inline-flex;
+    				align-items: center;
+    				justify-content: center;
+				  	pointer-events: none;
+   			 		top: 6px;
+   					right: 50%;"
+			class="glyphicon glyphicon-calendar"></span>
+
+<!-- 		  	  <span class="alert alert-danger sample-validation">a very very long error message</span> -->
+
+
+	  </div>
+
+
+
+
+
+  </div>
+
+<div class="bdc" style="position:relative"></div>
+<script>
+    $(document).ready(function(){
+        $('#mydate').datepicker({
+            todayHighlight: true,
+             orientation: "bottom left",
+             format: "mm/dd/yy",
+            container: ".bdc"
+            //container: console.log($(this).datepicker())
+        });
+
+
+    });
+</script>
+</body>
+
+{#    CALENDAR-1#}
+{#<body>#}
+{#        <!-- Reset CSS -->#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">#}
+{#        <!-- Font Awesome CSS  -->#}
+{#    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />#}
+{#        <!-- Calendar Style CSS -->#}
+{#    <link rel="stylesheet" href="scr/styles.css">#}
+{#        <div class="calendar-wrapper">#}
+{#        <button id="btnPrev" type="button">Предыдущий</button>#}
+{#        <button id="btnNext" type="button">Следующий</button>#}
+{#    <div id="divCal"></div>#}
+{#    </div>#}
+{#         <script src="js/index.js"></script>#}
+{#        <style>#}
+{#        .calendar-wrapper {#}
+{#          width: 360px;#}
+{#          margin: 3em auto;#}
+{#          padding: 2em;#}
+{#          border: 1px solid #dcdcff;#}
+{#          border-radius: 5px;#}
+{#          background: #fff;#}
+{#        }#}
+{#        table {#}
+{#          clear: both;#}
+{#          width: 100%;#}
+{#          border: 1px solid #dcdcff;#}
+{#          border-radius: 3px;#}
+{#          border-collapse: collapse;#}
+{#          color: #444;#}
+{#        }#}
+{#        td {#}
+{#          height: 48px;#}
+{#          text-align: center;#}
+{#          vertical-align: middle;#}
+{#          border-right: 1px solid #dcdcff;#}
+{#          border-top: 1px solid #dcdcff;#}
+{#          width: 14.28571429%;#}
+{#        }#}
+{#        thead td {#}
+{#          border: none;#}
+{#          color: #28283b;#}
+{#          text-transform: uppercase;#}
+{#          font-size: 1.5em;#}
+{#        }#}
+{#        td.not-current {#}
+{#          color: #c0c0c0;#}
+{#        }#}
+{#        td.today {#}
+{#          font-weight: 700;#}
+{#          color: #28283b;#}
+{#          font-size: 1.5em;#}
+{#        }#}
+{#        #btnPrev {#}
+{#          float: left;#}
+{#          margin-bottom: 20px;#}
+{#        }#}
+{#        #btnPrev:before {#}
+{#          content: '\f104';#}
+{#          font-family: FontAwesome;#}
+{#          padding-right: 4px;#}
+{#        }#}
+{#        #btnNext {#}
+{#          float: right;#}
+{#          margin-bottom: 20px;#}
+{#        }#}
+{#        #btnNext:after {#}
+{#          content: '\f105';#}
+{#          font-family: FontAwesome;#}
+{#          padding-left: 4px;#}
+{#        }#}
+{#        #btnPrev,#}
+{#        #btnNext {#}
+{#          background: transparent;#}
+{#          border: none;#}
+{#          outline: none;#}
+{#          font-size: 1em;#}
+{#          color: #c0c0c0;#}
+{#          cursor: pointer;#}
+{#          font-family: sans-serif;#}
+{#          text-transform: uppercase;#}
+{#          transition: all 0.3s ease;#}
+{#        }#}
+{#        #btnPrev:hover,#}
+{#        #btnNext:hover {#}
+{#          color: #28283b;#}
+{#          font-weight: bold;#}
+{#        }#}
+{#        </style>#}
+{#                            <script>#}
+{#                                var Cal = function(divId) {#}
+{#                                  //Сохраняем идентификатор div#}
+{#                                  this.divId = divId;#}
+{#                                  // Дни недели с понедельника#}
+{#                                  this.DaysOfWeek = [#}
+{#                                    'Mo',#}
+{#                                    'Tu',#}
+{#                                    'We',#}
+{#                                    'Th',#}
+{#                                    'Fr',#}
+{#                                    'Sa',#}
+{#                                    'Su'#}
+{#                                  ];#}
+{#                                  // Месяцы начиная с января#}
+{#                                  this.Months =['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];#}
+{#                                  //Устанавливаем текущий месяц, год#}
+{#                                  var d = new Date();#}
+{#                                  this.currMonth = d.getMonth();#}
+{#                                  this.currYear = d.getFullYear();#}
+{#                                  this.currDay = d.getDate();#}
+{#                                };#}
+{#                                // Переход к следующему месяцу#}
+{#                                Cal.prototype.nextMonth = function() {#}
+{#                                  if ( this.currMonth == 11 ) {#}
+{#                                    this.currMonth = 0;#}
+{#                                    this.currYear = this.currYear + 1;#}
+{#                                  }#}
+{#                                  else {#}
+{#                                    this.currMonth = this.currMonth + 1;#}
+{#                                  }#}
+{#                                  this.showcurr();#}
+{#                                };#}
+{#                                // Переход к предыдущему месяцу#}
+{#                                Cal.prototype.previousMonth = function() {#}
+{#                                  if ( this.currMonth == 0 ) {#}
+{#                                    this.currMonth = 11;#}
+{#                                    this.currYear = this.currYear - 1;#}
+{#                                  }#}
+{#                                  else {#}
+{#                                    this.currMonth = this.currMonth - 1;#}
+{#                                  }#}
+{#                                  this.showcurr();#}
+{#                                };#}
+{#                                // Показать текущий месяц#}
+{#                                Cal.prototype.showcurr = function() {#}
+{#                                  this.showMonth(this.currYear, this.currMonth);#}
+{#                                };#}
+{#                                // Показать месяц (год, месяц)#}
+{#                                Cal.prototype.showMonth = function(y, m) {#}
+{#                                  var d = new Date()#}
+{#                                  // Первый день недели в выбранном месяце#}
+{#                                  , firstDayOfMonth = new Date(y, m, 7).getDay()#}
+{#                                  // Последний день выбранного месяца#}
+{#                                  , lastDateOfMonth =  new Date(y, m+1, 0).getDate()#}
+{#                                  // Последний день предыдущего месяца#}
+{#                                  , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();#}
+{#                                  var html = '<table>';#}
+{#                                  // Запись выбранного месяца и года#}
+{#                                  html += '<thead><tr>';#}
+{#                                  html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';#}
+{#                                  html += '</tr></thead>';#}
+{#                                  // заголовок дней недели#}
+{#                                  html += '<tr class="days">';#}
+{#                                  for(var i=0; i < this.DaysOfWeek.length;i++) {#}
+{#                                    html += '<td>' + this.DaysOfWeek[i] + '</td>';#}
+{#                                  }#}
+{#                                  html += '</tr>';#}
+{#                                  // Записываем дни#}
+{#                                  var i=1;#}
+{#                                  do {#}
+{#                                    var dow = new Date(y, m, i).getDay();#}
+{#                                    // Начать новую строку в понедельник#}
+{#                                    if ( dow == 1 ) {#}
+{#                                      html += '<tr>';#}
+{#                                    }#}
+{#                                    // Если первый день недели не понедельник показать последние дни предыдущего месяца#}
+{#                                    else if ( i == 1 ) {#}
+{#                                      html += '<tr>';#}
+{#                                      var k = lastDayOfLastMonth - firstDayOfMonth+1;#}
+{#                                      for(var j=0; j < firstDayOfMonth; j++) {#}
+{#                                        html += '<td class="not-current">' + k + '</td>';#}
+{#                                        k++;#}
+{#                                      }#}
+{#                                    }#}
+{#                                    // Записываем текущий день в цикл#}
+{#                                    var chk = new Date();#}
+{#                                    var chkY = chk.getFullYear();#}
+{#                                    var chkM = chk.getMonth();#}
+{#                                    if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {#}
+{#                                      html += '<td class="today">' + i + '</td>';#}
+{#                                    } else {#}
+{#                                      html += '<td class="normal">' + i + '</td>';#}
+{#                                    }#}
+{#                                    // закрыть строку в воскресенье#}
+{#                                    if ( dow == 0 ) {#}
+{#                                      html += '</tr>';#}
+{#                                    }#}
+{#                                    // Если последний день месяца не воскресенье, показать первые дни следующего месяца#}
+{#                                    else if ( i == lastDateOfMonth ) {#}
+{#                                      var k=1;#}
+{#                                      for(dow; dow < 7; dow++) {#}
+{#                                        html += '<td class="not-current">' + k + '</td>';#}
+{#                                        k++;#}
+{#                                      }#}
+{#                                    }#}
+{#                                    i++;#}
+{#                                  }while(i <= lastDateOfMonth);#}
+{#                                  // Конец таблицы#}
+{#                                  html += '</table>';#}
+{#                                  // Записываем HTML в div#}
+{#                                  document.getElementById(this.divId).innerHTML = html;#}
+{#                                };#}
+{#                                // При загрузке окна#}
+{#                                window.onload = function() {#}
+{#                                  // Начать календарь#}
+{#                                  var c = new Cal("divCal");#}
+{#                                  c.showcurr();#}
+{#                                  // Привязываем кнопки «Следующий» и «Предыдущий»#}
+{#                                  getId('btnNext').onclick = function() {#}
+{#                                    c.nextMonth();#}
+{#                                  };#}
+{#                                  getId('btnPrev').onclick = function() {#}
+{#                                    c.previousMonth();#}
+{#                                  };#}
+{#                                }#}
+{#                                // Получить элемент по id#}
+{#                                function getId(id) {#}
+{#                                  return document.getElementById(id);#}
+{#                                }#}
+{#                            </script>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</body>#}
+
+
+{#    ВЫПАДАЮЩИЙ СПИСОК#}
+{#    <div class="dropup">#}
+{#          <button class="dropbtn">Всплывающее</button>#}
+{#          <div class="dropup-content">#}
+{#            <a href="#">Ссылка 1</a>#}
+{#            <a href="#">Ссылка 2</a>#}
+{#            <a href="#">Ссылка 3</a>#}
+{#          </div>#}
+{#            <style>#}
+{#                                /* Кнопка падение вверх */#}
+{#                .dropbtn {#}
+{#                  background-color: #3498DB;#}
+{#                  color: white;#}
+{#                  padding: 16px;#}
+{#                  font-size: 16px;#}
+{#                  border: none;#}
+{#                }#}
+{##}
+{#                /* Контейнер <div> - необходим для размещения всплывающег содержимого */#}
+{#                .dropup {#}
+{#                  position: relative;#}
+{#                  display: inline-block;#}
+{#                }#}
+{##}
+{#                /* Всплывающее содержимое (скрыто по умолчанию) */#}
+{#                .dropup-content {#}
+{#                  display: none;#}
+{#                  position: absolute;#}
+{#                  bottom: 50px;#}
+{#                  background-color: #f1f1f1;#}
+{#                  min-width: 160px;#}
+{#                  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);#}
+{#                  z-index: 1;#}
+{#                }#}
+{##}
+{#                /* Ссылки внутри всплывающего списка */#}
+{#                .dropup-content a {#}
+{#                  color: black;#}
+{#                  padding: 12px 16px;#}
+{#                  text-decoration: none;#}
+{#                  display: block;#}
+{#                }#}
+{##}
+{#                /* Изменение цвета всплывающих ссылок при наведении курсора */#}
+{#                .dropup-content a:hover {background-color: #ddd}#}
+{##}
+{#                /* Показывать всплывающее меню при наведении курсора */#}
+{#                .dropup:hover .dropup-content {#}
+{#                  display: block;#}
+{#                }#}
+{##}
+{#                /* Изменение цвета фона кнопки раскрывающегося списка при отображении всплывающего содержимого */#}
+{#                .dropup:hover .dropbtn {#}
+{#                  background-color: #2980B9;#}
+{#                }#}
+{#            </style>#}
+{#        </div>#}
+
+
+
+{#КАЛЕНДАРЬ-2#}
 <body>
-    <div class="content">
-        <div class="container text-left">
-            <div class="row justify-content-center">
-                <div class="col-lg-3">
-                    <h2 class="mb-5 text-center">Calendar #4</h2>
-                    <form action="#" class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-<!--                                <label for="input_from">Select Date</label>-->
-                                <input type="text" class="form-control" id="input">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="wrapper">
+    <div class="container-calendar">
+        <h3 id="monthAndYear"></h3>
+        <div class="button-container-calendar">
+            <button id="previous" onclick="previous()">&#8249;</button>
+            <button id="next" onclick="next()">&#8250;</button>
+        </div>
+        <table class="table-calendar" id="calendar" data-lang="en">
+            <thead id="thead-month"></thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
+        <div class="footer-container-calendar">
+            <label for="month">Выберите месяц и год: </label>
+              <select id="month" onchange="jump()">
+                         <option value=0>Jan</option>
+                         <option value=1>Feb</option>
+                         <option value=2>Mar</option>
+                         <option value=3>Apr</option>
+                         <option value=4>May</option>
+                         <option value=5>Jun</option>
+                         <option value=6>Jul</option>
+                         <option value=7>Aug</option>
+                         <option value=8>Sep</option>
+                         <option value=9>Oct</option>
+                         <option value=10>Nov</option>
+                         <option value=11>Dec</option>
+                     </select>
+                     <select id="year" onchange="jump()"></select>
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/rome.js"></script>
-    <script src="js/main.js"></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7d9bad6918d59195","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.4.0","si":100}' crossorigin="anonymous"></script>
-</body>
-</html>
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    Выберите дату-->
-<!--  </div>-->
-<!--  <br />-->
-<!--    <div class="row">-->
-<!--        <div class='col-sm-3'>-->
-<!--            <div class="form-group">-->
-<!--                <div class='input-group date' id='datetimepicker1'>-->
-<!--                    <input type='text' class="form-control" />-->
-<!--                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>-->
-<!--                    </span>-->
-<!--                    <script>-->
-<!--                         $(function () {-->
-<!--                           var bindDatePicker = function() {-->
-<!--                                $(".date").datetimepicker({-->
-<!--                                format:'YYYY-MM-DD',-->
-<!--                                    icons: {-->
-<!--                                        time: "fa fa-clock-o",-->
-<!--                                        date: "fa fa-calendar",-->
-<!--                                        up: "fa fa-arrow-up",-->
-<!--                                        down: "fa fa-arrow-down"-->
-<!--                                    }-->
-<!--                                }).find('input:first').on("blur",function () {-->
-<!--                                    // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.-->
-<!--                                    // update the format if it's yyyy-mm-dd-->
-<!--                                    var date = parseDate($(this).val());-->
-
-<!--                                    if (! isValidDate(date)) {-->
-<!--                                        //create date based on momentjs (we have that)-->
-<!--                                        date = moment().format('YYYY-MM-DD');-->
-<!--                                    }-->
-
-<!--                                    $(this).val(date);-->
-<!--                                });-->
-<!--                            }-->
-
-<!--                           var isValidDate = function(value, format) {-->
-<!--                                format = format || false;-->
-<!--                                // lets parse the date to the best of our knowledge-->
-<!--                                if (format) {-->
-<!--                                    value = parseDate(value);-->
-<!--                                }-->
-
-<!--                                var timestamp = Date.parse(value);-->
-
-<!--                                return isNaN(timestamp) == false;-->
-<!--                           }-->
-
-<!--                           var parseDate = function(value) {-->
-<!--                                var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);-->
-<!--                                if (m)-->
-<!--                                    value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);-->
-
-<!--                                return value;-->
-<!--                           }-->
-
-<!--                           bindDatePicker();-->
-<!--                         });-->
-<!--                    </script>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<div class="container-sm px-5 py-5" id="term-form">
-    <form method="post">
-        <div class="row px-5 py-2">
-            <h3>Ваши контактные данные</h3>
-        </div>
-        <div class="row px-5 py-2">
-            <div class="col-md-6">
-                <label for="name">Ваше имя:</label>
-                <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Иван" value required>
-            </div>
-            <div class="col-md-6">
-                <label for="email">Ваш контактный email:</label>
-                <input type="text" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>
-            </div>
-        </div>
-        <div class="row px-5 py-2">
-            <h3>Ваше слово</h3>
-        </div>
-        <div class="row px-5 py-2">
-            <div class="col-md-4">
-                <label for="lesson_id">Номер урока</label>
-                <input type="text" class="form-control input-lg" name="lesson_id" id="lesson_id">
-            </div>
-            <div class="col-md-4">
-                <label for="lesson">Тема урока</label>
-                <input type="text" class="form-control input-lg" name="lesson" id="lesson">
-            </div>
-            <div class="col-md-4">
-                <label for="new_term">Слово</label>
-                <input type="text" class="form-control input-lg" name="new_term" id="new_term">
-            </div>
-            <div class="col-md-8">
-                <label for="new_definition">Перевод слова</label>
-                <textarea type="text" class="form-control input-lg" name="new_definition" id="new_definition" aria-describedby="definition_note" rows="3"></textarea>
-            </div>
-        </div>
-        <div class="row px-5 py-2">
-            <button type="submit" class="btn btn-info" formaction="/send-term">Отправить</button>
-        </div>
-    </form>
 </div>
+    <style>
+    .wrapper {
+        margin: 15px auto;
+        max-width: 1100px;
+    }
+
+    .container-calendar {
+        background: #ffffff;
+        padding: 15px;
+        max-width: 475px;
+        margin: 0 auto;
+        overflow: auto;
+    }
+
+    .button-container-calendar button {
+        cursor: pointer;
+        display: inline-block;
+        zoom: 1;
+        background: #00a2b7;
+        color: #fff;
+        border: 1px solid #0aa2b5;
+        border-radius: 4px;
+        padding: 5px 10px;
+    }
+
+    .table-calendar {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table-calendar td, .table-calendar th {
+        padding: 5px;
+        border: 1px solid #e2e2e2;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    {#.date-picker.selected {#}
+    {#    font-weight: bold;#}
+    {#    outline: 1px dashed #00BCD4;#}
+    {#}#}
+
+    {#.date-picker.selected span {#}
+    {#    border-bottom: 2px solid currentColor;#}
+    {#}#}
+
+    /* sunday */
+    .date-picker:nth-child(1) {
+      color: #585858;
+    }
+
+    /* friday */
+    .date-picker:nth-child(6) {
+      color: #585858;
+    }
+
+    #monthAndYear {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .button-container-calendar {
+        position: relative;
+        margin-bottom: 1em;
+        overflow: hidden;
+        clear: both;
+    }
+
+    #previous {
+        float: left;
+    }
+
+    #next {
+        float: right;
+    }
+
+    .footer-container-calendar {
+        margin-top: 1em;
+        border-top: 1px solid #dadada;
+        padding: 10px 0;
+    }
+
+    .footer-container-calendar select {
+        cursor: pointer;
+        display: inline-block;
+        zoom: 1;
+        background: #ffffff;
+        color: #585858;
+        border: 1px solid #bfc5c5;
+        border-radius: 3px;
+        padding: 5px 1em;
+    }
+    </style>
+    <script>
+    function generate_year_range(start, end) {
+        var years = "";
+        for (var year = start; year <= end; year++) {
+            years += "<option value='" + year + "'>" + year + "</option>";
+        }
+        return years;
+    }
+
+    today = new Date();
+    currentMonth = today.getMonth();
+    currentYear = today.getFullYear();
+    selectYear = document.getElementById("year");
+    selectMonth = document.getElementById("month");
+
+
+    createYear = generate_year_range(2010, 2050);
+    /** or
+     * createYear = generate_year_range( 1970, currentYear );
+     */
+
+    document.getElementById("year").innerHTML = createYear;
+
+    var calendar = document.getElementById("calendar");
+    var lang = calendar.getAttribute('data-lang');
+
+    var months = "";
+    var days = "";
+
+    var monthDefault = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    var dayDefault = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    if (lang == "en") {
+        months = monthDefault;
+        days = dayDefault;
+    {#} else if (lang == "id") {#}
+    {#    months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];#}
+    {#    days = ["Ming", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];#}
+    {#} else if (lang == "fr") {#}
+    {#    months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];#}
+    {#    days = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];#}
+    } else {
+        months = monthDefault;
+        days = dayDefault;
+    }
+
+
+    var $dataHead = "<tr>";
+    for (dhead in days) {
+        $dataHead += "<th data-days='" + days[dhead] + "'>" + days[dhead] + "</th>";
+    }
+    $dataHead += "</tr>";
+
+    //alert($dataHead);
+    document.getElementById("thead-month").innerHTML = $dataHead;
+
+
+    monthAndYear = document.getElementById("monthAndYear");
+    showCalendar(currentMonth, currentYear);
+
+
+
+    function next() {
+        currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+        currentMonth = (currentMonth + 1) % 12;
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function previous() {
+        currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+        currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function jump() {
+        currentYear = parseInt(selectYear.value);
+        currentMonth = parseInt(selectMonth.value);
+        showCalendar(currentMonth, currentYear);
+    }
+
+    function showCalendar(month, year) {
+
+        var firstDay = ( new Date( year, month, 7 ) ).getDay();
+
+        tbl = document.getElementById("calendar-body");
+
+
+        tbl.innerHTML = "";
+
+
+        monthAndYear.innerHTML = months[month] + " " + year;
+        selectYear.value = year;
+        selectMonth.value = month;
+
+        // creating all cells
+        var date = 1;
+        for ( var i = 0; i < 7; i++ ) {
+
+            var row = document.createElement("tr");
+
+
+            for ( var j = 0; j < 7; j++ ) {
+                if ( i === 0 && j < firstDay ) {
+                    cell = document.createElement( "td" );
+                    cellText = document.createTextNode("");
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                } else if (date > daysInMonth(month, year)) {
+                    break;
+                } else {
+                    cell = document.createElement("td");
+                    cell.setAttribute("data-date", date);
+                    cell.setAttribute("data-month", month + 1);
+                    cell.setAttribute("data-year", year);
+                    cell.setAttribute("data-month_name", months[month]);
+                    cell.className = "date-picker";
+                    cell.innerHTML = "<span>" + date + "</span>";
+
+                    if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {
+                        cell.className = "date-picker selected";
+                    }
+                    row.appendChild(cell);
+                    date++;
+                }
+
+
+            }
+
+            tbl.appendChild(row);
+        }
+
+    }
+
+    function daysInMonth(iMonth, iYear) {
+        return 32 - new Date(iYear, iMonth, 32).getDate();
+    }
+    </script>
+</body>
+
+<div class="row px-5 py-2">
+    <button href="/sign_in" class="btn btn-info" style="font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">View</button>
+</div>
+
+
+
+{#    СТАРОЕ#}
+{#<div class="container-sm px-5 py-5" id="term-form">#}
+{#    <form method="post">#}
+{#        <div class="row px-5 py-2">#}
+{#            <h3>Ваши контактные данные</h3>#}
+{#        </div>#}
+{#        <div class="row px-5 py-2">#}
+{#            <div class="col-md-6">#}
+{#                <label for="name">Ваше имя:</label>#}
+{#                <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Иван" value required>#}
+{#            </div>#}
+{#            <div class="col-md-6">#}
+{#                <label for="email">Ваш контактный email:</label>#}
+{#                <input type="text" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row px-5 py-2">#}
+{#            <h3>Ваше слово</h3>#}
+{#        </div>#}
+{#        <div class="row px-5 py-2">#}
+{#            <div class="col-md-4">#}
+{#                <label for="lesson_id">Номер урока</label>#}
+{#                <input type="text" class="form-control input-lg" name="lesson_id" id="lesson_id">#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <label for="lesson">Тема урока</label>#}
+{#                <input type="text" class="form-control input-lg" name="lesson" id="lesson">#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <label for="new_term">Слово</label>#}
+{#                <input type="text" class="form-control input-lg" name="new_term" id="new_term">#}
+{#            </div>#}
+{#            <div class="col-md-8">#}
+{#                <label for="new_definition">Перевод слова</label>#}
+{#                <textarea type="text" class="form-control input-lg" name="new_definition" id="new_definition" aria-describedby="definition_note" rows="3"></textarea>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row px-5 py-2">#}
+{#            <button type="submit" class="btn btn-info" formaction="/send-term">Отправить</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}
 {% endblock %}

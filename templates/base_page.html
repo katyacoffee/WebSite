@@ -13,7 +13,7 @@
 <main>
     <div class="container">
 <!--        <header class="border-bottom">-->
-        <header class="header">
+        <header class="border-bottom">
 <!--            <div class="fs-2 mb-3">-->
 <!--                <a href="/sign_in" class="btn btn-primary" style="float: right;">-->
 <!--                    Зарегистрироваться-->
@@ -32,64 +32,11 @@
 <!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->
 <!--            </div>-->
 <!--        </div>-->
-        <div class="dropup">
-          <button class="dropbtn">Всплывающее</button>
-          <div class="dropup-content">
-            <a href="#">Ссылка 1</a>
-            <a href="#">Ссылка 2</a>
-            <a href="#">Ссылка 3</a>
-          </div>
-            <style>
-                                /* Кнопка падение вверх */
-                .dropbtn {
-                  background-color: #3498DB;
-                  color: white;
-                  padding: 16px;
-                  font-size: 16px;
-                  border: none;
-                }
 
-                /* Контейнер <div> - необходим для размещения всплывающег содержимого */
-                .dropup {
-                  position: relative;
-                  display: inline-block;
-                }
-
-                /* Всплывающее содержимое (скрыто по умолчанию) */
-                .dropup-content {
-                  display: none;
-                  position: absolute;
-                  bottom: 50px;
-                  background-color: #f1f1f1;
-                  min-width: 160px;
-                  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                  z-index: 1;
-                }
-
-                /* Ссылки внутри всплывающего списка */
-                .dropup-content a {
-                  color: black;
-                  padding: 12px 16px;
-                  text-decoration: none;
-                  display: block;
-                }
-
-                /* Изменение цвета всплывающих ссылок при наведении курсора */
-                .dropup-content a:hover {background-color: #ddd}
-
-                /* Показывать всплывающее меню при наведении курсора */
-                .dropup:hover .dropup-content {
-                  display: block;
-                }
-
-                /* Изменение цвета фона кнопки раскрывающегося списка при отображении всплывающего содержимого */
-                .dropup:hover .dropbtn {
-                  background-color: #2980B9;
-                }
-            </style>
-        </div>
         {% block content %}{% endblock %}
-        <footer class="footer pt-3 mt-4 text-muted border-top">© 2023</footer>
+        <footer class="footer pt-3 mt-4 text-muted border-top">© IDG RAS
+						<br>
+						Institute of geosphere dynamics of Russian academy of sciences</footer>
     </div>
 </main>
 </body>
