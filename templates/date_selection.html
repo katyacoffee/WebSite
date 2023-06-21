@@ -84,12 +84,22 @@ Add word
             clear: both;
         }
 
-        #previous {
+        .btn-previous {
             float: left;
+            display: inline-block;
+            background: #00a2b7;
+            color: #fff;
+            border-radius: 3px;
+            border: 1px solid #0aa2b5;
         }
 
-        #next {
+        .btn-next {
             float: right;
+            display: inline-block;
+            background: #00a2b7;
+            color: #fff;
+            border-radius: 3px;
+            border: 1px solid #0aa2b5;
         }
 
         .footer-container-calendar {
@@ -130,8 +140,13 @@ Add word
             <div class="container-calendar">
                 <h3 id="monthAndYear"></h3>
                 <div class="button-container-calendar">
-                    <div class="arrow" id="previous" type="button" onclick="previous()">&#8249;</div>
-                    <div class="btn btn-info" id="next" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="next()">&#8250;</div>
+                    <input class="btn-previous" type="button" value=&#8249; onclick="previous()">
+{#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8249; onclick="previous()">#}
+{#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8250; onclick="next()">#}
+                    <input class="btn-next" type="button" value=&#8250; onclick="next()">
+
+{#                    <div class="arrow" id="previous" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="previous()">&#8249;</div>#}
+{#                    <div class="btn btn-info" id="next" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="next()">&#8250;</div>#}
                 </div>
                 <table class="table-calendar" id="calendar" data-lang="en">
                     <thead id="thead-month"></thead>
