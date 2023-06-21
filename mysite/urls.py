@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('date-selection', views.date_selection),
+    path('get-vlf-data', views.get_vlf_data),
     path('send-term', views.send_term),
     path('stats', views.show_stats),
     path('contacts', views.contacts),

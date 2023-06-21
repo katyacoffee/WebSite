@@ -3,6 +3,7 @@ from django.core.cache import cache
 from django.http import HttpResponse
 from . import terms_work, core
 import json
+import datetime
 # from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 # from django.views import generic
 # from .models import Question # for calendar
@@ -29,13 +30,45 @@ def get_menu(request):
     return render(request, "menu.html")
 
 
+def date_selection(request):
+    return render(request, "date_selection.html")
+
+
 def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
-        date = request.POST.get("mydate")
+        date = str(request.POST.get("mydate"))
+        context = {"date_test": date}
+        parsed_date = date.split('/')
+        if len(parsed_date) != 3:
+            context["success"] = False
+            context["comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
+            return render(request, "vlf_data.html", context)
+        day = parsed_date[0]
+        mon = parsed_date[1]
+        yr = parsed_date[2]
+        if not day.isnumeric() or not mon.isnumeric() or not yr.isnumeric():
+            context["success"] = False
+            context["comment"] = "Неверный формат даты. День, месяц и год должны быть числами"
+        day_int = int(day)
+        mon_int = int(mon)
+        yr_int = int(yr)
+        try:
+            try_date = datetime.date(yr_int, mon_int, day_int)
+            context["success"] = True
+            context["comment"] = ""
+        except ValueError:
+            context["success"] = False
+            context["comment"] = "Введена несуществующая дата"
+        if context["success"]:
+            context["success-title"] = ""
         #TODO: сделать по аналогии с send_answers!
         print(date)
-    return render(request, "vlf_data.html")
+        print(len(date))
+        # return render(request, "vlf_data.html", context={"date_test": date})
+        return render(request, "vlf_data.html", context)
+    else:
+        date_selection(request)
 
 
 def contacts(request):
@@ -56,10 +89,6 @@ def cards(request):
 def test(request):
     words = core.cards_to_tuple(core.get_all_cards())
     return render(request, "test.html", context={"words": words})
-
-
-def date_selection(request):
-    return render(request, "date_selection.html")
 
 
 def send_term(request):
@@ -91,7 +120,7 @@ def send_term(request):
             context["success-title"] = ""
         return render(request, "term_request.html", context)
     else:
-        add_term(request)
+        date_selection(request)
 
 
 def send_answers(request):
@@ -117,7 +146,7 @@ def send_answers(request):
                 core.add_result(user_name, int(lesson_id), points/len(cards_for_lesson))
         return render(request, "test_request.html", context)
     else:
-        add_term(request)
+        date_selection(request)
 
 
 def submit_login(request):

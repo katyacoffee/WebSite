@@ -9,31 +9,115 @@ All lessons
 {% endblock %}
 
 {% block page-lead %}
-<p class="fst-italic" style="font-size:25px;">Список всех уроков, слов и их переводов </p>
+{#Этот сайт предназначен для изучения английского языка по карточкам. <br/>#}
+{#Здесь Вы можете выучить новые слова, а потом проверить себя с помощью теста. <br/>#}
+{#Также можно посмотреть общую статистику успеваемости.#}
+{#<body>#}
+{#    {% load static %}#}
+{#    <img src="{% static 'pic_forest.jpg' %}" alt="Figure"/>#}
+{#</body>#}
 {% endblock %}
 
-{% block content %}
+{% load static %}
 
-<p class="header1">Контакты</p>
-    <h3 class="text1">
-        ИДГ РАН
-        <br/>
-        <br/>
-        Адрес: 119334, Ленинский проспект, 38, корпус 1, Москва, Россия
-    </h3>
-    <style>
-        .header1{
-            text-align: center;
-            font-size:30px;
+{% block content %}
+<br>
+<style>
+        .btn {
+            float: left;
+            display: inline-block;
+            background: #c1d1d3;
+            font-size: 16px;
+            color: #0e0e0e;
+            border: #c1d1d3;
+            border-radius: 10px;
         }
-        .text1{
-            text-align: justify;
-            font-size:20px;
-            margin: auto;
-            width: 100%;
-            display: block;
+        .btn:hover{
+            background: #9aa9ab;
         }
-    </style>
+</style>
+{#<a href="/date-selection" class="btn btn-info" style="font-size: 20px; color: white; background-color: #9aa9ab; border: #9aa9ab;">Вернуться к выбору даты</a>#}
+<a href="/date-selection" class="btn">Вернуться к выбору даты</a>
+<br>
+{#    <h3 class="fs-2">{{ date_test }}</h3>#}
+    <p><span class="fs-2"></span><br/>
+        <span class="fw-bold">{% if success %}{{ date_test }}
+            <style>
+                 .card_fig {
+                     margin: auto;
+                     display: block;
+                     border-radius: 10px;
+                     align-items: center;
+                     justify-content: center;
+                     height: 800px;
+                     width: 90%;
+                     //left: 50%;
+                     background: #c6d2da;
+                     flex-shrink: 2;
+                     text-decoration:none;
+                     color:white;
+                     vertical-align: middle;
+                     border: none;
+                 }
+                 .fig {
+                   //align-items: stretch;
+                   align-items: center;
+                   border: none;
+                 }
+                 .card_block {
+                   display: flex;
+                   flex-direction: column;
+                   align-items: flex-start;
+                   border: none;
+                 }
+                 .card {
+                     margin: auto;
+                     display: block;
+                     border: none;
+                 }
+            </style>
+            <div id="card_block" class="card">
+                <div id="block" class="fig">
+                    <a class = "card_fig">
+                    </a>
+                </div>
+                        <picture>
+                            <img src="{% static 'pic_forest.jpg' %}" alt="" style="object-position: center; margin: auto; flex-shrink: 0;
+                            position: absolute; top: 0; left: 0; bottom: 0; right: 0; max-height: 600px; width: 70%; max-width: 900px; display: block; border-radius: 10px; align-items: center; justify-content: center;">
+                        </picture>
+            </div>
+        {% else %}Ваш запрос завершился с ошибкой{% endif %}</span>.
+    </p>
+    <h2 class="pb-2 border-bottom">Комментарий</h2>
+    <p>{{ comment }}</p>
+{% endblock %}
+
+
+
+{#TEST#}
+{#<body>#}
+{#<br>#}
+{#                <style>#}
+{#                    .fig {#}
+{#                        /*padding: 0;*/#}
+{#                        /*margin: 0 auto auto 0;*/#}
+{#                        margin: auto;#}
+{#                        max-height: 600px;#}
+{#                        width: 90%;#}
+{#                        max-width: 900px;#}
+{#                        display: block;#}
+                        {#border-radius: 10px;#}
+{#                        /*flex-shrink: 0;*/#}
+{#                        align-items: center;#}
+{#                       /*top: 50%;*/#}
+{#                       /*transform: translateY(50%);*/#}
+{#                        justify-content: center;#}
+{#                        }#}
+{#                </style>#}
+{#    {% load static %}#}
+{#    <img class="fig" src="{% static 'pic_forest.jpg' %}" alt="Figure"/>#}
+{#</body>#}
+
 
 <!--<div class="container px-4 py-5" id="terms-table">-->
 <!--    <div class="table-responsive">-->
@@ -64,4 +148,3 @@ All lessons
 <!--        </table>-->
 <!--      </div>-->
 <!--</div>-->
-{% endblock %}
