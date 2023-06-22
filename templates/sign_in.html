@@ -45,40 +45,40 @@
                 <button id="send-pwd" type="submit" class="btn btn-info">
                     Sign in
                 </button>
-                <script>
-                    const button = document.getElementById('send-pwd');
-
-                    button.addEventListener('click', async _ => {
-                      try {
-                        var login=document.getElementById('login').value;
-                        var pwd=document.getElementById('password').value;
-                        var cpwd=document.getElementById('confirm_password').value;
-                        if (pwd == cpwd) {
-                            let response = await fetch('submit-register', {
-                              method: 'post',
-                              body: JSON.stringify({
-                                title: login,
-                                body: pwd,
-                              })
-                            });
-                            let text = await response.text();
-                            if (text == "TRUE") {
-                                sessionStorage.setItem('user_login', login);
-                                text = "Пользователь '" + login + "' упсешно зарегистирован."
-                                document.getElementById('login').value = "";
-                                document.getElementById('password').value = "";
-                                document.getElementById('confirm_password').value = "";
-                            }
-                            alert(text)
-                        } else {
-                            alert("Пароли не совпадают!")
-                        }
-                      } catch(err) {
-                        console.error(`Error: ${err}`);
-                        alert('Unknown server error')
-                      }
-                    });
-                </script>
+{#                <script>#}
+{#                    const button = document.getElementById('send-pwd');#}
+{##}
+{#                    button.addEventListener('click', async _ => {#}
+{#                      try {#}
+{#                        var login=document.getElementById('login').value;#}
+{#                        var pwd=document.getElementById('password').value;#}
+{#                        var cpwd=document.getElementById('confirm_password').value;#}
+{#                        if (pwd == cpwd) {#}
+{#                            let response = await fetch('submit-register', {#}
+{#                              method: 'post',#}
+{#                              body: JSON.stringify({#}
+{#                                title: login,#}
+{#                                body: pwd,#}
+{#                              })#}
+{#                            });#}
+{#                            let text = await response.text();#}
+{#                            if (text == "TRUE") {#}
+{#                                sessionStorage.setItem('user_login', login);#}
+{#                                text = "Пользователь '" + login + "' упсешно зарегистирован."#}
+{#                                document.getElementById('login').value = "";#}
+{#                                document.getElementById('password').value = "";#}
+{#                                document.getElementById('confirm_password').value = "";#}
+{#                            }#}
+{#                            alert(text)#}
+{#                        } else {#}
+{#                            alert("Пароли не совпадают!")#}
+{#                        }#}
+{#                      } catch(err) {#}
+{#                        console.error(`Error: ${err}`);#}
+{#                        alert('Unknown server error')#}
+{#                      }#}
+{#                    });#}
+{#                </script>#}
                 <script src="https://code.jquery.com/jquery-3.5.1.js"
                         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
                         crossorigin="anonymous"></script>

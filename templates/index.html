@@ -4,132 +4,135 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="shortcut icon" type="image/png" href="{% static 'fav-planet.png' %}"/>
-    <link rel="apple-touch-icon" href="{% static 'fav-planet.png' %}" >
-        <title>Main</title>
-     <!-- CSS -->
+    <link rel="apple-touch-icon" href="{% static 'fav-planet.png' %}">
+    <title>Main</title>
+    <!-- CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <body>
 <main>
     <style>
         * {
-          padding: 0;
-          margin: 0;
-          box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         .sidenav {
-          height: 100%;
-          width: 0;
-          position: fixed;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          background-color: #5a728a;
-          overflow-x: hidden;
-          padding-top: 4rem;
-          transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-          font-family: "Bebas Neue";
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #5a728a;
+            overflow-x: hidden;
+            padding-top: 4rem;
+            transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            font-family: "Open Sans", serif;
         }
 
         .sidenav a {
-          padding: 0.5rem 1rem;
-          text-decoration: none;
-          color: #0c0c0c;
-          display: block;
-          transition: 0.4s;
-          white-space: nowrap;
-          font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: #0c0c0c;
+            font-family: "Open Sans", serif;
+            display: block;
+            transition: 0.4s;
+            white-space: nowrap;
+            font-size: 1.5rem;
         }
 
         .sidenav a:hover {
-          color: white;
-          background: #5a728a;
+            color: white;
+            background: #5a728a;
         }
+
         /* Position and style the close button (top right corner) */
         .sidenav .close-btn {
-          position: absolute;
-          top: -1rem;
-          right: 1rem;
-          font-size: 5rem;
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+            font-size: 5rem;
         }
 
         .sidenav .close-btn:hover {
-          background: initial;
-          transform: scale(1.2);
+            background: initial;
+            transform: scale(1.2);
         }
 
         /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
         #main {
-          transition: margin-left 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-          padding: 20px;
-          width: 100%;
+            transition: margin-left 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            padding: 20px;
+            width: 100%;
         }
 
         body {
-         overflow-x: hidden;
+            overflow-x: hidden;
         }
 
         /* Add a black background color to the top navigation */
         .topnav {
-          {#background-color: #316e8d;#}
-          background-color:#5a728a;
-          overflow: hidden;
-          vertical-align: center;
-          align-content: center;
+        {#background-color: #316e8d;#} background-color: #5a728a;
+            overflow: hidden;
+            vertical-align: center;
+            align-content: center;
         }
 
         /* Style the links inside the navigation bar */
         .topnav a {
-          float: left;
-          display: block;
-          padding: 1rem;
-          text-decoration: none;
+            float: left;
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
         }
 
         .header_1 {
-          margin: auto;
-          width: 80%;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+            margin: auto;
+            width: 80%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Change the color of links on hover */
         .topnav a:hover {
-          background-color: #5a728a;
-          color: #5e5b5b;
+            background-color: #5a728a;
+            color: #5e5b5b;
         }
 
         /* On smaller screens, where height is less than 480px, change the style of the sidenav (less padding and a smaller font size) */
         @media screen and (max-height: 480px) {
-          .sidenav {
-            padding-top: 3rem;
-          }
-          .sidenav a {
-            font-size: 1.5rem;
-          }
+            .sidenav {
+                padding-top: 3rem;
+            }
+
+            .sidenav a {
+                font-size: 1.5rem;
+            }
         }
 
         a svg {
-          transition: all 0.5s ease;
+            transition: all 0.5s ease;
         }
+
         a svg:hover {
-          transform: rotate(180deg);
+            transform: rotate(180deg);
         }
 
         section h1 {
-          font-family: "Bebas Neue";
-          font-size: 4rem;
+            font-family: "Open Sans", serif;
+            font-size: 4rem;
         }
 
         section p {
-          font-family: "Lato";
-          line-height: 1.8;
-          font-size: 1.5rem;
+            font-family: "Open Sans", serif;
+            line-height: 1.8;
+            font-size: 1.5rem;
         }
 
-        .ham-icon{
+        .ham-icon {
             vertical-align: middle;
             justify-content: center;
             width: 10%;
@@ -137,178 +140,185 @@
         }
     </style>
     <div id="sideNavigation" class="sidenav">
-      <a href="#" class="close-btn">&times;</a>
-      <a href="#">Data</a>
-      <a href="/date-selection">VLF</a>
-      <a href="#">Equipment</a>
-      <a href="/contacts">Contacts</a>
+        <a href="#" class="close-btn">&times;</a>
+        <a href="#" style="font-family: 'Roboto', sans-serif;">Data</a>
+        <a href="/date-selection" style="font-family: 'Roboto', sans-serif;">VLF</a>
+        <a href="#" style="font-family: 'Roboto', sans-serif;">Equipment</a>
+        <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
     </div>
-{#    <nav class="topnav">#}
-{#      <a href="#" class="ham-icon" style="display: inline-block; vertical-align: center;">#}
-{#          <div class="fs-2 mb-3">#}
-{#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-{#                    <span style="float: right; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-{#          </div>#}
-{#        <svg width="30" height="30">#}
-{#            <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"/>#}
-{#            <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"/>#}
-{#            <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"/>#}
-{#        </svg>#}
-{#      </a>#}
-{#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
-{#                <div class="fs-3 mb-1">#}
-{#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-{#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-{#                </div>#}
-{#            </a>#}
+    {#    <nav class="topnav">#}
+    {#      <a href="#" class="ham-icon" style="display: inline-block; vertical-align: center;">#}
+    {#          <div class="fs-2 mb-3">#}
+    {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
+    {#                    <span style="float: right; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
+    {#          </div>#}
+    {#        <svg width="30" height="30">#}
+    {#            <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"/>#}
+    {#            <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"/>#}
+    {#            <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"/>#}
+    {#        </svg>#}
+    {#      </a>#}
+    {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
+    {#                <div class="fs-3 mb-1">#}
+    {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
+    {#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
+    {#                </div>#}
+    {#            </a>#}
     <nav class="topnav">
-      <header class="header">
-          <div class="fs-1">
-              <a href="#" class="ham-icon" style="align-items: center;">
+        <header class="header">
+            <div class="fs-1">
+                <a href="#" class="ham-icon" style="align-items: center;">
                     <svg width="30" height="30">
                         <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
                         <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
                         <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
                     </svg>
-              </a>
-              <a href="/" class="header_1" style="text-align: center">
-{#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                  <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 3vw;">Geophysical Observatory Mikhnevo</span>
-{#              font-size: 3vw;#}
-              </a>
-          </div>
-{#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
-{#                <div class="fs-3 mb-1">#}
-{#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-{#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-{#                </div>#}
-{#            </a>#}
-      </header>
+                </a>
+                <a href="/" class="header_1" style="text-align: center">
+                    {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
+                    <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 3vw;">Geophysical Observatory Mikhnevo</span>
+                    {#              font-size: 3vw;#}
+                </a>
+            </div>
+            {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
+            {#                <div class="fs-3 mb-1">#}
+            {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
+            {#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
+            {#                </div>#}
+            {#            </a>#}
+        </header>
         <script>
-        document.querySelector("a.ham-icon").addEventListener("click", function(event){
-          document.getElementById("sideNavigation").style.width = "250px";
-          document.getElementById("main").style.marginLeft = "250px";
-        });
+            document.querySelector("a.ham-icon").addEventListener("click", function (event) {
+                document.getElementById("sideNavigation").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            });
 
-        document.querySelector("a.close-btn").addEventListener("click", function(event){
-          document.getElementById("sideNavigation").style.width = "0";
-          document.getElementById("main").style.marginLeft = "0";
-        });
+            document.querySelector("a.close-btn").addEventListener("click", function (event) {
+                document.getElementById("sideNavigation").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            });
         </script>
     </nav>
     <br>
 
-{#    <section id="main">#}
-{#      <h1>This Side Navigation Menu Looks Good!</h1>#}
-{#      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
-{#    </section>#}
-    <div class="container">
+    {#    <section id="main">#}
+    {#      <h1>This Side Navigation Menu Looks Good!</h1>#}
+    {#      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
+    {#    </section>#}
+    {#    <div class="container">#}
 
-<!--        <div class="p-5 mb-4 bg-light rounded-3" id="title-box" style="border-radius: 30px;">-->
-                <style>
-                    .img1 {
-                        /*padding: 0;*/
-                        /*margin: 0 auto auto 0;*/
-                        margin: auto;
-                        max-height: 600px;
-                        width: 90%;
-                        max-width: 900px;
-                        display: block;
-                        border-radius: 10px;
-                        /*flex-shrink: 0;*/
-                        align-items: center;
-                       /*top: 50%;*/
-                       /*transform: translateY(50%);*/
-                        justify-content: center;
-                        }
-                </style>
-<!--            <img class="img1" src="{% static 'map.jpg' %}">-->
-<!--            <div class="container-fluid py-5">-->
-<!--                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>-->
-<!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->
-<!--            </div>-->
-<!--        </div>-->
-        <img class="img1" src="{% static 'map.jpg' %}">
-        <div class="container px-4 py-5" id="main-contents">
-            <h2 class="pb-2 border-bottom" style="font-size: 3vw;">Меню</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
-                <div class="col d-flex">
-                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-{#                        <svg class="bi" width="1em" height="1em">#}
-{#                            <use xlink:href="#cpu-fill"></use>#}
-{#                        </svg>#}
-                    </div>
-<!--                    <div>-->
-<!--                        <h3 class="fs-2">Уроки</h3>-->
-<!--                        <p class="fst-italic">Список уроков, карточки со словами и переводами. </p>-->
-<!--                        <p class="fst-italic"> Для самопроверки Вы можете пройти тест. </p>-->
-<!--                        <a href="/lessons" class="btn btn-primary">Посмотреть</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col d-flex">-->
-<!--                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">-->
-<!--                        <svg class="bi" width="1em" height="1em">-->
-<!--                            <use xlink:href="#cpu-fill"></use>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-                    <div>
-<!--                        <h3 class="fs-2">Форма для добавления слова</h3>-->
-<!--                        <p class="fst-italic">Вы можете добавить свое слово, его перевод и иллюстрацию по желанию. </p>-->
-                        <a href="/date-selection" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
-                            VLF data
-                        </a>
-                    </div>
+    <!--        <div class="p-5 mb-4 bg-light rounded-3" id="title-box" style="border-radius: 30px;">-->
+    <style>
+        .img1 {
+            /*padding: 0;*/
+            /*margin: 0 auto auto 0;*/
+            margin: auto;
+            max-height: 600px;
+            width: 90%;
+            max-width: 900px;
+            display: block;
+            border-radius: 10px;
+            /*flex-shrink: 0;*/
+            align-items: center;
+            /*top: 50%;*/
+            /*transform: translateY(50%);*/
+            justify-content: center;
+        }
+    </style>
+    <!--            <img class="img1" src="{% static 'map.jpg' %}">-->
+    <!--            <div class="container-fluid py-5">-->
+    <!--                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>-->
+    <!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <img class="img1" src="{% static 'map.jpg' %}">
+    <div class="container px-4 py-5" id="main-contents">
+        <h2 class="pb-2 border-bottom"
+            style="font-family: 'Roboto', sans-serif; font-size: 3vw;">Меню</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+            <div class="col d-flex">
+                <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    {#                        <svg class="bi" width="1em" height="1em">#}
+                    {#                            <use xlink:href="#cpu-fill"></use>#}
+                    {#                        </svg>#}
                 </div>
-                <div class="col d-flex">
-                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-{#                        <svg class="bi" width="1em" height="1em">#}
-{#                            <use xlink:href="#cpu-fill"></use>#}
-{#                        </svg>#}
-                    </div>
-                    <div>
-<!--                        <h3 class="fs-2">Статистика</h3>-->
-<!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
-                        <a href="/stats" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
-                            Equipment
-                        </a>
-<!--                    </div>-->
-                    </div>
+                <!--                    <div>-->
+                <!--                        <h3 class="fs-2">Уроки</h3>-->
+                <!--                        <p class="fst-italic">Список уроков, карточки со словами и переводами. </p>-->
+                <!--                        <p class="fst-italic"> Для самопроверки Вы можете пройти тест. </p>-->
+                <!--                        <a href="/lessons" class="btn btn-primary">Посмотреть</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col d-flex">-->
+                <!--                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">-->
+                <!--                        <svg class="bi" width="1em" height="1em">-->
+                <!--                            <use xlink:href="#cpu-fill"></use>-->
+                <!--                        </svg>-->
+                <!--                    </div>-->
+                <div>
+                    <!--                        <h3 class="fs-2">Форма для добавления слова</h3>-->
+                    <!--                        <p class="fst-italic">Вы можете добавить свое слово, его перевод и иллюстрацию по желанию. </p>-->
+                    <a href="/date-selection" class="btn btn-primary"
+                       style="font-family: 'Roboto', sans-serif; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                        VLF data
+                    </a>
                 </div>
-                <div class="col d-flex">
-                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-{#                        <svg class="bi" width="1em" height="1em">#}
-{#                            <use xlink:href="#cpu-fill"></use>#}
-{#                        </svg>#}
-                    </div>
-                    <div>
-<!--                        <h3 class="fs-2">Статистика</h3>-->
-<!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
-                        <a href="/stats" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
-                            Data
-                        </a>
-<!--                    </div>-->
-                    </div>
+            </div>
+            <div class="col d-flex">
+                <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    {#                        <svg class="bi" width="1em" height="1em">#}
+                    {#                            <use xlink:href="#cpu-fill"></use>#}
+                    {#                        </svg>#}
                 </div>
-                <div class="col d-flex">
-                    <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-{#                        <svg class="bi" width="1em" height="1em">#}
-{#                            <use xlink:href="#cpu-fill"></use>#}
-{#                        </svg>#}
-                    </div>
-                    <div>
-<!--                        <h3 class="fs-2">Контакты</h3>-->
-<!--                        <p class="fst-italic">Общая таблица со всеми словами из карточек. </p>-->
-                        <a href="/contacts" class="btn btn-primary" style="background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
-                            Contacts
-                        </a>
-                    </div>
+                <div>
+                    <!--                        <h3 class="fs-2">Статистика</h3>-->
+                    <!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
+                    <a href="/stats" class="btn btn-primary"
+                       style="font-family: 'Roboto', sans-serif; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                        Equipment
+                    </a>
+                    <!--                    </div>-->
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    {#                        <svg class="bi" width="1em" height="1em">#}
+                    {#                            <use xlink:href="#cpu-fill"></use>#}
+                    {#                        </svg>#}
+                </div>
+                <div>
+                    <!--                        <h3 class="fs-2">Статистика</h3>-->
+                    <!--                        <p class="fst-italic">Сколько уроков пройдено и какие баллы за тесты? </p>-->
+                    <a href="/stats" class="btn btn-primary"
+                       style="font-family: 'Roboto', sans-serif; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                        Data
+                    </a>
+                    <!--                    </div>-->
+                </div>
+            </div>
+            <div class="col d-flex">
+                <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    {#                        <svg class="bi" width="1em" height="1em">#}
+                    {#                            <use xlink:href="#cpu-fill"></use>#}
+                    {#                        </svg>#}
+                </div>
+                <div>
+                    <!--                        <h3 class="fs-2">Контакты</h3>-->
+                    <!--                        <p class="fst-italic">Общая таблица со всеми словами из карточек. </p>-->
+                    <a href="/contacts" class="btn btn-primary"
+                       style="font-family: 'Roboto', sans-serif; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                        Contacts
+                    </a>
                 </div>
             </div>
         </div>
-        <footer class="footer pt-3 mt-4 text-muted border-top">© IDG RAS
-						<br>
-						Institute of geosphere dynamics of Russian academy of sciences</footer>
+        <footer class="footer pt-3 mt-4 text-muted border-top">
+            © IDG RAS
+            <br>
+            Institute of geosphere dynamics of Russian academy of sciences
+        </footer>
     </div>
+    {#    </div>#}
 </main>
 </body>
 </html>

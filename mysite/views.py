@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from . import terms_work, core
 import json
 import datetime
+
 # from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 # from django.views import generic
 # from .models import Question # for calendar
@@ -38,18 +39,21 @@ def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
         date = str(request.POST.get("mydate"))
-        context = {"date_test": date}
+        context = {"mydate": date}
         parsed_date = date.split('/')
         if len(parsed_date) != 3:
             context["success"] = False
-            context["comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
-            return render(request, "vlf_data.html", context)
+            context[
+                "comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
+            return render(request, "date_selection.html", context)
         day = parsed_date[0]
         mon = parsed_date[1]
         yr = parsed_date[2]
         if not day.isnumeric() or not mon.isnumeric() or not yr.isnumeric():
             context["success"] = False
-            context["comment"] = "Неверный формат даты. День, месяц и год должны быть числами"
+            context[
+                "comment"] = "Неверный формат даты. День, месяц и год должны быть числами"
+            return render(request, "date_selection.html", context)
         day_int = int(day)
         mon_int = int(mon)
         yr_int = int(yr)
@@ -60,12 +64,15 @@ def get_vlf_data(request):
         except ValueError:
             context["success"] = False
             context["comment"] = "Введена несуществующая дата"
+            return render(request, "date_selection.html", context)
         if context["success"]:
             context["success-title"] = ""
-        #TODO: сделать по аналогии с send_answers!
         print(date)
         print(len(date))
-        # return render(request, "vlf_data.html", context={"date_test": date})
+        # TODO: data_path = base_server_path + '/' + yr + '/' + mon + '/' + day
+        #  f1 ... fn - получаем имена файлов из папки data_path
+        #  context['file_names'] = [f1, f2, ..., fn]
+        #  внутри vlf_data.html сделать {% for file_name in file_names%} ... вывести в цикле все file_name
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)
@@ -140,10 +147,10 @@ def send_answers(request):
                 points += 1
         if context["success"]:
             context["success-title"] = "Тест успешно заполнен"
-            context["comment"] = "Тест пройден с результатом " +\
+            context["comment"] = "Тест пройден с результатом " + \
                                  f'{points}/{len(cards_for_lesson)}'
             if user_name is not unknown_guest:
-                core.add_result(user_name, int(lesson_id), points/len(cards_for_lesson))
+                core.add_result(user_name, int(lesson_id), points / len(cards_for_lesson))
         return render(request, "test_request.html", context)
     else:
         date_selection(request)

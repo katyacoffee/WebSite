@@ -60,6 +60,7 @@ Add word
             border: 1px solid #e2e2e2;
             text-align: center;
             vertical-align: top;
+            width: 70px
         }
 
         /* sunday */
@@ -90,6 +91,8 @@ Add word
             background: #00a2b7;
             color: #fff;
             border-radius: 3px;
+            height: 30px;
+            width: 26px;
             border: 1px solid #0aa2b5;
         }
 
@@ -99,6 +102,8 @@ Add word
             background: #00a2b7;
             color: #fff;
             border-radius: 3px;
+            height: 30px;
+            width: 26px;
             border: 1px solid #0aa2b5;
         }
 
@@ -114,6 +119,7 @@ Add word
             zoom: 1;
             background: #ffffff;
             color: #585858;
+            font-family: 'Roboto', sans-serif;
             border: 1px solid #bfc5c5;
             border-radius: 3px;
             padding: 5px 1em;
@@ -123,10 +129,11 @@ Add word
     <form method="post">
         <div style="margin: 0 auto; width: 280px; height: 45px;">
               <div style="position:relative">
-                  <input id="mydate" name="mydate" type="text" class="form-control" placeholder="DD/MM/YYYY">
+                  <input id="mydate" name="mydate" type="text" class="form-control" style="font-family: 'Roboto', sans-serif;" placeholder="DD/MM/YYYY">
                   <span style="font-size: 20px;
                             position: absolute;
                             margin: 0 auto;
+                            font-family: 'Roboto', sans-serif;
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
@@ -153,7 +160,7 @@ Add word
                     <tbody id="calendar-body"></tbody>
                 </table>
                 <div class="footer-container-calendar">
-                    <label for="month">Выберите месяц и год: </label>
+                    <label for="month" style="font-family: 'Roboto', sans-serif;">Выберите месяц и год: </label>
                       <select id="month" onchange="jump()">
                                  <option value=0>Jan</option>
                                  <option value=1>Feb</option>
@@ -300,8 +307,15 @@ Add word
                 return 32 - new Date(iYear, iMonth, 32).getDate();
             }
         </script>
+        <script>
+            const mydate = document.getElementById('mydate');
+            mydate.value = '{{ mydate }}';
+            if ('{{ success }}' === 'False') {
+                alert('{{ comment }}')
+            }
+        </script>
         <div class="row px-5 py-2">
-            <button type="submit" formaction="/get-vlf-data" class="btn btn-info" style="font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">View</button>
+            <button type="submit" formaction="/get-vlf-data" class="btn btn-info" style="font-family: 'Roboto', sans-serif; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">View</button>
         </div>
     </form>
 {% endblock %}
