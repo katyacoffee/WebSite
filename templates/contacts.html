@@ -1,68 +1,97 @@
 {% extends "base_page.html" %}
 
 {% block pagetitle %}
-All lessons
+    All lessons
 {% endblock %}
 
 {% block page-title %}
-<p style="font-size:50px;" xmlns="http://www.w3.org/1999/html">Список слов по урокам </p>
+    <p style="font-size:50px;" xmlns="http://www.w3.org/1999/html">Список слов по
+        урокам </p>
 {% endblock %}
 
 {% block page-lead %}
-<p class="fst-italic" style="font-size:25px;">Список всех уроков, слов и их переводов </p>
+    <p class="fst-italic" style="font-size:25px;">Список всех уроков, слов и их
+        переводов </p>
 {% endblock %}
 
 {% block content %}
 
-<p class="header1">Контакты</p>
+    <p class="header1">Contacts</p>
+    <div class="container px-4 py-5" id="main-contents">
     <h3 class="text1">
-        ИДГ РАН
+        IDG RAS
+        <style>
+            .btn {
+                float: left;
+                display: inline-block;
+                background: #c1d1d3;
+                font-size: 16px;
+                color: #0e0e0e;
+                font-family: 'Roboto', sans-serif;
+                border: #c1d1d3;
+                border-radius: 10px;
+            }
+
+            .btn:hover {
+                background: #9aa9ab;
+            }
+        </style>
+        <a href="/" class="btn" style="float: right;">На главную страницу</a>
         <br/>
         <br/>
-        Адрес: 119334, Ленинский проспект, 38, корпус 1, Москва, Россия
+        Address: 38k1, Leninsky prospekt, Moscow, Russia, 119334
+        <br/>
+        <br/>
     </h3>
     <style>
-        .header1{
+        .header1 {
             text-align: center;
-            font-size:30px;
+            font-size: 30px;
+            font-family: 'Roboto', sans-serif;
         }
-        .text1{
+
+        .text1 {
             text-align: justify;
-            font-size:20px;
+            font-size: 20px;
             margin: auto;
             width: 100%;
             display: block;
+            font-family: 'Roboto', sans-serif;
         }
     </style>
-<iframe src="https://yandex.ru/map-widget/v1/-/CBaha6tuKA" width="100%" height="400"
-	frameborder="0"></iframe>
-	<footer class="container-fluid bottom_contacts">
-		<div class="container">
-			<div class="row">
-{#				<div class="col-sm-8">#}
-{#					<p id="inst1">© IDG RAS#}
-{#						<br>#}
-{#						Institute of geosphere dynamics of Russian academy of sciences#}
-{#					<hr>#}
-{#					GEOPHYSICAL OBSERVATORY MIKHNEVO</p>#}
-{##}
-{#				</div>#}
-				<div class="col-sm-4" id="contacts">
-{#					<img id="image-mail" src="../img/message.png">#}
-					<p id="mail">geospheres@idg.chph.ras.ru</p>
-					<br>
-{#					<img id="image-phone" src="../img/phone.png">#}
-					<p id="phone">8 (499) 137-66-11</p>
-					<br>
-					<a href="mailto:geospheres@idg.chph.ras.ru">
-						<div id="contact_us">
-							<p>CONTACTS US</p>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</footer>
+    {#    </div>#}
+    <iframe src="https://yandex.ru/map-widget/v1/-/CBaha6tuKA" width="100%" height="400"
+            frameborder="0"></iframe>
+    <footer class="container-fluid bottom_contacts">
+        <br>
+        <div class="container">
+            <div class="row">
+                {#                <div class="col-sm-4" id="contacts">#}
+                {#					<img id="image-mail" src="../img/message.png">#}
+                <a>
+                    <p id="mail"
+                       style="font-family: 'Roboto', sans-serif; float: right;">
+                        Email: geospheres@idg.chph.ras.ru
+                    </p>
+                    <br>
+                    <div>
+                        {#					<img id="image-phone" src="../img/phone.png">#}
+                        <p
+                                style="font-family: 'Roboto', sans-serif; float: right;">
+                            Phone number: 8 (499) 137-66-11
+                        </p>
+                        <br>
+                    </div>
+                </a>
+                <a href="mailto:geospheres@idg.chph.ras.ru">
+                    <div id="contact_us">
+                        <p style="font-family: 'Roboto', sans-serif; float: right;">
+                            CONTACTS US</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
 
 

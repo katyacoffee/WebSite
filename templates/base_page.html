@@ -42,7 +42,7 @@
         .sidenav a {
             padding: 0.5rem 1rem;
             text-decoration: none;
-            color: #0c0c0c;
+            color: #f8f6f6;
             display: block;
             transition: 0.4s;
             white-space: nowrap;
@@ -50,7 +50,7 @@
         }
 
         .sidenav a:hover {
-            color: white;
+            color: #b2a9a9;
             background: #5a728a;
         }
 
@@ -152,24 +152,6 @@
         <a href="#" style="font-family: 'Roboto', sans-serif;">Equipment</a>
         <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
     </div>
-    {#    <nav class="topnav">#}
-    {#      <a href="#" class="ham-icon" style="display: inline-block; vertical-align: center;">#}
-    {#          <div class="fs-2 mb-3">#}
-    {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-    {#                    <span style="float: right; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-    {#          </div>#}
-    {#        <svg width="30" height="30">#}
-    {#            <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"/>#}
-    {#            <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"/>#}
-    {#            <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"/>#}
-    {#        </svg>#}
-    {#      </a>#}
-    {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
-    {#                <div class="fs-3 mb-1">#}
-    {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-    {#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-    {#                </div>#}
-    {#            </a>#}
     <nav class="topnav">
         <header class="header">
             <div class="fs-1">
@@ -182,16 +164,10 @@
                 </a>
                 <a href="/" class="header_1" style="text-align: center">
                     {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                    <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 3vw;">Geophysical Observatory Mikhnevo</span>
+                    <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
                     {#              font-size: 3vw;#}
                 </a>
             </div>
-            {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
-            {#                <div class="fs-3 mb-1">#}
-            {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32"/>#}
-            {#                    <span style="text-align: center; justify-content: center; color: #ffffff">Geophysical Observatory Mikhnevo</span>#}
-            {#                </div>#}
-            {#            </a>#}
         </header>
         <script>
             document.querySelector("a.ham-icon").addEventListener("click", function (event) {
@@ -206,30 +182,6 @@
         </script>
     </nav>
     <br>
-
-    {#<main>#}
-    {#    <div class="container">#}
-    {#<!--        <header class="border-bottom">-->#}
-    {#        <header class="border-bottom">#}
-    {#<!--            <div class="fs-2 mb-3">-->#}
-    {#<!--                <a href="/sign_in" class="btn btn-primary" style="float: right;">-->#}
-    {#<!--                    Зарегистрироваться-->#}
-    {#<!--                </a>-->#}
-    {#<!--            </div>-->#}
-    {#            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">#}
-    {#                <div class="fs-2 mb-3">#}
-    {#                    <img src="{% static 'fav-planet.png' %}" alt="Geophysical Observatory Mikhnevo" width="32" height="32" style="font-size:100px"/>#}
-    {#                    <span>Geophysical Observatory Mikhnevo</span>#}
-    {#                </div>#}
-    {#            </a>#}
-    {#        </header>#}
-    {#<!--        <div class="p-5 mb-4 bg-light rounded-3" id="title-box">-->#}
-    {#<!--            <div class="container-fluid py-5">-->#}
-    {#<!--                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>-->#}
-    {#<!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->#}
-    {#<!--            </div>-->#}
-    {#<!--        </div>-->#}
-
     {% block content %}{% endblock %}
     <div class="container px-4 py-5" id="main-contents">
         <footer class="footer pt-3 mt-4 text-muted border-top">© IDG RAS
