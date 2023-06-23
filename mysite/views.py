@@ -77,20 +77,27 @@ def get_vlf_data(request):
         print(len(date))
         base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
         # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
-        data_path = os.path.join(base_dir, yr, mon, day)
+        server_dir = 'https://idg-comp.chph.ras.ru/~mikhnevo/metronix/METRONIX_SDVamp'
+        # data_path = os.path.join(base_dir, yr, mon, day)
+        data_path = server_dir + '/' + yr + '/' + mon + '/' + day
         no_data = False
         img_list = []
         try:
             img_list = os.listdir(data_path)
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            print(e.strerror)
             no_data = True
         if len(img_list) == 0:
             no_data = True
+        img_list.sort()
         new_image_list = []
         for img in img_list:
-            new_image_list.append(base_dir + '/' + yr + '/' + mon + '/' + day + '/' + img)
+            #new_image_list.append(base_dir + '/' + yr + '/' + mon + '/' + day + '/' + img)
+            new_image_list.append(data_path + '/' + img)
         context["images"] = new_image_list
         context["no_data"] = no_data
+        context["num_pics"] = len(new_image_list)
+        print(data_path)
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)
