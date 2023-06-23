@@ -1,0 +1,154 @@
+{% extends "base_page.html" %}
+
+{% block pagetitle %}
+    Equipment
+{% endblock %}
+
+{#<main>#}
+{#<h2 class="pb-2 border-bottom"#}
+{#    style="font-family: 'Roboto', sans-serif; font-size: 30px;">The#}
+{#    Observatory</h2>#}
+{#            <hr>#}
+{#<p style="font-family: 'Roboto', sans-serif;">The Geophysical Observatory#}
+{#    Mikhnevo was founded in 1954. The#}
+{#    Observatory is located at 80 km to#}
+{#    the south of Moscow (54 ° 57' N, 37 ° 46' E). The Observatory carries#}
+{#    out investigations of the#}
+{#    mechanisms of interrelated disturbances in the internal and external#}
+{#    geospheres of the Earth.#}
+{#    The observatory is equipped with a multifunctional measuring systems,#}
+{#    which includes:</p>#}
+{#<p style="font-family: 'Roboto', sans-serif;">- Small aperture seismic#}
+{#    array</p>#}
+{#<p style="font-family: 'Roboto', sans-serif;">- Magnetometric complex</p>#}
+{#<p style="font-family: 'Roboto', sans-serif;">- HF, LF, VLF and ELF#}
+{#    receivers</p>#}
+{#<p style="font-family: 'Roboto', sans-serif;">- Weather station</p>#}
+{#<p style="font-family: 'Roboto', sans-serif;">This equipment makes it#}
+{#    possible to carry out synchronous and#}
+{#    coordinated measurements of#}
+{#    lithospheric, atmospheric and ionospheric processes.</p>#}
+
+<div id="main">
+
+    <div class="container-fluid" id="first">
+        <div class="row">
+            <div class="container">
+                <h1 style="font-family: 'Roboto', sans-serif;">Median TEC</h1><br>
+                <div id="TEC_picture">
+                </div>
+                <p style="font-family: 'Roboto', sans-serif;">To calculate the variations
+                    of TEC value on one day we used the data of the Madrigal system
+                    capable
+                    of managing and serving archival and real-time data from a wide range
+                    of ground-based instruments
+                    (http://www.openmadrigal.org/). The TEC data is a diurnal file
+                    containing the values of TEC for
+                    different geographic points with a time step of 5 minutes. These data
+                    were averaged by a 15-minute
+                    window and distributed along a 180x360 grid in one-degree increments.
+                    For each time moment, the
+                    median value of TEC (TECmed) was calculated for the 27 previous days.
+                    The TEC deviation from the
+                    median value (∂TEC) was calculated by the formula:<br><br>
+
+                    ∂TEC (lat, long, t) = (TEC (lat, long, t) - TECmed (lat, long, t))/
+                    TECmed (lat, long, t),<br><br>
+
+                    where lat is latitude, long is longitude and t is UT. Thus the
+                    processing of TEC data reproduces the
+                    well-known technique from ionosonde data processing. As far as NmF2
+                    gives the significant part of
+                    TEC then TEC variations can be studied and analyzed in the same manner
+                    as NmF2 temporal dynamics in
+                    ionosonde studies.</p>
+                <div class="data">
+                    <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="second">
+        <div class="row">
+            <div class="container">
+                <h1 style="font-family: 'Roboto', sans-serif;">VLF Signals</h1><br>
+                <div id="map_picture">
+                </div>
+                <p style="font-family: 'Roboto', sans-serif;">The high sensitive
+                    magnetometric systems "Whistler" are installed in Mikhnevo Geophysical
+                    Observatory. They allow to register signals from VLF stations located
+                    around the globe. The site
+                    presents the results of measuring of the amplitude of signals from the
+                    5 VLF transmitters: JXN, GQD,
+                    NAA, DHO, ICV. The "Whistler" characteristics can be found in the
+                    Equipment section.</p>
+                <div class="data">
+                    <p>BROWSE DATA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="third">
+        <div class="row">
+            <div class="container">
+                <h1 style="font-family: 'Roboto', sans-serif;">GNSS</h1><br>
+                <p style="font-family: 'Roboto', sans-serif;">The Observatory complex for
+                    measurement of the ionosphere parameters includes three GNSS
+                    receivers:<br>
+                    <br>- Javad Sigma
+                    <br>- Javad Prego
+                    <br>- Trimble 5700
+                    <br><br>
+                    All receivers (with a sampling rate of 1 second). The raw data is
+                    saved in the Rinex 3.02 format.
+                    Based on the results of the measurements, the variations of the TEC
+                    for each satellite-receiver beam
+                    are calculated.</p>
+                <div class="col-md-4">
+                    <div class="box">
+                        <h2 style="font-family: 'Roboto', sans-serif;">Javad Sigma</h2>
+                        <hr>
+                        <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
+                            longitude: 37°46´<br><br>
+                            - GPS L1/L2/L5<br>
+                            - GLONASS L1/L2<br>
+                            - SBAS L1/L5<br>
+                            - 1 Hz update rate</p>
+                        <div class="data">
+                            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <h2 style="font-family: 'Roboto', sans-serif;">Javad Prego</h2>
+                        <hr>
+                        <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
+                            longitude: 37°46´<br><br>
+                            - GPS L1/L2/L5<br>
+                            - 1 Hz update rate</p>
+                        <div class="data">
+                            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <h2 style="font-family: 'Roboto', sans-serif;">Trimble 5700</h2>
+                        <hr>
+                        <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
+                            longitude: 37°46´<br><br>
+                            - GPS L1/L2/L5<br>
+                            - 1 Hz update rate</p>
+                        <div class="data">
+                            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#</main>#}

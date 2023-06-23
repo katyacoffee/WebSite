@@ -41,8 +41,8 @@
             }
         </style>
         {#<a href="/date-selection" class="btn btn-info" style="font-size: 20px; color: white; background-color: #9aa9ab; border: #9aa9ab;">Вернуться к выбору даты</a>#}
-        <a href="/date-selection" class="btn">Вернуться к выбору даты</a>
-        <a href="/" class="btn" style="float: right;">На главную страницу</a>
+        <a href="/date-selection" class="btn">Back to date picker</a>
+        <a href="/" class="btn" style="float: right;">To Home Page</a>
         <br>
     </div>
     {#    <h3 class="fs-2">{{ date_test }}</h3>#}
@@ -85,16 +85,21 @@
                      border: none;
                  }
             </style>
-            <div id="card_block" class="card">
+            {% if no_data %}
+                <span>NO DATA</span>
+            {% else %}
+                <div id="card_block" class="card">
                 <div id="block" class="fig">
                     <a class="card_fig">
+                        <picture>
+                            {% for image in images %}
+                                <img src='{{ image }}' height="150"/>
+                            {% endfor %}
+                        </picture>
                     </a>
                 </div>
-                        <picture>
-                            <img src="{% static 'pic_forest.jpg' %}" alt="" style="object-position: center; margin: auto; flex-shrink: 0;
-                            position: absolute; top: 0; left: 0; bottom: 0; right: 0; max-height: 600px; width: 70%; max-width: 900px; display: block; border-radius: 10px; align-items: center; justify-content: center;">
-                        </picture>
             </div>
+            {% endif %}
         {% else %}Ваш запрос завершился с ошибкой{% endif %}</span>.
     </p>
     {#    <h2 class="pb-2 border-bottom">Комментарий</h2>#}

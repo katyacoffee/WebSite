@@ -143,7 +143,7 @@
         <a href="#" class="close-btn">&times;</a>
         <a href="#" style="font-family: 'Roboto', sans-serif;">Data</a>
         <a href="/date-selection" style="font-family: 'Roboto', sans-serif;">VLF</a>
-        <a href="#" style="font-family: 'Roboto', sans-serif;">Equipment</a>
+        <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
         <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
     </div>
     <nav class="topnav">
@@ -158,7 +158,7 @@
                 </a>
                 <a href="/" class="header_1" style="text-align: center">
                     {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                    <span style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
+                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
                     {#              font-size: 3vw;#}
                 </a>
             </div>
@@ -209,30 +209,58 @@
     <!--        </div>-->
     <img class="img1" src="{% static 'map.jpg' %}">
     <div class="container px-4 py-5" id="main-contents">
+        {#        <div class="container">#}
+        {#            <div class="col-md-7">#}
         <h2 class="pb-2 border-bottom"
-            style="font-family: 'Roboto', sans-serif; font-size: 30px;">Меню</h2>
+            style="font-family: 'Roboto', sans-serif; font-size: 30px;">The
+            Observatory</h2>
+        {#            <hr>#}
+        <p style="font-family: 'Roboto', sans-serif;">The Geophysical Observatory
+            Mikhnevo was founded in 1954. The
+            Observatory is located at 80 km to
+            the south of Moscow (54 ° 57' N, 37 ° 46' E). The Observatory carries
+            out investigations of the
+            mechanisms of interrelated disturbances in the internal and external
+            geospheres of the Earth.
+            The observatory is equipped with a multifunctional measuring systems,
+            which includes:</p>
+        <p style="font-family: 'Roboto', sans-serif;">- Small aperture seismic
+            array</p>
+        <p style="font-family: 'Roboto', sans-serif;">- Magnetometric complex</p>
+        <p style="font-family: 'Roboto', sans-serif;">- HF, LF, VLF and ELF
+            receivers</p>
+        <p style="font-family: 'Roboto', sans-serif;">- Weather station</p>
+        <p style="font-family: 'Roboto', sans-serif;">This equipment makes it
+            possible to carry out synchronous and
+            coordinated measurements of
+            lithospheric, atmospheric and ionospheric processes.</p>
+        {#            </div>#}
+        {#        </div>#}
+        {#    <div class="container px-4 py-5" id="main-contents">#}
+        <h2 class="pb-2 border-bottom"
+            style="font-family: 'Roboto', sans-serif; font-size: 30px;">Menu</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
-            <div class="col d-flex">
+            <div class="col d-flex" style="justify-content: center; align-items: center">
                 <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                 </div>
                 <div>
                     <a href="/date-selection" class="btn btn-primary"
-                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
+                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; justify-content: center; align-items: center">
                         VLF data
                     </a>
                 </div>
             </div>
-            <div class="col d-flex">
+            <div class="col d-flex" style="justify-content: center; align-items: center">
                 <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                 </div>
                 <div>
-                    <a href="/stats" class="btn btn-primary"
+                    <a href="/equipment" class="btn btn-primary"
                        style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">
                         Equipment
                     </a>
                 </div>
             </div>
-            <div class="col d-flex">
+            <div class="col d-flex" style="justify-content: center; align-items: center">
                 <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                 </div>
                 <div>
@@ -242,7 +270,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col d-flex">
+            <div class="col d-flex" style="justify-content: center; align-items: center">
                 <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                 </div>
                 <div>
@@ -253,7 +281,8 @@
                 </div>
             </div>
         </div>
-        <footer class="footer pt-3 mt-4 text-muted border-top">
+        <footer class="footer pt-3 mt-4 text-muted border-top"
+                style="font-family: 'Roboto', sans-serif;">
             © IDG RAS
             <br>
             Institute of geosphere dynamics of Russian academy of sciences

@@ -1,15 +1,16 @@
 {% extends "base_page.html" %}
 
 {% block pagetitle %}
-Add word
+    Date picker
 {% endblock %}
 
 {% block page-title %}
-<p style="font-size:50px;">Добавить слово </p>
+    <p style="font-size:50px;">Добавить слово </p>
 {% endblock %}
 
 {% block page-lead %}
-<p class="fst-italic" style="font-size:25px;">Вы можете пополнить базу слов и переводов к ним </p>
+    <p class="fst-italic" style="font-size:25px;">Вы можете пополнить базу слов и
+        переводов к ним </p>
 {% endblock %}
 
 
@@ -39,7 +40,7 @@ Add word
             padding: 5px 10px;
         }
 
-            .button-container-calendar arrow {
+        .button-container-calendar arrow {
             cursor: pointer;
             display: inline-block;
             zoom: 1;
@@ -65,12 +66,12 @@ Add word
 
         /* sunday */
         .date-picker:nth-child(1) {
-          color: #585858;
+            color: #0a0a0a;
         }
 
         /* friday */
         .date-picker:nth-child(6) {
-          color: #585858;
+            color: #0e0e0e;
         }
 
         #monthAndYear {
@@ -128,9 +129,11 @@ Add word
     <br>
     <form method="post">
         <div style="margin: 0 auto; width: 280px; height: 45px;">
-              <div style="position:relative">
-                  <input id="mydate" name="mydate" type="text" class="form-control" style="font-family: 'Roboto', sans-serif;" placeholder="DD/MM/YYYY">
-                  <span style="font-size: 20px;
+            <div style="position:relative">
+                <input id="mydate" name="mydate" type="text" class="form-control"
+                       style="font-family: 'Roboto', sans-serif;"
+                       placeholder="DD/MM/YYYY">
+                <span style="font-size: 20px;
                             position: absolute;
                             margin: 0 auto;
                             font-family: 'Roboto', sans-serif;
@@ -140,42 +143,44 @@ Add word
                             pointer-events: none;
                             top: 6px;
                             right: 50%;"
-                    class="glyphicon glyphicon-calendar"></span>
-              </div>
+                      class="glyphicon glyphicon-calendar"></span>
+            </div>
         </div>
         <div class="wrapper">
             <div class="container-calendar">
                 <h3 id="monthAndYear"></h3>
                 <div class="button-container-calendar">
-                    <input class="btn-previous" type="button" value=&#8249; onclick="previous()">
-{#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8249; onclick="previous()">#}
-{#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8250; onclick="next()">#}
+                    <input class="btn-previous" type="button" value=&#8249;
+                           onclick="previous()">
+                    {#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8249; onclick="previous()">#}
+                    {#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8250; onclick="next()">#}
                     <input class="btn-next" type="button" value=&#8250; onclick="next()">
 
-{#                    <div class="arrow" id="previous" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="previous()">&#8249;</div>#}
-{#                    <div class="btn btn-info" id="next" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="next()">&#8250;</div>#}
+                    {#                    <div class="arrow" id="previous" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="previous()">&#8249;</div>#}
+                    {#                    <div class="btn btn-info" id="next" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="next()">&#8250;</div>#}
                 </div>
                 <table class="table-calendar" id="calendar" data-lang="en">
                     <thead id="thead-month"></thead>
                     <tbody id="calendar-body"></tbody>
                 </table>
                 <div class="footer-container-calendar">
-                    <label for="month" style="font-family: 'Roboto', sans-serif;">Выберите месяц и год: </label>
-                      <select id="month" onchange="jump()">
-                                 <option value=0>Jan</option>
-                                 <option value=1>Feb</option>
-                                 <option value=2>Mar</option>
-                                 <option value=3>Apr</option>
-                                 <option value=4>May</option>
-                                 <option value=5>Jun</option>
-                                 <option value=6>Jul</option>
-                                 <option value=7>Aug</option>
-                                 <option value=8>Sep</option>
-                                 <option value=9>Oct</option>
-                                 <option value=10>Nov</option>
-                                 <option value=11>Dec</option>
-                             </select>
-                             <select id="year" onchange="jump()"></select>
+                    <label for="month" style="font-family: 'Roboto', sans-serif;">Select
+                        month and year </label>
+                    <select id="month" onchange="jump()">
+                        <option value=0>Jan</option>
+                        <option value=1>Feb</option>
+                        <option value=2>Mar</option>
+                        <option value=3>Apr</option>
+                        <option value=4>May</option>
+                        <option value=5>Jun</option>
+                        <option value=6>Jul</option>
+                        <option value=7>Aug</option>
+                        <option value=8>Sep</option>
+                        <option value=9>Oct</option>
+                        <option value=10>Nov</option>
+                        <option value=11>Dec</option>
+                    </select>
+                    <select id="year" onchange="jump()"></select>
                 </div>
             </div>
         </div>
@@ -246,7 +251,7 @@ Add word
             }
 
             function showCalendar(month, year) {
-                var firstDay = ( new Date( year, month, 7 ) ).getDay();
+                var firstDay = (new Date(year, month, 7)).getDay();
                 tbl = document.getElementById("calendar-body");
                 tbl.innerHTML = "";
                 monthAndYear.innerHTML = months[month] + " " + year;
@@ -255,11 +260,11 @@ Add word
 
                 // creating all cells
                 let date = 1;
-                for ( let i = 0; i < 7; i++ ) {
+                for (let i = 0; i < 7; i++) {
                     let row = document.createElement("tr");
-                    for ( let j = 0; j < 7; j++ ) {
-                        if ( i === 0 && j < firstDay ) {
-                            cell = document.createElement( "td" );
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < firstDay) {
+                            cell = document.createElement("td");
                             cellText = document.createTextNode("");
                             cell.appendChild(cellText);
                             row.appendChild(cell);
@@ -274,11 +279,11 @@ Add word
                             cell.className = "date-picker";
                             cell.innerHTML = "<span>" + date + "</span>";
 
-                            if ( date === today.getDate() && year === today.getFullYear() && month === today.getMonth() ) {
+                            if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                                 cell.className = "date-picker selected";
                             }
                             cell.date = `${date}`
-                            cell.addEventListener("click", function (event){
+                            cell.addEventListener("click", function (event) {
                                 var cell_date = event.currentTarget.date
                                 // noinspection EqualityComparisonWithCoercionJS
                                 if (1 == cell_date.length) {
@@ -315,7 +320,10 @@ Add word
             }
         </script>
         <div class="row px-5 py-2">
-            <button type="submit" formaction="/get-vlf-data" class="btn btn-info" style="font-family: 'Roboto', sans-serif; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">View</button>
+            <button type="submit" formaction="/get-vlf-data" class="btn btn-info"
+                    style="font-family: 'Roboto', sans-serif; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">
+                View
+            </button>
         </div>
     </form>
 {% endblock %}

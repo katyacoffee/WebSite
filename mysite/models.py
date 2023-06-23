@@ -13,6 +13,7 @@ class Event(models.Model):
     end_month = models.DateField()
     start_year = models.DateField()
     end_year = models.DateField()
+    file = models.ImageField()
 
     def __str__(self) -> str:
         return str(self.name)

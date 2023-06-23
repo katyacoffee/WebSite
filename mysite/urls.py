@@ -18,8 +18,11 @@ from django.urls import path
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index),
     path('date-selection', views.date_selection),
     path('get-vlf-data', views.get_vlf_data),
@@ -31,8 +34,11 @@ urlpatterns = [
     path('test', views.test),
     path('send-answers', views.send_answers),
     path('submit-login', views.submit_login),
-    path('sign_in', views.sign_in),
+    path('equipment', views.equipment),
     path('submit-register', views.submit_register),
     path('menu', views.get_menu),
     path('vlf-data', views.get_vlf_data),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

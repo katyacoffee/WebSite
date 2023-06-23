@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.core.cache import cache
 from django.http import HttpResponse
@@ -35,6 +37,10 @@ def date_selection(request):
     return render(request, "date_selection.html")
 
 
+def equipment(request):
+    return render(request, "equipment.html")
+
+
 def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
@@ -69,10 +75,22 @@ def get_vlf_data(request):
             context["success-title"] = ""
         print(date)
         print(len(date))
-        # TODO: data_path = base_server_path + '/' + yr + '/' + mon + '/' + day
-        #  f1 ... fn - получаем имена файлов из папки data_path
-        #  context['file_names'] = [f1, f2, ..., fn]
-        #  внутри vlf_data.html сделать {% for file_name in file_names%} ... вывести в цикле все file_name
+        base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
+        # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
+        data_path = os.path.join(base_dir, yr, mon, day)
+        no_data = False
+        img_list = []
+        try:
+            img_list = os.listdir(data_path)
+        except FileNotFoundError:
+            no_data = True
+        if len(img_list) == 0:
+            no_data = True
+        new_image_list = []
+        for img in img_list:
+            new_image_list.append(base_dir + '/' + yr + '/' + mon + '/' + day + '/' + img)
+        context["images"] = new_image_list
+        context["no_data"] = no_data
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)
@@ -192,7 +210,6 @@ def show_stats(request):
     all_res = core.get_all_stats()
     return render(request, "stats.html", context={"results": all_res})
 
-
-def sign_in(request):
-    users = core.get_all_logins()
-    return render(request, "sign_in.html", context={"users": users})
+# def sign_in(request):
+#     users = core.get_all_logins()
+#     return render(request, "equipment.html", context={"users": users})
