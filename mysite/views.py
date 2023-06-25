@@ -98,7 +98,7 @@ def get_vlf_data(request):
             if len(preparsed_dir) > 0:
                 img_list.append(preparsed_dir[0])
         print(f'{response.status}')
-        img_list.sort()
+        img_list.sort(key=lambda station: core.compare(station))  # TODO: проверить!
         print(img_list)
 
         new_image_list = []

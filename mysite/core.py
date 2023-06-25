@@ -191,3 +191,21 @@ def make_str_of_results(user: str, results: list[float]) -> str:
     res += '\n'
     return res
 
+
+def get_station_to_freq_dict() -> dict[str:int]:
+    return {
+        'DHO': 0,
+        # TODO
+    }
+
+
+def get_station_name(pic: str) -> str:
+    return pic[11:14]
+
+
+def compare(st: str) -> str:
+    st_dict = get_station_to_freq_dict()
+    freq = st_dict.get(st)
+    if freq is None:
+        return 'b' + st
+    return f'a{freq}'
