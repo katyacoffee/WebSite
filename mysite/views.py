@@ -1,11 +1,14 @@
+import ftplib
 import os
 
+from ftplib import FTP
 from django.shortcuts import render
 from django.core.cache import cache
 from django.http import HttpResponse
 from . import terms_work, core
 import json
 import datetime
+import http.client as https
 
 # from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 # from django.views import generic
@@ -75,25 +78,40 @@ def get_vlf_data(request):
             context["success-title"] = ""
         print(date)
         print(len(date))
-        base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
+        # base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
         # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
-        server_dir = 'https://idg-comp.chph.ras.ru/~mikhnevo/metronix/METRONIX_SDVamp'
-        # data_path = os.path.join(base_dir, yr, mon, day)
-        data_path = server_dir + '/' + yr + '/' + mon + '/' + day
+
+        server_dir = 'idg-comp.chph.ras.ru'
+        base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
+        data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day + '/'
+
         no_data = False
+
+        connection = https.HTTPSConnection(server_dir)
+        connection.request("GET", "/" + data_path)
+        response = connection.getresponse()
+        html_body = response.read().decode()
+        tmp = html_body.split('alt="[IMG]"></td><td><a href="')
         img_list = []
-        try:
-            img_list = os.listdir(data_path)
-        except FileNotFoundError as e:
-            print(e.strerror)
-            no_data = True
-        if len(img_list) == 0:
-            no_data = True
+        for i in range(1,len(tmp)):
+            preparsed_dir = tmp[i].split("\"")
+            if len(preparsed_dir) > 0:
+                img_list.append(preparsed_dir[0])
+        print(f'{response.status}')
         img_list.sort()
+        print(img_list)
+
         new_image_list = []
-        for img in img_list:
-            #new_image_list.append(base_dir + '/' + yr + '/' + mon + '/' + day + '/' + img)
-            new_image_list.append(data_path + '/' + img)
+        if f'{response.status}' == '200':
+            for img in img_list:
+                new_image_list.append('https://' + server_dir + '/' + data_path + img)
+            if len(img_list) == 0:
+                no_data = True
+        else:
+            no_data = True
+
+        connection.close()
+
         context["images"] = new_image_list
         context["no_data"] = no_data
         context["num_pics"] = len(new_image_list)

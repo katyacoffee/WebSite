@@ -118,7 +118,6 @@
                 {% for image in images %}
                     h = document.getElementById('img_{{ image }}').height;
                 {% endfor %}
-                alert(h)
                 const card_fig = document.getElementById('card_fig');
                 card_fig.height = {{ num_pics }} * h;
             </script>
