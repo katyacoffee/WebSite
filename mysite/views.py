@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from . import terms_work, core
 import json
 import datetime
+from datetime import date
 import http.client as https
 
 # from bootstrap_datepicker_plus.widgets import DateTimePickerInput
@@ -37,7 +38,16 @@ def get_menu(request):
 
 
 def date_selection(request):
-    return render(request, "date_selection.html")
+    current_date = date.today()
+    print(current_date)
+    current_month = current_date.month
+    current_year = current_date.year
+    days = core.get_available_days(current_year, current_month)
+    return render(request, "date_selection.html", context={
+        "current_month": current_month,
+        "current_year": current_year,
+        "avail_days": days,
+    })
 
 
 def equipment(request):
@@ -48,7 +58,21 @@ def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
         date = str(request.POST.get("mydate"))
-        context = {"mydate": date}
+        new_month = request.POST.get("new_month")
+        new_year = request.POST.get("new_year")
+        selected_new_month = request.POST.get("selected_new_month")
+        print(new_year, new_month, selected_new_month)
+        mon = int(new_month) + 1
+        yr = int(new_year)
+        context = {
+            "mydate": date,
+            "avail_days": core.get_available_days(yr, mon),
+            "current_month": mon,
+            "current_year": yr,
+        }
+        if selected_new_month != '':
+            return render(request, "date_selection.html", context)
+
         parsed_date = date.split('/')
         if len(parsed_date) != 3:
             context["success"] = False
@@ -78,44 +102,15 @@ def get_vlf_data(request):
             context["success-title"] = ""
         print(date)
         print(len(date))
-        # base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
-        # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
-
-        server_dir = 'idg-comp.chph.ras.ru'
-        base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
-        data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day + '/'
 
         no_data = False
-
-        connection = https.HTTPSConnection(server_dir)
-        connection.request("GET", "/" + data_path)
-        response = connection.getresponse()
-        html_body = response.read().decode()
-        tmp = html_body.split('alt="[IMG]"></td><td><a href="')
-        img_list = []
-        for i in range(1,len(tmp)):
-            preparsed_dir = tmp[i].split("\"")
-            if len(preparsed_dir) > 0:
-                img_list.append(preparsed_dir[0])
-        print(f'{response.status}')
-        img_list.sort(key=lambda pic: core.compare(core.get_station_name(pic)))  # TODO: проверить!
-        print(img_list)
-
-        new_image_list = []
-        if f'{response.status}' == '200':
-            for img in img_list:
-                new_image_list.append('https://' + server_dir + '/' + data_path + img)
-            if len(img_list) == 0:
-                no_data = True
-        else:
+        img_list = core.get_img_list(yr, mon, day)
+        if len(img_list) == 0:
             no_data = True
 
-        connection.close()
-
-        context["images"] = new_image_list
+        context["images"] = img_list
         context["no_data"] = no_data
-        context["num_pics"] = len(new_image_list)
-        print(data_path)
+        context["num_pics"] = len(img_list)
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)

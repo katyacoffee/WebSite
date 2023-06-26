@@ -5,12 +5,9 @@
 {% endblock %}
 
 {% block page-title %}
-    <p style="font-size:50px;">Добавить слово </p>
 {% endblock %}
 
 {% block page-lead %}
-    <p class="fst-italic" style="font-size:25px;">Вы можете пополнить базу слов и
-        переводов к ним </p>
 {% endblock %}
 
 
@@ -150,11 +147,14 @@
             <div class="container-calendar">
                 <h3 id="monthAndYear"></h3>
                 <div class="button-container-calendar">
-                    <input class="btn-previous" type="button" value=&#8249;
+                    <input class="btn-previous" type="submit" formaction="/get-vlf-data" value=&#8249;
                            onclick="previous()">
                     {#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8249; onclick="previous()">#}
                     {#                    <input class="btn btn-info" type="button" style="display: inline-block; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5;" value=&#8250; onclick="next()">#}
-                    <input class="btn-next" type="button" value=&#8250; onclick="next()">
+                    <input class="btn-next" type="submit" formaction="/get-vlf-data" value=&#8250; onclick="next()">
+                    <input type="hidden" id="selected_new_month" name="selected_new_month" value="">
+                    <input type="hidden" id="new_month" name="new_month" value="">
+                    <input type="hidden" id="new_year" name="new_year" value="">
 
                     {#                    <div class="arrow" id="previous" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="previous()">&#8249;</div>#}
                     {#                    <div class="btn btn-info" id="next" type="button" style="cursor: pointer; display: inline-block; zoom: 1; background: #00a2b7; color: #fff; border: 1px solid #0aa2b5; border-radius: 4px; padding: 5px 10px;" onclick="next()">&#8250;</div>#}
@@ -193,9 +193,8 @@
                 return years;
             }
 
-            today = new Date();
-            currentMonth = today.getMonth();
-            currentYear = today.getFullYear();
+            currentMonth = {{ current_month }} - 1;
+            currentYear = {{ current_year }};
             selectYear = document.getElementById("year");
             selectMonth = document.getElementById("month");
 
@@ -233,15 +232,36 @@
             showCalendar(currentMonth, currentYear);
 
             function next() {
-                currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
-                currentMonth = (currentMonth + 1) % 12;
-                showCalendar(currentMonth, currentYear);
+                currentYear = ({{ current_month }} === 12) ? {{ current_year }} + 1 : {{ current_year }};
+                currentMonth = ({{ current_month }}) % 12;
+                const new_month = document.getElementById("new_month");
+                new_month.value = currentMonth;
+                const new_year = document.getElementById("new_year");
+                new_year.value = currentYear;
+                const selected_new_month = document.getElementById("selected_new_month");
+                selected_new_month.value = 'selected';
             }
 
             function previous() {
-                currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
-                currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-                showCalendar(currentMonth, currentYear);
+                currentYear = ({{ current_month }} === 1) ? {{ current_year }} - 1 : {{ current_year }};
+                currentMonth = ({{ current_month }} === 1) ? 11 : {{ current_month }} - 2;
+                const new_month = document.getElementById("new_month");
+                new_month.value = currentMonth;
+                const new_year = document.getElementById("new_year");
+                new_year.value = currentYear;
+                const selected_new_month = document.getElementById("selected_new_month");
+                selected_new_month.value = 'selected';
+                {#showCalendar(currentMonth, currentYear);#}
+            }
+
+            function current_mon() {
+                currentYear = {{ current_year }};
+                currentMonth = {{ current_month }} - 1;
+                const new_month = document.getElementById("new_month");
+                new_month.value = currentMonth;
+                const new_year = document.getElementById("new_year");
+                new_year.value = currentYear;
+                {#showCalendar(currentMonth, currentYear);#}
             }
 
             function jump() {
@@ -259,6 +279,7 @@
                 selectMonth.value = month;
 
                 // creating all cells
+                let avail_days = {{ avail_days }};
                 let date = 1;
                 for (let i = 0; i < 7; i++) {
                     let row = document.createElement("tr");
@@ -279,6 +300,7 @@
                             cell.className = "date-picker";
                             cell.innerHTML = "<span>" + date + "</span>";
 
+                            today = new Date();
                             if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                                 cell.className = "date-picker selected";
                             }
@@ -300,6 +322,8 @@
                                 const mydate = document.getElementById("mydate")
                                 mydate.value = cell_date + '/' + cell_mon + '/' + year
                             })
+                            // cell.setAttribute("style", "textColor=#fff")
+                            // TODO: если в avail_days есть данный номер дня, задавать нужный стиль
                             row.appendChild(cell);
                             date++;
                         }
@@ -320,7 +344,7 @@
             }
         </script>
         <div class="row px-5 py-2">
-            <button type="submit" formaction="/get-vlf-data" class="btn btn-info"
+            <button type="submit" formaction="/get-vlf-data" class="btn btn-info" onclick="current_mon()"
                     style="font-family: 'Roboto', sans-serif; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">
                 View
             </button>

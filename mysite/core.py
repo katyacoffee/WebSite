@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import pathlib
 from pathlib import Path
+import http.client as https
 
 
 @dataclass
@@ -194,8 +195,27 @@ def make_str_of_results(user: str, results: list[float]) -> str:
 
 def get_station_to_freq_dict() -> dict[str:int]:
     return {
-        'TBB': 0,
-        # TODO
+        'VTX1': 16.3,
+        'JXN': 16.4,
+        'VTX2': 17,
+        'HWU1': 18.3,
+        'GBZ': 19.58,
+        'NWC': 19.8,
+        'ICV': 20.27,
+        'FTA': 20.9,
+        'HWU': 21.75,
+        'GQD': 22.1,
+        'DHO': 23.4,
+        'NAA': 24,
+        'NRK': 57.5,
+        'GYW': 51.95,
+        'GXH': 57.4,
+        'NPM': 21.4,
+        'TBB': 26.7,
+        'A1F3': 29.7,
+        'NSY': 45.9,
+        'SXA': 49,
+        'NDI': 54,
     }
 
 
@@ -211,3 +231,41 @@ def compare(st: str) -> str:
     if freq is None:
         return 'b' + st
     return f'a{freq}'
+
+
+def get_img_list(yr: str, mon: str, day: str) -> list[str]:
+    # base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
+    # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
+
+    server_dir = 'idg-comp.chph.ras.ru'
+    base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
+    data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day + '/'
+
+    connection = https.HTTPSConnection(server_dir)
+    connection.request("GET", "/" + data_path)
+    response = connection.getresponse()
+    html_body = response.read().decode()
+    tmp = html_body.split('alt="[IMG]"></td><td><a href="')
+    img_list = []
+    for i in range(1, len(tmp)):
+        preparsed_dir = tmp[i].split("\"")
+        if len(preparsed_dir) > 0:
+            img_list.append(preparsed_dir[0])
+    print(f'{response.status}')
+    img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+    print(img_list)
+
+    new_image_list = []
+    if f'{response.status}' == '200':
+        for img in img_list:
+            new_image_list.append('https://' + server_dir + '/' + data_path + img)
+
+    connection.close()
+    return new_image_list
+
+
+def get_available_days(year: int, mon: int) -> list[int]:
+    days = []
+    # TODO: перебрать дни от 1 до 31, если get_img_list вернёт непустой список,
+    #  то добавляем день в days
+    return days
