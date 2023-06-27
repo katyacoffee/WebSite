@@ -41,8 +41,10 @@ def get_menu(request):
 def date_selection(request):
     current_date = date.today()
     print(current_date)
-    current_month = current_date.month
-    current_year = current_date.year
+    current_month = str(current_date.month)
+    if len(current_month) == 1:
+        current_month = '0' + current_month
+    current_year = str(current_date.year)
     days = core.get_available_days(current_year, current_month)
     return render(request, "date_selection.html", context={
         "current_month": current_month,
@@ -64,10 +66,13 @@ def get_vlf_data(request):
         selected_new_month = request.POST.get("selected_new_month")
         print(new_year, new_month, selected_new_month)
         mon = int(new_month) + 1
+        mon_str = str(mon)
+        if len(mon_str) == 1:
+            mon_str = '0' + mon_str
         yr = int(new_year)
         context = {
             "mydate": date,
-            "avail_days": core.get_available_days(yr, mon),
+            "avail_days": core.get_available_days(new_year, mon_str),
             "current_month": mon,
             "current_year": yr,
         }

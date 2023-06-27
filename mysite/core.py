@@ -2,6 +2,8 @@ from dataclasses import dataclass
 import pathlib
 from pathlib import Path
 import http.client as https
+from requests import Session as sess
+from requests.models import Response
 
 
 @dataclass
@@ -227,10 +229,24 @@ def get_station_name(pic: str) -> str:
 def compare(st: str) -> str:
     st_dict = get_station_to_freq_dict()
     freq = st_dict.get(st)
-    print(st, freq)
     if freq is None:
         return 'b' + st
     return f'a{freq}'
+
+
+def get_images(response: Response) -> list[str]:
+    if f'{response.status_code}' != '200':
+        return []
+    html_body = response.text
+    tmp = html_body.split('alt="[IMG]"></td><td><a href="')
+    img_list = []
+    for i in range(1, len(tmp)):
+        preparsed_dir = tmp[i].split("\"")
+        if len(preparsed_dir) > 0:
+            img_list.append(preparsed_dir[0])
+    img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+
+    return img_list
 
 
 def get_img_list(yr: str, mon: str, day: str) -> list[str]:
@@ -239,33 +255,38 @@ def get_img_list(yr: str, mon: str, day: str) -> list[str]:
 
     server_dir = 'idg-comp.chph.ras.ru'
     base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
-    data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day + '/'
 
-    connection = https.HTTPSConnection(server_dir)
-    connection.request("GET", "/" + data_path)
-    response = connection.getresponse()
-    html_body = response.read().decode()
-    tmp = html_body.split('alt="[IMG]"></td><td><a href="')
-    img_list = []
-    for i in range(1, len(tmp)):
-        preparsed_dir = tmp[i].split("\"")
-        if len(preparsed_dir) > 0:
-            img_list.append(preparsed_dir[0])
-    print(f'{response.status}')
-    img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-    print(img_list)
-
+    s = sess()
+    data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
+    site = 'https://' + server_dir + '/' + data_path
+    resp = s.get(site)
+    img_list = get_images(resp)
     new_image_list = []
-    if f'{response.status}' == '200':
-        for img in img_list:
-            new_image_list.append('https://' + server_dir + '/' + data_path + img)
-
-    connection.close()
+    for img in img_list:
+        new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
     return new_image_list
 
 
-def get_available_days(year: int, mon: int) -> list[int]:
+def get_available_days(year: str, mon: str) -> list[int]:
     days = []
-    # TODO: перебрать дни от 1 до 31, если get_img_list вернёт непустой список,
-    #  то добавляем день в days
+    server_dir = 'idg-comp.chph.ras.ru'
+    base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
+
+    s = sess()
+
+    for i in range(1, 32):
+        day = str(i)
+        if len(day) == 1:
+            day = '0' + day
+        data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
+        site = 'https://' + server_dir + '/' + data_path
+
+        resp = s.get(site)
+        img_list = get_images(resp)
+        new_image_list = []
+        for img in img_list:
+            new_image_list.append('https://' + server_dir + '/' + data_path + img)
+
+        if len(new_image_list) != 0:
+            days.append(i)
     return days
