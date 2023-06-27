@@ -9,6 +9,7 @@ from . import terms_work, core
 import json
 import datetime
 from datetime import date
+# import pyzed as sl
 import http.client as https
 
 # from bootstrap_datepicker_plus.widgets import DateTimePickerInput

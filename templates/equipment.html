@@ -182,9 +182,37 @@
             presents the results of measuring of the amplitude of signals from the
             5 VLF transmitters: JXN, GQD,
             NAA, DHO, ICV. The "Whistler" characteristics can be found in the
-            Equipment section.</p>
+            Equipment section.
+            <br>
+        </p>
+        <br>
+        <style>
+            .btn {
+                display: inline-flex;
+                background: #68819a;
+            {#font-size: 16px;#} width: 150px;
+                height: 45px;
+                color: #ffffff;
+                font-size: 18px;
+                font-family: 'Roboto', sans-serif;
+                border: #68819a;
+                border-radius: 4px;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                vertical-align: center;
+            }
+
+            .btn:hover {
+                background: #576f88;
+                color: #f8f6f6;
+            }
+        </style>
         <div class="data">
-            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
+            <a href="/date-selection" class="btn"
+               style="">Browse
+                data</a>
+            {#            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>#}
         </div>
     </div>
     <div class="container px-4 py-5" id="main-contents">
@@ -209,9 +237,25 @@
 
     {#    <div id="main">#}
 
+    <style>
+        .column {
+            float: left;
+            width: 33.33%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+
     <div class="container px-4 py-5" id="main-contents">
-        <div class="col-md-4">
-            <div class="box">
+        <div class="row">
+            <div class="column">
+                {#        <div class="col-md-4">#}
+                {#            <div class="box">#}
                 <h2 style="font-family: 'Roboto', sans-serif;">Javad Sigma</h2>
                 <hr>
                 <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
@@ -224,9 +268,10 @@
                     <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="box">
+            {#        </div>#}
+            <div class="column">
+                {#        <div class="col-md-4">#}
+                {#            <div class="box">#}
                 <h2 style="font-family: 'Roboto', sans-serif;">Javad Prego</h2>
                 <hr>
                 <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
@@ -237,9 +282,10 @@
                     <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="box">
+            {#        </div>#}
+            {#        <div class="col-md-4">#}
+            {#            <div class="box">#}
+            <div class="column">
                 <h2 style="font-family: 'Roboto', sans-serif;">Trimble 5700</h2>
                 <hr>
                 <p style="font-family: 'Roboto', sans-serif;">latitude: 54°57´<br>
@@ -252,5 +298,5 @@
             </div>
         </div>
     </div>
-    </div>
+    {#    </div>#}
 {% endblock %}

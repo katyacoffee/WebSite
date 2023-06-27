@@ -4,11 +4,11 @@
     Date picker
 {% endblock %}
 
-{% block page-title %}
-{% endblock %}
-
-{% block page-lead %}
-{% endblock %}
+{#{% block page-title %}#}
+{#{% endblock %}#}
+{##}
+{#{% block page-lead %}#}
+{#{% endblock %}#}
 
 
 {% block content %}
@@ -57,6 +57,7 @@
             padding: 5px;
             border: 1px solid #e2e2e2;
             text-align: center;
+            font-family: 'Roboto', sans-serif;
             vertical-align: top;
             width: 70px
         }
@@ -64,16 +65,19 @@
         /* sunday */
         .date-picker:nth-child(1) {
             color: #0a0a0a;
+            font-family: 'Roboto', sans-serif;
         }
 
         /* friday */
         .date-picker:nth-child(6) {
             color: #0e0e0e;
+            font-family: 'Roboto', sans-serif;
         }
 
         #monthAndYear {
             text-align: center;
             margin-top: 0;
+            font-family: 'Roboto', sans-serif;
         }
 
         .button-container-calendar {
@@ -89,20 +93,35 @@
             background: #00a2b7;
             color: #fff;
             border-radius: 3px;
+            font-family: 'Roboto', sans-serif;
             height: 30px;
             width: 26px;
             border: 1px solid #0aa2b5;
         }
 
+        .btn-previous:hover {
+            background: #098696;
+            color: #f8f6f6;
+            border: 1px solid #098696;
+        }
+
         .btn-next {
             float: right;
-            display: inline-block;
+        {#display: inline-flex;#} display: inline-block;
             background: #00a2b7;
             color: #fff;
             border-radius: 3px;
+            font-family: 'Roboto', sans-serif;
             height: 30px;
             width: 26px;
             border: 1px solid #0aa2b5;
+        {#justify-content: center;#}{#align-items: center;#}{#vertical-align: center;#}
+        }
+
+        .btn-next:hover {
+            background: #098696;
+            color: #f8f6f6;
+            border: 1px solid #098696;
         }
 
         .footer-container-calendar {
@@ -193,7 +212,7 @@
                 return years;
             }
 
-            currentMonth = {{ current_month }} - 1;
+            currentMonth = {{ current_month }} -1;
             currentYear = {{ current_year }};
             selectYear = document.getElementById("year");
             selectMonth = document.getElementById("month");
@@ -232,7 +251,9 @@
             showCalendar(currentMonth, currentYear);
 
             function next() {
-                currentYear = ({{ current_month }} === 12) ? {{ current_year }} + 1 : {{ current_year }};
+                currentYear = ({{ current_month }} === 12
+            )
+                    ? {{ current_year }} +1 : {{ current_year }};
                 currentMonth = ({{ current_month }}) % 12;
                 const new_month = document.getElementById("new_month");
                 new_month.value = currentMonth;
@@ -243,8 +264,12 @@
             }
 
             function previous() {
-                currentYear = ({{ current_month }} === 1) ? {{ current_year }} - 1 : {{ current_year }};
-                currentMonth = ({{ current_month }} === 1) ? 11 : {{ current_month }} - 2;
+                currentYear = ({{ current_month }} === 1
+            )
+                    ? {{ current_year }} -1 : {{ current_year }};
+                currentMonth = ({{ current_month }} === 1
+            )
+                    ? 11 : {{ current_month }} -2;
                 const new_month = document.getElementById("new_month");
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
@@ -256,7 +281,7 @@
 
             function current_mon() {
                 currentYear = {{ current_year }};
-                currentMonth = {{ current_month }} - 1;
+                currentMonth = {{ current_month }} -1;
                 const new_month = document.getElementById("new_month");
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
