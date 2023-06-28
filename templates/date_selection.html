@@ -143,7 +143,7 @@
         }
     </style>
     <br>
-    <form method="post">
+    <form method="post" id="date_form">
         <div style="margin: 0 auto; width: 280px; height: 45px;">
             <div style="position:relative">
                 <input id="mydate" name="mydate" type="text" class="form-control"
@@ -301,22 +301,16 @@
                 currentYear = parseInt(selectYear.value);
                 currentMonth = parseInt(selectMonth.value);
                 showCalendar(currentMonth, currentYear);
-                {#let el = document.querySelector('#month');#}
-                {#el.addEventListener('change', function () {#}
-                {#    document.location.reload();#}
-                {#})#}
-                }
-
-                {#const new_month = document.getElementById("month")#}
-                {#new_month.value = currentMonth;#}
-                {#d = document.getElementById("month").value;#}
-                {#const new_year = document.getElementById("year");#}
-                {#new_year.value = currentYear;#}
-                {#const selected_new_month = document.getElementById("selected_new_month");#}
-                {#selected_new_month.value = 'selected';#}
-                {#location.href = "./qqq.php";#}
-                {#alert(d);#}
-                {#}#}
+                const new_month = document.getElementById("new_month");
+                new_month.value = currentMonth;
+                const new_year = document.getElementById("new_year");
+                new_year.value = currentYear;
+                const selected_new_month = document.getElementById("selected_new_month");
+                selected_new_month.value = 'selected';
+                const date_form = document.getElementById("date_form");
+                date_form.setAttribute("action", "/get-vlf-data");
+                date_form.submit();
+            }
 
                     function showCalendar(month, year) {
                         var firstDay = (new Date(year, month, 7)).getDay();

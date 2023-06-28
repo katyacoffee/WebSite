@@ -40,7 +40,6 @@ def get_menu(request):
 
 def date_selection(request):
     current_date = date.today()
-    print(current_date)
     current_month = str(current_date.month)
     if len(current_month) == 1:
         current_month = '0' + current_month
