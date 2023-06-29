@@ -44,12 +44,20 @@ def date_selection(request):
     if len(current_month) == 1:
         current_month = '0' + current_month
     current_year = str(current_date.year)
-    days = core.get_available_days(current_year, current_month)
-    return render(request, "date_selection.html", context={
-        "current_month": current_month,
-        "current_year": current_year,
-        "avail_days": days,
-    })
+    try:
+        days = core.get_available_days(current_year, current_month)
+        return render(request, "date_selection.html", context={
+            "current_month": current_month,
+            "current_year": current_year,
+            "avail_days": days,
+        })
+    except core.ServerDownException:
+        return render(request, "date_selection.html", context={
+            "server_error": 'some error',
+            "current_month": 0,
+            "current_year": 0,
+            "avail_days": [],
+        })
 
 
 def equipment(request):
@@ -103,6 +111,12 @@ def get_vlf_data(request):
             context["success"] = False
             context["comment"] = "Введена несуществующая дата"
             return render(request, "date_selection.html", context)
+        # im_list = core.get_img_list(str(yr), str(mon), day)
+        # if len(im_list) == 0:
+        #     context["success"] = False
+        #     context[
+        #         "comment"] = "В выбранном дне нет данных"
+        #     return render(request, "date_selection.html", context)
         if context["success"]:
             context["success-title"] = ""
         print(date)

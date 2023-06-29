@@ -212,6 +212,19 @@
             </div>
         </div>
         <script>
+            server_error = '{{ server_error }}'
+            if (server_error !== '') {
+                const date_form = document.getElementById('date_form');
+                date_form.style.display = 'none';
+                const main_block = document.getElementsByTagName('main')[0];
+                const cellText = document.createElement("h2");
+                cellText.innerHTML = "Server is temporarily unavailable";
+                cellText.style.textAlign = "center";
+                cellText.style.fontFamily = "Roboto, sans-serif";
+                main_block.appendChild(cellText);
+
+            }
+
             function generate_year_range(start, end) {
                 var years = "";
                 for (var year = start; year <= end; year++) {
@@ -259,9 +272,7 @@
             showCalendar(currentMonth, currentYear);
 
             function next() {
-                currentYear = ({{ current_month }} === 12
-            )
-                    ? {{ current_year }} +1 : {{ current_year }};
+                currentYear = ({{ current_month }} === 12 )? {{ current_year }} + 1 : {{ current_year }};
                 currentMonth = ({{ current_month }}) % 12;
                 const new_month = document.getElementById("new_month");
                 new_month.value = currentMonth;
@@ -272,12 +283,8 @@
             }
 
             function previous() {
-                currentYear = ({{ current_month }} === 1
-            )
-                    ? {{ current_year }} -1 : {{ current_year }};
-                currentMonth = ({{ current_month }} === 1
-            )
-                    ? 11 : {{ current_month }} -2;
+                currentYear = ({{ current_month }} === 1 ) ? {{ current_year }} -1 : {{ current_year }};
+                currentMonth = ({{ current_month }} === 1) ? 11 : {{ current_month }} - 2;
                 const new_month = document.getElementById("new_month");
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
@@ -312,79 +319,79 @@
                 date_form.submit();
             }
 
-                    function showCalendar(month, year) {
-                        var firstDay = (new Date(year, month, 7)).getDay();
-                        tbl = document.getElementById("calendar-body");
-                        tbl.innerHTML = "";
-                        monthAndYear.innerHTML = months[month] + " " + year;
-                        selectYear.value = year;
-                        selectMonth.value = month;
+            function showCalendar(month, year) {
+                var firstDay = (new Date(year, month, 7)).getDay();
+                tbl = document.getElementById("calendar-body");
+                tbl.innerHTML = "";
+                monthAndYear.innerHTML = months[month] + " " + year;
+                selectYear.value = year;
+                selectMonth.value = month;
 
-                        // creating all cells
-                        let avail_days = {{ avail_days }};
-                        let date = 1;
-                        for (let i = 0; i < 7; i++) {
-                            let row = document.createElement("tr");
-                            for (let j = 0; j < 7; j++) {
-                                if (i === 0 && j < firstDay) {
-                                    cell = document.createElement("td");
-                                    cellText = document.createTextNode("");
-                                    cell.appendChild(cellText);
-                                    row.appendChild(cell);
-                                } else if (date > daysInMonth(month, year)) {
-                                    break;
-                                } else {
-                                    cell = document.createElement("td");
-                                    cell.setAttribute("data-date", date);
-                                    cell.setAttribute("data-month", month + 1);
-                                    cell.setAttribute("data-year", year);
-                                    cell.setAttribute("data-month_name", months[month]);
-                                    cell.className = "date-picker";
-                                    cell.innerHTML = "<span>" + date + "</span>";
+                // creating all cells
+                let avail_days = {{ avail_days }};
+                let date = 1;
+                for (let i = 0; i < 7; i++) {
+                    let row = document.createElement("tr");
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < firstDay) {
+                            cell = document.createElement("td");
+                            cellText = document.createTextNode("");
+                            cell.appendChild(cellText);
+                            row.appendChild(cell);
+                        } else if (date > daysInMonth(month, year)) {
+                            break;
+                        } else {
+                            cell = document.createElement("td");
+                            cell.setAttribute("data-date", date);
+                            cell.setAttribute("data-month", month + 1);
+                            cell.setAttribute("data-year", year);
+                            cell.setAttribute("data-month_name", months[month]);
+                            cell.className = "date-picker";
+                            cell.innerHTML = "<span>" + date + "</span>";
 
-                                    today = new Date();
-                                    if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                                        cell.className = "date-picker selected";
-                                    }
-                                    cell.date = `${date}`
-                                    // cell.setAttribute("style", "textColor=#fff")
-                                    for (let d of avail_days) {
-                                        if (d !== date) {
-                                            continue;
-                                        }
-                                        cell.style.fontWeight = 'bold';
-                                        cell.style.textDecoration = "underline";
-                                        cell.addEventListener("click", function (event) {
-                                            var cell_date = event.currentTarget.date
-                                            // noinspection EqualityComparisonWithCoercionJS
-                                            if (1 == cell_date.length) {
-                                                cell_date = '0' + cell_date
-                                            }
-                                            var cell_mon = `${month + 1}`
-                                            // noinspection EqualityComparisonWithCoercionJS
-                                            if (1 == cell_mon.length) {
-                                                cell_mon = '0' + cell_mon
-                                            }
-                                            sessionStorage.setItem("selected_day", cell_date)
-                                            {#cell.setAttribute("selected_day", cell_date);#}
-                                            sessionStorage.setItem("selected_mon", cell_mon)
-                                            sessionStorage.setItem("selected_year", year)
-                                            const mydate = document.getElementById("mydate")
-                                            mydate.value = cell_date + '/' + cell_mon + '/' + year
-                                        })
-                                        break
-                                    }
-                                    row.appendChild(cell);
-                                    date++;
-                                }
+                            today = new Date();
+                            if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                        cell.className = "date-picker selected";
                             }
-                            tbl.appendChild(row);
+                            cell.date = `${date}`
+                            // cell.setAttribute("style", "textColor=#fff")
+                            for (let d of avail_days) {
+                        if (d !== date) {
+                            continue;
+                        }
+                        cell.style.fontWeight = 'bold';
+                        cell.style.textDecoration = "underline";
+                        cell.addEventListener("click", function (event) {
+                            var cell_date = event.currentTarget.date
+                            // noinspection EqualityComparisonWithCoercionJS
+                            if (1 == cell_date.length) {
+                                cell_date = '0' + cell_date
+                            }
+                            var cell_mon = `${month + 1}`
+                            // noinspection EqualityComparisonWithCoercionJS
+                            if (1 == cell_mon.length) {
+                                cell_mon = '0' + cell_mon
+                            }
+                            sessionStorage.setItem("selected_day", cell_date)
+                            {#cell.setAttribute("selected_day", cell_date);#}
+                            sessionStorage.setItem("selected_mon", cell_mon)
+                            sessionStorage.setItem("selected_year", year)
+                            const mydate = document.getElementById("mydate")
+                            mydate.value = cell_date + '/' + cell_mon + '/' + year
+                        })
+                        break
+                            }
+                            row.appendChild(cell);
+                            date++;
                         }
                     }
+                    tbl.appendChild(row);
+                }
+            }
 
-                    function daysInMonth(iMonth, iYear) {
-                        return 32 - new Date(iYear, iMonth, 32).getDate();
-                    }
+            function daysInMonth(iMonth, iYear) {
+                return 32 - new Date(iYear, iMonth, 32).getDate();
+            }
         </script>
         <script>
             const mydate = document.getElementById('mydate');

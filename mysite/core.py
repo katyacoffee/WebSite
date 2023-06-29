@@ -4,6 +4,7 @@ from pathlib import Path
 import http.client as https
 from requests import Session as sess
 from requests.models import Response
+from requests import ConnectTimeout
 
 
 @dataclass
@@ -22,6 +23,10 @@ data_path = Path(dir_path, 'mysite', 'data', 'data.txt')
 res_path = Path(dir_path, 'mysite', 'data', 'results.txt')
 users_path = Path(dir_path, 'mysite', 'data', 'users.txt')
 print(str(data_path))
+
+
+class ServerDownException(Exception):
+    pass
 
 
 def get_cards(lesson_id: int) -> list[Card]:
@@ -281,12 +286,16 @@ def get_available_days(year: str, mon: str) -> list[int]:
         data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
         site = 'https://' + server_dir + '/' + data_path
 
-        resp = s.get(site)
-        img_list = get_images(resp)
-        new_image_list = []
-        for img in img_list:
-            new_image_list.append('https://' + server_dir + '/' + data_path + img)
+        try:
+            resp = s.get(site, timeout=2)
+            print(resp)
+            img_list = get_images(resp)
+            new_image_list = []
+            for img in img_list:
+                new_image_list.append('https://' + server_dir + '/' + data_path + img)
 
-        if len(new_image_list) != 0:
-            days.append(i)
+            if len(new_image_list) != 0:
+                days.append(i)
+        except ConnectTimeout:
+            raise ServerDownException('server down')
     return days
