@@ -89,16 +89,20 @@ def get_vlf_data(request):
         parsed_date = date.split('/')
         if len(parsed_date) != 3:
             context["success"] = False
+            # context[
+            #     "comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
             context[
-                "comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
+                "comment"] = "Invalid date format. Enter again in the format DD/MM/YYYY"
             return render(request, "date_selection.html", context)
         day = parsed_date[0]
         mon = parsed_date[1]
         yr = parsed_date[2]
         if not day.isnumeric() or not mon.isnumeric() or not yr.isnumeric():
             context["success"] = False
+            # context[
+            #     "comment"] = "Неверный формат даты. День, месяц и год должны быть числами"
             context[
-                "comment"] = "Неверный формат даты. День, месяц и год должны быть числами"
+                "comment"] = "Invalid date format. Day, month and year must be numbers"
             return render(request, "date_selection.html", context)
         day_int = int(day)
         mon_int = int(mon)
@@ -109,14 +113,16 @@ def get_vlf_data(request):
             context["comment"] = ""
         except ValueError:
             context["success"] = False
-            context["comment"] = "Введена несуществующая дата"
+            # context["comment"] = "Введена несуществующая дата"
+            context["comment"] = "Invalid date entered"
             return render(request, "date_selection.html", context)
-        # im_list = core.get_img_list(str(yr), str(mon), day)
-        # if len(im_list) == 0:
-        #     context["success"] = False
-        #     context[
-        #         "comment"] = "В выбранном дне нет данных"
-        #     return render(request, "date_selection.html", context)
+        im_list = core.get_img_list(str(yr), str(mon), day)
+        if len(im_list) == 0:
+            context["success"] = False
+            # context[
+            #     "comment"] = "В выбранном дне нет данных"
+            context["comment"] = "There is no data for the selected day"
+            return render(request, "date_selection.html", context)
         if context["success"]:
             context["success-title"] = ""
         print(date)
