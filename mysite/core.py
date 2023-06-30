@@ -262,13 +262,18 @@ def get_img_list(yr: str, mon: str, day: str) -> list[str]:
     base_dir_serv = '~mikhnevo/metronix/METRONIX_SDVamp'
 
     s = sess()
-    data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
-    site = 'https://' + server_dir + '/' + data_path
-    resp = s.get(site)
-    img_list = get_images(resp)
+
     new_image_list = []
-    for img in img_list:
-        new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
+    try:
+        data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
+        site = 'https://' + server_dir + '/' + data_path
+        resp = s.get(site, timeout=2)
+        img_list = get_images(resp)
+        for img in img_list:
+            new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
+    except ConnectTimeout:
+        raise ServerDownException('server down')
+
     return new_image_list
 
 
@@ -288,7 +293,6 @@ def get_available_days(year: str, mon: str) -> list[int]:
 
         try:
             resp = s.get(site, timeout=2)
-            print(resp)
             img_list = get_images(resp)
             new_image_list = []
             for img in img_list:
