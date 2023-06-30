@@ -71,17 +71,24 @@ def get_vlf_data(request):
         new_month = request.POST.get("new_month")
         new_year = request.POST.get("new_year")
         selected_new_month = request.POST.get("selected_new_month")
+        new_day = request.POST.get("new_day")
+        button_name = request.POST.get("button_name")
         print(new_year, new_month, selected_new_month)
         mon = int(new_month) + 1
         mon_str = str(mon)
         if len(mon_str) == 1:
             mon_str = '0' + mon_str
         yr = int(new_year)
+        parsed_date = date.split('/')
+        day = parsed_date[0]
+        # mon = parsed_date[1]
+        # yr = parsed_date[2]
         context = {
             "mydate": date,
             "avail_days": core.get_available_days(new_year, mon_str),
             "current_month": mon,
             "current_year": yr,
+            "current_day": day,
         }
         if selected_new_month != '':
             return render(request, "date_selection.html", context)
@@ -94,7 +101,7 @@ def get_vlf_data(request):
             context[
                 "comment"] = "Invalid date format. Enter again in the format DD/MM/YYYY"
             return render(request, "date_selection.html", context)
-        day = parsed_date[0]
+        # day = parsed_date[0]
         mon = parsed_date[1]
         yr = parsed_date[2]
         if not day.isnumeric() or not mon.isnumeric() or not yr.isnumeric():
@@ -107,6 +114,43 @@ def get_vlf_data(request):
         day_int = int(day)
         mon_int = int(mon)
         yr_int = int(yr)
+
+        if button_name is not None and new_day is not None:
+            # TODO: проверять название кнопки + если нет данных,
+            #  все равно открывать, но выдавать страницу с надписью No data
+            if button_name == 'next':
+                nextday_date = datetime.date(yr_int, mon_int, day_int) + datetime.timedelta(days=1)
+                next_day = nextday_date.day
+                next_mon = nextday_date.month
+                next_yr = nextday_date.year
+                im_list = core.get_img_list(str(next_yr), str(next_mon), str(next_day))
+                no_data = False
+                if len(im_list) == 0:
+                    no_data = True
+                # context["current_day"] = day_int
+                context["next_day"] = next_day
+                context["next_mon"] = next_mon
+                context["next_yr"] = next_yr
+                context["images"] = im_list
+                context["no_data"] = no_data
+
+            elif button_name == 'previous':
+                previous_date = datetime.date(yr_int, mon_int, day_int) - datetime.timedelta(days=1)
+                prev_day = previous_date.day
+                prev_mon = previous_date.month
+                prev_yr = previous_date.year
+                im_list = core.get_img_list(str(prev_yr), str(prev_mon), str(prev_day))
+                no_data = False
+                if len(im_list) == 0:
+                    no_data = True
+                # context["current_day"] = day_int
+                context["prev_day"] = prev_day
+                context["prev_mon"] = prev_mon
+                context["prev_yr"] = prev_yr
+                context["images"] = im_list
+                context["no_data"] = no_data
+            return render(request, "vlf_data.html", context)
+
         try:
             try_date = datetime.date(yr_int, mon_int, day_int)
             context["success"] = True
