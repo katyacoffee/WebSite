@@ -33,7 +33,7 @@ urlpatterns = [
     path('test', views.test),
     path('submit-login', views.submit_login),
     path('equipment', views.equipment),
-    path('submit-register', views.submit_register),
+    path('data', views.data),
     path('menu', views.get_menu),
 ]
 

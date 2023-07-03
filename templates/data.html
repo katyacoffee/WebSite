@@ -1,0 +1,165 @@
+{% extends "base_page.html" %}
+
+{% block pagetitle %}
+    Data
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+
+        p {
+            line-height: 1.2;
+            letter-spacing: .2px;
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .box-container {
+            margin: 100px auto;
+            width: 70%;
+            height: 800px;
+            display: flex;
+            {#align-items: stretch;#}
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.03);
+        }
+
+      {#.right-open {#}
+
+        .box1-content {
+            flex: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            {#opacity: 0;#}
+            color: #888484;
+        }
+
+        .box1-content,
+        .box1-side {
+          transition: all .3s ease-out;
+          color: #5a728a;
+        }
+
+        .box1-content {
+          background: whitesmoke;
+          flex: 4;
+          width: 150px;
+          padding: 30px 40px;
+          font-family: 'Roboto', sans-serif;
+        }
+
+        .box1-side {
+            background: #d1d7dc;
+            {#flex: 2;#}
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            {#vertical-align: center;#}
+          {#color: #1a1d20;#}
+        }
+
+        button {
+            {#background: #5a728a;#}
+            {#padding: 15px 50px;#}
+            {#border-radius: 5px;#}
+            {#border: none;#}
+            {#font-family: 'Roboto', sans-serif;#}
+            {#box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.32);#}
+            {#color: white;#}
+            {#margin: 30px 0;#}
+            display: inline-flex;
+            background: #5a728a;
+        {#font-size: 16px;#}
+            width: 150px;
+            height: 45px;
+            color: #ffffff;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+            border: #68819a;
+            border-radius: 8px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            vertical-align: center;
+        }
+
+        .button:hover {
+           background: #4c6177;
+           color: #f8f6f6;
+        }
+
+        .img1 {
+                /*padding: 0;*/
+                /*margin: 0 auto auto 0;*/
+                margin: auto;
+                {#max-height: 300px;#}
+                width: 90%;
+                {#max-width: 900px;#}
+                display: block;
+                border-radius: 10px;
+                /*flex-shrink: 0;*/
+                align-items: center;
+                /*top: 50%;*/
+                /*transform: translateY(50%);*/
+                justify-content: center;
+            }
+</style>
+
+    <div class="box-container">
+      <div class="box1-content">
+        <h1>Median TEC</h1>
+        <img class="img1" src="{% static 'map-anim1.gif' %}">
+        <br>
+        <p>To calculate the variations of TEC value on one day we used the data of the Madrigal system capable of
+            managing and serving archival and real-time data from a wide range of ground-based instruments
+            (http://www.openmadrigal.org/). The TEC data is a diurnal file containing the values of TEC for different
+            geographic points with a time step of 5 minutes. These data were averaged by a 15-minute window and
+            distributed along a 180x360 grid in one-degree increments. For each time moment, the median value of TEC
+            (TECmed) was calculated for the 27 previous days. The TEC deviation from the median value (∂TEC) was
+            calculated by the formula:<br><br>
+            ∂TEC (lat, long, t) = (TEC (lat, long, t) - TECmed (lat, long, t))/ TECmed (lat, long, t),<br><br>
+            where lat is latitude, long is longitude and t is UT. Thus the processing of TEC data reproduces the
+            well-known technique from ionosonde data processing. As far as NmF2 gives the significant part of TEC then
+            TEC variations can be studied and analyzed in the same manner as NmF2 temporal dynamics in ionosonde studies.</p>
+      </div>
+      <div class="box1-side">
+          <a href="/date-selection" class="button">
+              ⟶
+          </a>
+{#        <button type="submit" formaction="/date-selection" class="button">⟶</button>#}
+      </div>
+    </div>
+    <div class="box-container">
+      <div class="box1-content content">
+        <h1>VLF Signals</h1>
+          <img class="img1" src="{% static 'map.jpg' %}">
+          <br>
+        <p>The high sensitive magnetometric systems "Whistler" are installed in Mikhnevo Geophysical Observatory.
+            They allow to register signals from VLF stations located around the globe. The site presents the results of
+            measuring of the amplitude of signals from the 5 VLF transmitters: JXN, GQD, NAA, DHO, ICV. The "Whistler"
+            characteristics can be found in the Equipment section</p>
+      </div>
+      <div class="box1-side">
+        <button type="submit" formaction="/date-selection" class="button">⟶</button>
+      </div>
+    </div>
+
+    <script>
+    const container = document.querySelector('.box-container');
+    const contents = document.querySelectorAll('.content');
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach( button => button.addEventListener('click', function() {
+      container.classList.toggle('right-open');
+    }));
+    </script>
+
+{% endblock %}

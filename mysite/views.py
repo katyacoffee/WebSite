@@ -38,6 +38,10 @@ def get_menu(request):
     return render(request, "menu.html")
 
 
+def data(request):
+    return render(request, "data.html")
+
+
 def date_selection(request):
     current_date = date.today()
     current_month = str(current_date.month)
