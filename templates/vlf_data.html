@@ -83,12 +83,12 @@
                 <input class="btn-next" type="submit" formaction="/get-vlf-data" value="Next day" onclick="next()">
                 <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
-                    NO DATA
+                    NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
                 </span>
                 <input type="hidden" id="button_name" name="button_name" value="">
-                <input type="hidden" id="new_day" name="new_day" value="1">
-                <input type="hidden" id="new_month" name="new_month" value="1">
-                <input type="hidden" id="new_year" name="new_year" value="2023">
+                <input type="hidden" id="new_day" name="new_day" value="">
+                <input type="hidden" id="new_month" name="new_month" value="">
+                <input type="hidden" id="new_year" name="new_year" value="">
             </div>
         </form>
             <script>
@@ -99,11 +99,12 @@
                     document.getElementById("nodata").style.display = 'none';
                 }
 
-                currentMonth = '{{ current_month }}';
-                currentYear = '{{ current_year }}';
-                currentDay = '{{ current_day }}';
+
                 
                 function next() {
+                    let currentMonth = '{{ current_month }}';
+                    let currentYear = '{{ current_year }}';
+                    let currentDay = '{{ current_day }}';
                     const new_day = document.getElementById("new_day");
                     new_day.value = currentDay;
                     const new_month = document.getElementById("new_month");
@@ -115,6 +116,9 @@
                 }
 
                 function previous() {
+                    let currentMonth = '{{ current_month }}';
+                    let currentYear = '{{ current_year }}';
+                    let currentDay = '{{ current_day }}';
                     const new_day = document.getElementById("new_day");
                     new_day.value = currentDay;
                     const new_month = document.getElementById("new_month");

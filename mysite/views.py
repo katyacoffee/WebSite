@@ -77,7 +77,7 @@ def get_vlf_data(request):
         new_day = request.POST.get("new_day")
         selected_new_month = request.POST.get("selected_new_month")
         button_name = request.POST.get("button_name")
-        print(new_year, new_month, selected_new_month)
+        print(new_year, new_month, new_day, button_name, selected_new_month)
 
         context = {
             "success": True,
