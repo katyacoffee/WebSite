@@ -113,7 +113,6 @@
                 justify-content: center;
             }
 </style>
-<form method="post" id="tec">
     <div class="box-container">
       <div class="box1-content">
         <h1>Median TEC</h1>
@@ -131,7 +130,6 @@
             well-known technique from ionosonde data processing. As far as NmF2 gives the significant part of TEC then
             TEC variations can be studied and analyzed in the same manner as NmF2 temporal dynamics in ionosonde studies.</p>
       </div>
-{#      <form method="post" id="tec">#}
         <div class="box1-side">
             <form method="post" id="tec">
                 <button type="submit" formaction="/date-selection" class="button">⟶</button>
@@ -152,6 +150,11 @@
         <div class="box1-side">
             <form method="post" id="vlf">
                 <button type="submit" formaction="/date-selection" class="button">⟶</button>
+                <input type="hidden" id="source" name="source" value="vlf">
+            </form>
+            <form method="post" id="tec">
+                <button type="submit" formaction="/date-selection" class="button">⟶</button>
+                <input type="hidden" id="source" name="source" value="tec">
             </form>
         </div>
     </div>
@@ -165,6 +168,5 @@
       container.classList.toggle('right-open');
     }));
     </script>
-{#    </form>#}
 
 {% endblock %}

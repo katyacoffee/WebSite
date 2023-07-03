@@ -43,17 +43,19 @@ def data(request):
 
 
 def date_selection(request):
+    # TODO: if request method POST .... -> get source
     current_date = date.today()
     current_month = str(current_date.month)
     if len(current_month) == 1:
         current_month = '0' + current_month
     current_year = str(current_date.year)
     try:
-        days = core.get_available_days(current_year, current_month)
+        days = core.get_available_days(current_year, current_month) # TODO: source!
         return render(request, "date_selection.html", context={
             "current_month": current_month,
             "current_year": current_year,
             "avail_days": days,
+            # TODO: "source": source,
         })
     except core.ServerDownException:
         return render(request, "date_selection.html", context={
@@ -61,6 +63,7 @@ def date_selection(request):
             "current_month": 0,
             "current_year": 0,
             "avail_days": [],
+            # TODO: "source": source,
         })
 
 
@@ -71,6 +74,7 @@ def equipment(request):
 def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
+        # TODO: get source!
         date = str(request.POST.get("mydate"))
         new_year = request.POST.get("new_year")
         new_month = request.POST.get("new_month")
@@ -81,6 +85,7 @@ def get_vlf_data(request):
 
         context = {
             "success": True,
+            #TODO: "source": source,
         }
 
         if button_name is not None:
@@ -98,7 +103,7 @@ def get_vlf_data(request):
                     next_day_str = '0' + next_day_str
                 if len(next_mon_str) == 1:
                     next_mon_str = '0' + next_mon_str
-                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str)
+                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str)  # TODO: source!
                 print(im_list)
                 no_data = False
                 if len(im_list) == 0:
@@ -120,7 +125,7 @@ def get_vlf_data(request):
                     prev_day_str = '0' + prev_day_str
                 if len(prev_mon_str) == 1:
                     prev_mon_str = '0' + prev_mon_str
-                im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str)
+                im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str)  # TODO: source!
                 print(im_list)
                 no_data = False
                 if len(im_list) == 0:
@@ -139,7 +144,7 @@ def get_vlf_data(request):
 
         context = {
             "mydate": date,
-            "avail_days": core.get_available_days(str(new_year), mon_str),
+            "avail_days": core.get_available_days(str(new_year), mon_str),  # TODO: source!
             "current_day": str(new_day),
             "current_month": str(int(new_month) + 1),
             "current_year": str(new_year),
@@ -181,7 +186,7 @@ def get_vlf_data(request):
             # context["comment"] = "Введена несуществующая дата"
             context["comment"] = "Invalid date entered"
             return render(request, "date_selection.html", context)
-        im_list = core.get_img_list(str(yr), str(mon), day)
+        im_list = core.get_img_list(str(yr), str(mon), day)  # TODO: source!
         if len(im_list) == 0:
             context["success"] = False
             # context[
@@ -193,7 +198,7 @@ def get_vlf_data(request):
         print(date)
 
         no_data = False
-        img_list = core.get_img_list(yr, mon, day)
+        img_list = core.get_img_list(yr, mon, day)  # TODO: source!
         if len(img_list) == 0:
             no_data = True
 
