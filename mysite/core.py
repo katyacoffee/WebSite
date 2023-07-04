@@ -86,8 +86,12 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
 
     base_dir_serv = ''
+    print(source)
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
+    elif source == source_tec:
+        base_dir_serv = base_dir_serv_tec
+    print(base_dir_serv)
     #TODO: tec
 
     s = sess()
@@ -109,8 +113,11 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
 def get_available_days(year: str, mon: str, source: str) -> list[int]:
     days = []
     base_dir_serv = ''
+    # print(source)
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
+    elif source == source_tec:
+        base_dir_serv = base_dir_serv_tec
     # TODO: tec
 
     s = sess()

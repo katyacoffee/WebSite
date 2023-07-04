@@ -21,7 +21,7 @@
                 display: inline-block;
                 background: #68819a;
                 font-size: 20px;
-                width: 220px;
+                width: 200px;
                 color: white;
                 font-family: 'Roboto', sans-serif;
                 border: #68819a;
@@ -33,7 +33,11 @@
                 color: #f8f8f8;
             }
         </style>
-        <a href="/date-selection" class="btn">Back to date picker</a>
+        <form method="post" id="date_form">
+{#        <a href="/date-selection" class="btn">Back to date picker</a>#}
+            <input class="btn" type="submit" formaction="/date-selection" value="Back to date picker">
+            <input type="hidden" id="source" name="source" value="{{ source }}">
+        </form>
         <a href="/" class="btn" style="float: right;">To Home Page</a>
     </div>
     <span class="fs-2"></span>
@@ -89,6 +93,7 @@
                 <input type="hidden" id="new_day" name="new_day" value="">
                 <input type="hidden" id="new_month" name="new_month" value="">
                 <input type="hidden" id="new_year" name="new_year" value="">
+                <input type="hidden" id="source" name="source" value="{{ source }}">
             </div>
         </form>
             <script>

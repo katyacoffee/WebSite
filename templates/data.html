@@ -62,7 +62,7 @@
             display: flex;
             justify-content: center;
             {#align-items: center;#}
-            align-items: center;
+            align-items: flex-end;
             font-family: 'Roboto', sans-serif;
             {#vertical-align: center;#}
           {#color: #1a1d20;#}
@@ -133,6 +133,7 @@
         <div class="box1-side">
             <form method="post" id="tec">
                 <button type="submit" formaction="/date-selection" class="button">⟶</button>
+                <input type="hidden" id="source" name="source" value="tec">
             </form>
 {#        <button type="submit" formaction="/date-selection" class="button">⟶</button>#}
         </div>
@@ -152,10 +153,10 @@
                 <button type="submit" formaction="/date-selection" class="button">⟶</button>
                 <input type="hidden" id="source" name="source" value="vlf">
             </form>
-            <form method="post" id="tec">
-                <button type="submit" formaction="/date-selection" class="button">⟶</button>
-                <input type="hidden" id="source" name="source" value="tec">
-            </form>
+{#            <form method="post" id="tec">#}
+{#                <button type="submit" formaction="/date-selection" class="button">⟶</button>#}
+{#                <input type="hidden" id="source" name="source" value="tec">#}
+{#            </form>#}
         </div>
     </div>
 

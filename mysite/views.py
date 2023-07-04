@@ -12,22 +12,8 @@ from datetime import date
 # import pyzed as sl
 import http.client as https
 
-# from bootstrap_datepicker_plus.widgets import DateTimePickerInput
-# from django.views import generic
-# from .models import Question # for calendar
-
 
 unknown_guest = "unknown guest"
-
-
-# class CreateView(generic.edit.CreateView):
-#     model = Question
-#     fields = ["question_text", "pub_date"]
-#
-#     def get_form(self):
-#         form = super().get_form()
-#         form.fields["pub_date"].widget = DateTimePickerInput()
-#         return form # for calendar
 
 
 def index(request):
@@ -43,28 +29,35 @@ def data(request):
 
 
 def date_selection(request):
+    if request.method == "POST":
+        cache.clear()
+        source = request.POST.get("source")
     # TODO: if request method POST .... -> get source
-    current_date = date.today()
-    current_month = str(current_date.month)
-    if len(current_month) == 1:
-        current_month = '0' + current_month
-    current_year = str(current_date.year)
-    try:
-        days = core.get_available_days(current_year, current_month) # TODO: source!
-        return render(request, "date_selection.html", context={
-            "current_month": current_month,
-            "current_year": current_year,
-            "avail_days": days,
-            # TODO: "source": source,
-        })
-    except core.ServerDownException:
-        return render(request, "date_selection.html", context={
-            "server_error": 'some error',
-            "current_month": 0,
-            "current_year": 0,
-            "avail_days": [],
-            # TODO: "source": source,
-        })
+        current_date = date.today()
+        current_month = str(current_date.month)
+        if len(current_month) == 1:
+            current_month = '0' + current_month
+        current_year = str(current_date.year)
+        try:
+            source = str(source)
+            # print(source)
+            days = core.get_available_days(current_year, current_month, source) # TODO: source!
+            return render(request, "date_selection.html", context={
+                "current_month": current_month,
+                "current_year": current_year,
+                "avail_days": days,
+                "source": source,
+                # TODO: "source": source,
+            })
+        except core.ServerDownException:
+            return render(request, "date_selection.html", context={
+                "server_error": 'some error',
+                "current_month": 0,
+                "current_year": 0,
+                "avail_days": [],
+                "source": source,
+                # TODO: "source": source,
+            })
 
 
 def equipment(request):
@@ -74,6 +67,8 @@ def equipment(request):
 def get_vlf_data(request):
     if request.method == "POST":
         cache.clear()
+        source = str(request.POST.get("source"))
+        # print(source)
         # TODO: get source!
         date = str(request.POST.get("mydate"))
         new_year = request.POST.get("new_year")
@@ -85,6 +80,7 @@ def get_vlf_data(request):
 
         context = {
             "success": True,
+            "source": source,
             #TODO: "source": source,
         }
 
@@ -103,7 +99,7 @@ def get_vlf_data(request):
                     next_day_str = '0' + next_day_str
                 if len(next_mon_str) == 1:
                     next_mon_str = '0' + next_mon_str
-                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str)  # TODO: source!
+                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str, source)  # TODO: source!
                 print(im_list)
                 no_data = False
                 if len(im_list) == 0:
@@ -125,7 +121,7 @@ def get_vlf_data(request):
                     prev_day_str = '0' + prev_day_str
                 if len(prev_mon_str) == 1:
                     prev_mon_str = '0' + prev_mon_str
-                im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str)  # TODO: source!
+                im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source)  # TODO: source!
                 print(im_list)
                 no_data = False
                 if len(im_list) == 0:
@@ -144,10 +140,11 @@ def get_vlf_data(request):
 
         context = {
             "mydate": date,
-            "avail_days": core.get_available_days(str(new_year), mon_str),  # TODO: source!
+            "avail_days": core.get_available_days(str(new_year), mon_str, source),  # TODO: source!
             "current_day": str(new_day),
             "current_month": str(int(new_month) + 1),
             "current_year": str(new_year),
+            "source": source,
         }
 
         if selected_new_month != '':
@@ -186,7 +183,7 @@ def get_vlf_data(request):
             # context["comment"] = "Введена несуществующая дата"
             context["comment"] = "Invalid date entered"
             return render(request, "date_selection.html", context)
-        im_list = core.get_img_list(str(yr), str(mon), day)  # TODO: source!
+        im_list = core.get_img_list(str(yr), str(mon), day, source)  # TODO: source!
         if len(im_list) == 0:
             context["success"] = False
             # context[
@@ -198,7 +195,7 @@ def get_vlf_data(request):
         print(date)
 
         no_data = False
-        img_list = core.get_img_list(yr, mon, day)  # TODO: source!
+        img_list = core.get_img_list(yr, mon, day, source)  # TODO: source!
         if len(img_list) == 0:
             no_data = True
 
@@ -208,6 +205,7 @@ def get_vlf_data(request):
         context["current_day"] = day
         context["current_month"] = mon
         context["current_year"] = yr
+        context["source"] = source
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)
