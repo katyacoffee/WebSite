@@ -79,6 +79,7 @@ def get_images(response: Response) -> list[str]:
     img_list.sort(key=lambda pic: compare(get_station_name(pic)))
 
     return img_list
+# TODO: для других данных сделать условия
 
 
 def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
