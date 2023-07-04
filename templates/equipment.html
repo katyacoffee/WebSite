@@ -169,9 +169,13 @@
             ionosonde studies.
             <br>
         </p>
-        <div class="data">
-            <a href="/date-selection" class="btn" style="">Browse data</a>
-        </div>
+        <form method="post" id="tec">
+            <button type="submit" formaction="/date-selection" class="btn">Browse data</button>
+            <input type="hidden" id="source" name="source" value="tec">
+        </form>
+{#        <div class="data">#}
+{#            <a href="/date-selection" class="btn" style="">Browse data</a>#}
+{#        </div>#}
     </div>
     <div class="container px-4 py-5" id="main-contents">
         <h2 class="pb-2 border-bottom"
@@ -210,10 +214,14 @@
                 color: #f8f6f6;
             }
         </style>
-        <div class="data">
-            <a href="/date-selection" class="btn" style="">Browse data</a>
+        <form method="post" id="vlf">
+            <button type="submit" formaction="/date-selection" class="btn">Browse data</button>
+            <input type="hidden" id="source" name="source" value="vlf">
+        </form>
+{#        <div class="data">#}
+{#            <a href="/date-selection" class="btn" style="">Browse data</a>#}
             {#            <p style="font-family: 'Roboto', sans-serif;">BROWSE DATA</p>#}
-        </div>
+{#        </div>#}
     </div>
     <div class="container px-4 py-5" id="main-contents">
         <h2 class="pb-2 border-bottom"

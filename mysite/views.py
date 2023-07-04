@@ -212,23 +212,22 @@ def get_vlf_data(request):
 
 
 def contacts(request):
-    words = core.cards_to_tuple(core.get_all_cards())
-    return render(request, "contacts.html", context={"words": words})
+    return render(request, "contacts.html")
 
 
-def lessons(request):
-    lessons = core.get_lessons()
-    return render(request, "lessons.html", context={"lessons": lessons})
-
-
-def cards(request):
-    words = core.cards_to_tuple_with_pics(core.get_all_cards())
-    return render(request, "cards.html", context={"words": words})
-
-
-def test(request):
-    words = core.cards_to_tuple(core.get_all_cards())
-    return render(request, "test.html", context={"words": words})
+# def lessons(request):
+#     lessons = core.get_lessons()
+#     return render(request, "lessons.html", context={"lessons": lessons})
+#
+#
+# def cards(request):
+#     words = core.cards_to_tuple_with_pics(core.get_all_cards())
+#     return render(request, "cards.html", context={"words": words})
+#
+#
+# def test(request):
+#     words = core.cards_to_tuple(core.get_all_cards())
+#     return render(request, "test.html", context={"words": words})
 
 
 
