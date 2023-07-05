@@ -56,7 +56,6 @@ def date_selection(request):
                 "current_year": 0,
                 "avail_days": [],
                 "source": source,
-                # TODO: "source": source,
             })
 
 
@@ -69,7 +68,6 @@ def get_vlf_data(request):
         cache.clear()
         source = str(request.POST.get("source"))
         # print(source)
-        # TODO: get source!
         date = str(request.POST.get("mydate"))
         new_year = request.POST.get("new_year")
         new_month = request.POST.get("new_month")
@@ -81,7 +79,6 @@ def get_vlf_data(request):
         context = {
             "success": True,
             "source": source,
-            #TODO: "source": source,
         }
 
         if button_name is not None:
@@ -99,7 +96,7 @@ def get_vlf_data(request):
                     next_day_str = '0' + next_day_str
                 if len(next_mon_str) == 1:
                     next_mon_str = '0' + next_mon_str
-                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str, source)  # TODO: source!
+                im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str, source)
                 print(im_list)
                 no_data = False
                 if len(im_list) == 0:

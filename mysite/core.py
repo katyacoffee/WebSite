@@ -76,7 +76,6 @@ def get_images(response: Response) -> list[str]:
         preparsed_dir = tmp[i].split("\"")
         if len(preparsed_dir) > 0:
             img_list.append(preparsed_dir[0])
-    img_list.sort(key=lambda pic: compare(get_station_name(pic)))
 
     return img_list
 # TODO: для других данных сделать условия
@@ -93,16 +92,31 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
     print(base_dir_serv)
-    #TODO: tec
 
     s = sess()
+    data_path = ''
+    if source == source_vlf:
+        data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
+    elif source == source_tec:
+        data_path = base_dir_serv + '/' + yr + '/' + mon
 
     new_image_list = []
     try:
-        data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
         site = 'https://' + server_dir + '/' + data_path
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
+        if source == source_vlf:
+            img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+        elif source == source_tec:
+            no_data = True
+            for pic in img_list:
+                if get_day_from_tec_pic(pic) == int(day):
+                    img_list = [pic]
+                    no_data = False
+                    break
+            if no_data:
+                img_list = []
+
         for img in img_list:
             new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
     except ConnectTimeout:
@@ -119,7 +133,6 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         base_dir_serv = base_dir_serv_vlf
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
-    # TODO: tec
 
     s = sess()
 
@@ -127,12 +140,28 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         day = str(i)
         if len(day) == 1:
             day = '0' + day
-        data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
+        data_path = ''
+        if source == source_vlf:
+            data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
+        elif source == source_tec:
+            data_path = base_dir_serv + '/' + year + '/' + mon
         site = 'https://' + server_dir + '/' + data_path
 
         try:
             resp = s.get(site, timeout=2)
             img_list = get_images(resp)
+            if source == source_vlf:
+                img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+            elif source == source_tec:
+                no_data = True
+                for pic in img_list:
+                    if get_day_from_tec_pic(pic) == int(day):
+                        img_list = [pic]
+                        no_data = False
+                        break
+                if no_data:
+                    img_list = []
+
             new_image_list = []
             for img in img_list:
                 new_image_list.append('https://' + server_dir + '/' + data_path + img)
@@ -142,3 +171,13 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         except ConnectTimeout:
             raise ServerDownException('server down')
     return days
+
+
+def get_day_from_tec_pic(pic: str) -> int:
+    a = pic.split('_')
+    if len(a) < 3:
+        return 0
+    b = a[2].split('.')
+    if len(b) < 1:
+        return 0
+    return int(b[0])
