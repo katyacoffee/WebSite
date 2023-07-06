@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ac05ab67-6ae1-4edf-9879-8af6b6cbf27b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contacts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/date_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/date_selection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/equipment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/equipment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vlf_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vlf_data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +164,8 @@
       <workItem from="1688384616431" duration="8074000" />
       <workItem from="1688455143719" duration="13599000" />
       <workItem from="1688541171528" duration="10784000" />
-      <workItem from="1688641778899" duration="10833000" />
+      <workItem from="1688641778899" duration="11833000" />
+      <workItem from="1688654538431" duration="3777000" />
     </task>
     <servers />
   </component>

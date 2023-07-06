@@ -130,7 +130,8 @@
                 padding: 0;
                 font-family: 'Roboto', sans-serif;
                 margin: auto;
-                display: block;
+                display: flex;
+                position: relative;
                 }
 
             .column2{
@@ -154,6 +155,8 @@
                 display: inline-block;
                 padding: 89px;
                 border-radius: 8px;
+                {#margin: auto;#}
+                {#display: block;#}
             }
             .column3{
                 background:#E8E8E8;
@@ -231,28 +234,29 @@
             All receivers (with a sampling rate of 1 second). The raw data is saved in the
             Rinex 3.02 format. Based on the results of the measurements, the variations
             of the TEC for each satellite-receiver beam are calculated.</p>
-{#           <div class="box1-side">#}
-          <div class="col-container">
+{#          <div class="col-container">#}
                 <div class="column1">
-                    <h1>Javad Sigma</h1>
-                    <br>
-                    <p>Coordinates:
-                        latitude: 54°57´
-                        longitude: 37°46´
-                        <br>
-                        <ul style="line-height: 1.5; font-size: 16px;">
-                            <li>GPS L1/L2/L5</li>
-                            <li>GLONASS L1/L2</li>
-                            <li>SBAS L1/L5</li>
-                            <li>1 Hz update rate</li>
-                        </ul>
-                    </p>
+{#                    <h1>Javad Sigma</h1>#}
+{#                    <br>#}
+{#                    <p style="line-height: 1.5; font-size: 16px;">Coordinates:#}
+{#                        latitude: 54°57´#}
+{#                        longitude: 37°46´#}
+{#                        <br>#}
+{#                        <ul style="line-height: 1.5; font-size: 16px;">#}
+{#                            <li>GPS L1/L2/L5</li>#}
+{#                            <li>GLONASS L1/L2</li>#}
+{#                            <li>SBAS L1/L5</li>#}
+{#                            <li>1 Hz update rate</li>#}
+{#                        </ul>#}
+{#                    </p>#}
                     <form method="post" id="vlf">
                         <br>
                         <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>
                         <input type="hidden" id="source" name="source" value="vlf">
                     </form>
                 </div>
+{#          </div>#}
+{#          <div class="col-container">#}
                <div class="column2">
                     <form method="post" id="vlf">
                         <br>
@@ -260,6 +264,8 @@
                         <input type="hidden" id="source" name="source" value="vlf">
                     </form>
                 </div>
+{#          </div>#}
+{#          <div class="col-container">#}
                <div class="column3">
                     <form method="post" id="vlf">
                         <br>
@@ -267,7 +273,7 @@
                         <input type="hidden" id="source" name="source" value="vlf">
                     </form>
                 </div>
-          </div>
+{#          </div>#}
       </div>
     </div>
 
