@@ -24,13 +24,14 @@
 
         .box-container {
             margin: 100px auto;
-            width: 70%;
-            height: 950px;
+            width: 80%;
+            {#height: 950px;#}
             display: flex;
             text-align: justify;
             {#align-items: stretch;#}
             font-family: 'Roboto', sans-serif;
             position: relative;
+            justify-content: space-between;
             {#box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.03);#}
         }
 
@@ -50,7 +51,7 @@
         .box1-content,
         .box1-side {
           transition: all .3s ease-out;
-          color: #5a728a;
+          color: #69859d;
             position: relative;
         }
 
@@ -79,7 +80,8 @@
             {#display: block;#}
             {#width: 160px;#}
             width: 10vw;
-            height: 80px;
+            {#height: 9vh;#}
+            height: 70px;
             color: #ffffff;
             font-size: 50px;
             font-family: 'Roboto', sans-serif;
@@ -95,12 +97,13 @@
         .button:hover {
            {#background: #4c6177;#}
            {#background: #cdd6de;#}
-           background: #576f88;
+           background: #5c748c;
             transform: scale(1.1);
             border-radius: 8px;
             width: 10vw;
+            {#height: 9vh;#}
             {#width: 160px;#}
-            height: 80px;
+            height: 70px;
 
         }
 
@@ -118,6 +121,50 @@
                 /*top: 50%;*/
                 /*transform: translateY(50%);*/
                 justify-content: center;
+            }
+
+            .col-container{
+                align-items: center;
+                justify-content: center;
+                flex: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+                margin: auto;
+                display: block;
+                }
+
+            .column2{
+                background:#E8E8E8;
+                {#float: right;#}
+                {#width: 200px;#}
+                {#width: 30%;#}
+                height: 300px;
+                margin:16px;
+                display: inline-block;
+                padding: 89px;
+                border-radius: 8px;
+            }
+            .column1{
+                background:#E8E8E8;
+                {#float: left;#}
+                {#width: 200px;#}
+                {#width: 30%;#}
+                height: 300px;
+                margin:16px;
+                display: inline-block;
+                padding: 89px;
+                border-radius: 8px;
+            }
+            .column3{
+                background:#E8E8E8;
+                {#float:right;#}
+                {#width: 200px;#}
+                {#width: 30%;#}
+                height: 300px;
+                margin:16px;
+                display: inline-block;
+                padding: 89px;
+                border-radius: 8px;
             }
 </style>
     <div class="box-container">
@@ -145,7 +192,6 @@
           </div>
       </div>
 {#        <button type="submit" formaction="/date-selection" class="button">⟶</button>#}
-        </div>
     </div>
 {#    <br>#}
 {#    <br>#}
@@ -169,6 +215,59 @@
 {#                <input type="hidden" id="source" name="source" value="tec">#}
 {#            </form>#}
            </div>
+      </div>
+    </div>
+    <div class="box-container">
+      <div class="box1-content content">
+        <h1>GNSS</h1>
+        <p>The Observatory complex for measurement of the ionosphere parameters includes
+            three GNSS receivers:</p>
+            <ul style="line-height: 1.5; font-size: 18px;">
+                <li>Javad Sigma</li>
+                <li>Javad Prego</li>
+                <li>Trimble 5700</li>
+            </ul>
+          <p>
+            All receivers (with a sampling rate of 1 second). The raw data is saved in the
+            Rinex 3.02 format. Based on the results of the measurements, the variations
+            of the TEC for each satellite-receiver beam are calculated.</p>
+{#           <div class="box1-side">#}
+          <div class="col-container">
+                <div class="column1">
+                    <h1>Javad Sigma</h1>
+                    <br>
+                    <p>Coordinates:
+                        latitude: 54°57´
+                        longitude: 37°46´
+                        <br>
+                        <ul style="line-height: 1.5; font-size: 16px;">
+                            <li>GPS L1/L2/L5</li>
+                            <li>GLONASS L1/L2</li>
+                            <li>SBAS L1/L5</li>
+                            <li>1 Hz update rate</li>
+                        </ul>
+                    </p>
+                    <form method="post" id="vlf">
+                        <br>
+                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>
+                        <input type="hidden" id="source" name="source" value="vlf">
+                    </form>
+                </div>
+               <div class="column2">
+                    <form method="post" id="vlf">
+                        <br>
+                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>
+                        <input type="hidden" id="source" name="source" value="vlf">
+                    </form>
+                </div>
+               <div class="column3">
+                    <form method="post" id="vlf">
+                        <br>
+                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>
+                        <input type="hidden" id="source" name="source" value="vlf">
+                    </form>
+                </div>
+          </div>
       </div>
     </div>
 

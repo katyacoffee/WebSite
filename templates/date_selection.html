@@ -12,6 +12,35 @@
 
 
 {% block content %}
+
+    <div class="container px-4 py-5" id="main-contents">
+        <style>
+            .btn {
+                float: left;
+                display: inline-block;
+                background: #68819a;
+                font-size: 20px;
+                width: 200px;
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                border: #68819a;
+                border-radius: 8px;
+                align-items: center;
+            }
+
+            .btn:hover {
+                background: #5c748c;
+                color: #f8f8f8;
+            }
+        </style>
+        <form method="post" id="date_form">
+{#        <a href="/date-selection" class="btn">Back to date picker</a>#}
+            <input class="btn" type="submit" formaction="/data" value="To data selection">
+        </form>
+        <a href="/" class="btn" style="float: right;">To Home Page</a>
+    </div>
+    <br>
+
     <style>
         .wrapper {
             margin: 15px auto;
