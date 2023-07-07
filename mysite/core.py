@@ -19,8 +19,10 @@ class Card:
 server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
+base_dir_serv_gps = '~madrigal/IMG/WorldPlotAnim' #!!
 source_vlf = 'vlf'
 source_tec = 'tec'
+source_gps = 'gps'
 
 
 class ServerDownException(Exception):
@@ -91,6 +93,8 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         base_dir_serv = base_dir_serv_vlf
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
+    elif source == source_gps:
+        base_dir_serv = base_dir_serv_gps
     print(base_dir_serv)
 
     s = sess()
@@ -99,12 +103,15 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
     elif source == source_tec:
         data_path = base_dir_serv + '/' + yr + '/' + mon
+    elif source == source_gps:
+        data_path = base_dir_serv + '/' + yr + '/' + mon #!!
 
     new_image_list = []
     try:
         site = 'https://' + server_dir + '/' + data_path
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
+        # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
         elif source == source_tec:
@@ -133,6 +140,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         base_dir_serv = base_dir_serv_vlf
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
+    elif source == source_gps:
+        base_dir_serv = base_dir_serv_gps
 
     s = sess()
 
@@ -141,6 +150,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         if len(day) == 1:
             day = '0' + day
         data_path = ''
+        # TODO для gps!
         if source == source_vlf:
             data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
         elif source == source_tec:
@@ -150,6 +160,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         try:
             resp = s.get(site, timeout=2)
             img_list = get_images(resp)
+            # TODO для gps!
             if source == source_vlf:
                 img_list.sort(key=lambda pic: compare(get_station_name(pic)))
             elif source == source_tec:
