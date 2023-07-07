@@ -127,31 +127,35 @@
             p2 {
                 line-height: 1.5;
                 letter-spacing: .2px;
-                font-size: 80%;
-                {#font-size: 14px;#}
+                {#font-size: 80%;#}
+                font-size: 16px;
+                {#font-size: 2vw;#}
             }
 
             h2 {
                 font-size: 20px;
                 {#font-size:8vw;#}
                 text-align: justify;
+                {#font-size: 2vw;#}
             }
 
             ul {
                 font-size: 16px;
                 {#font-size:8vw;#}
                 text-align: justify;
+                {#font-size: 2vw;#}
             }
 
             .col-container{
-                align-items: center;
-                justify-content: center;
-                flex: 0;
-                padding: 0;
+                {#align-items: center;#}
+                {#justify-content: center;#}
+                {#flex: 0;#}
+                {#padding: 0;#}
                 font-family: 'Roboto', sans-serif;
                 margin: auto;
-                display: flex;
+                display: inline-block;
                 position: relative;
+                {#width: 80%;#}
                 {#font-size: 80%;#}
                 }
 
@@ -169,10 +173,6 @@
 
             .column2{
                 background:#E8E8E8;
-                {#float: right;#}
-                {#width: 200px;#}
-                {#width: 30%;#}
-                height: 300px;
                 margin:16px;
                 display: inline-block;
                 padding: 89px;
@@ -181,36 +181,80 @@
             }
             .column1{
                 background:#E8E8E8;
-                align-items: flex-start;
+                {#align-items: flex-start;#}
                 {#float: left;#}
                 {#width: 200px;#}
                 {#width: 30%;#}
-                height: 300px;
+                {#height: 300px;#}
                 margin:16px;
                 display: inline-block;
                 padding: 89px;
                 width: 30.5%;
+                {#width: 30.5%;#}
                 border-radius: 8px;
-                text-align: justify;
+                {#text-align: justify;#}
                 {#align-items: stretch;#}
                 font-family: 'Roboto', sans-serif;
                 color: #69859d;
                 position: relative;
-                {#position: relative;#}
                 {#margin: auto;#}
                 {#display: block;#}
             }
             .column3{
                 background:#E8E8E8;
-                {#float:right;#}
-                {#width: 200px;#}
-                {#width: 30%;#}
-                height: 300px;
                 margin:16px;
                 display: inline-block;
                 padding: 89px;
                 border-radius: 8px;
                 width: 31%;
+            }
+
+            .box2-side {
+                width: 160px;
+                float: right;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Roboto', sans-serif;
+                position: relative;
+            }
+
+            .btn {
+                display: inline-flex;
+                background: #68819a;
+                {#display: block;#}
+                {#width: 160px;#}
+                width: 7vw;
+                {#height: 9vh;#}
+                height: 50px;
+                color: #ffffff;
+                {#font-size: 50px;#}
+                font-family: 'Roboto', sans-serif;
+                border: #68819a;
+                border-radius: 8px;
+                margin: auto;
+                transition: all 0.2s;
+                justify-content: center;
+                float:right;
+                {#align-items: center;#}
+                vertical-align: center;
+                font-size:3vw;
+            }
+
+            .btn:hover {
+               {#background: #4c6177;#}
+               {#background: #cdd6de;#}
+               background: #5c748c;
+                transform: scale(1.1);
+                border-radius: 8px;
+                width: 7vw;
+                {#height: 9vh;#}
+                {#width: 160px;#}
+                height: 50px;
+                vertical-align: center;
+                color: #ffffff;
+                font-size:2vw;
             }
 </style>
     <div class="box-container">
@@ -279,11 +323,11 @@
             of the TEC for each satellite-receiver beam are calculated.</p>
 {#          <div class="col-container">#}
                 <div class="column1">
-                    <div class="col-container"
+                    <div class="col-container">
                         <h2>Javad Sigma</h2>
                         <br>
-                        <p2>Coordinates:
-                            latitude: 54°57´
+                        <p2>Coordinates: <br>
+                            latitude: 54°57´ <br>
                             longitude: 37°46´
                             <br>
                             <ul>
@@ -293,30 +337,66 @@
                                 <li>1 Hz update rate</li>
                             </ul>
                         </p2>
-                        <form method="post" id="vlf">
-                            <br>
-    {#                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>#}
-                            <input type="hidden" id="source" name="source" value="vlf">
-                        </form>
+                        <div class="box2-side">
+                            <form method="post" id="vlf">
+                                <br>
+                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
+                                <input type="hidden" id="source" name="source" value="vlf">
+                            </form>
+                        </div>
                     </div>
                 </div>
 {#          </div>#}
 {#          <div class="col-container">#}
                <div class="column2">
-                    <form method="post" id="vlf">
+                   <div class="col-container">
+                        <h2>Javad Prego</h2>
                         <br>
-{#                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>#}
-                        <input type="hidden" id="source" name="source" value="vlf">
-                    </form>
+                        <p2>Coordinates: <br>
+                            latitude: 54°57´ <br>
+                            longitude: 37°46´
+                            <br>
+                            <ul>
+                                <li>GPS L1/L2/L5</li>
+                                <li>1 Hz update rate</li>
+                            </ul>
+                            <br>
+                            <br>
+                        </p2>
+                        <div class="box2-side">
+                            <form method="post" id="vlf">
+                                <br>
+                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
+                                <input type="hidden" id="source" name="source" value="vlf">
+                            </form>
+                        </div>
+                   </div>
                 </div>
 {#          </div>#}
 {#          <div class="col-container">#}
                <div class="column3">
-                    <form method="post" id="vlf">
+                   <div class="col-container">
+                        <h2>Trimble 5700</h2>
                         <br>
-{#                        <button type="submit" formaction="/date-selection" class="button" style="font-size:3vw;">⟶</button>#}
-                        <input type="hidden" id="source" name="source" value="vlf">
-                    </form>
+                        <p2>Coordinates: <br>
+                            latitude: 54°57´ <br>
+                            longitude: 37°46´
+                            <br>
+                            <ul>
+                                <li>GPS L1/L2/L5</li>
+                                <li>1 Hz update rate</li>
+                            </ul>
+                            <br>
+                            <br>
+                        </p2>
+                        <div class="box2-side">
+                            <form method="post" id="vlf">
+                                <br>
+                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
+                                <input type="hidden" id="source" name="source" value="vlf">
+                            </form>
+                        </div>
+                   </div>
                 </div>
 {#          </div>#}
       </div>
