@@ -128,7 +128,7 @@
                 line-height: 1.5;
                 letter-spacing: .2px;
                 {#font-size: 80%;#}
-                font-size: 18px;
+                font-size: 16px;
                 display: inline-flex;
                 {#font-size: 0.9vw;#}
             }
@@ -141,77 +141,98 @@
             }
 
             ul {
-                font-size: 18px;
+                font-size: 16px;
                 {#text-align: justify;#}
                 {#font-size: 0.9vw;#}
             }
 
-            .col-container{
-                font-family: 'Roboto', sans-serif;
-                margin: auto;
+        {#    .col-container{#}
+        {#        font-family: 'Roboto', sans-serif;#}
+        {#        margin: auto;#}
                 {#display: inline-block;#}
-                position: relative;
-
-                flex: 0;
-                padding: 0;
-                color: #888484;
-                display: block;
-                border-radius: 8px;
-                }
-
-            .column2{
-                background:#E8E8E8;
-                margin:16px;
-                display: inline-block;
-                padding: 89px;
-                border-radius: 8px;
-                width: 30.9%;
-            }
-            .column1{
-                background:#E8E8E8;
-                justify-content: left;
-                {#align-items: flex-start;#}
-                {#float: left;#}
-                {#width: 200px;#}
-                {#width: 30%;#}
-                {#height: 300px;#}
-                margin:16px;
-                display: inline-block;
-                padding: 89px;
-                width: 30.9%;
-                border-radius: 8px;
+        {#        position: relative;#}
+        {##}
+        {#        flex: 0;#}
+        {#        padding: 0;#}
+        {#        color: #888484;#}
+        {#        display: block;#}
+        {#        border-radius: 8px;#}
+        {#        }#}
+        {##}
+        {#    .column2{#}
+        {#        background:#E8E8E8;#}
+        {#        margin:16px;#}
+        {#        display: inline-block;#}
+        {#        padding: 89px;#}
+        {#        border-radius: 8px;#}
+        {#        width: 30%;#}
+                {#white-space: nowrap;#}
+        {#    }#}
+        {#    .column1{#}
+        {#        background:#E8E8E8;#}
+                {#justify-content: left;#}
+        {#        margin:16px;#}
+        {#        display: inline-block;#}
+        {#        padding: 89px;#}
+        {#        width: 30%;#}
+        {#        border-radius: 8px;#}
                 {#text-align: justify;#}
                 {#align-items: stretch;#}
-                font-family: 'Roboto', sans-serif;
-                color: #69859d;
-                position: relative;
-            }
+        {#        font-family: 'Roboto', sans-serif;#}
+        {#        color: #69859d;#}
+                {#white-space: nowrap;#}
+                {#height: 750px;#}
+                {#position: relative;#}
+        {#    }#}
             .column3{
                 background:#E8E8E8;
                 margin:16px;
                 display: inline-block;
                 padding: 89px;
                 border-radius: 8px;
-                width: 30.9%;
+                width: 30%;
+                white-space: nowrap;
             }
-
-            .box2-side {
-                width: 160px;
-                float: left;
-                border-radius: 8px;
-                display: flex;
+        {##}
+        {#    .box2-side {#}
+        {#        width: 160px;#}
+        {#        float: left;#}
+        {#        border-radius: 8px;#}
+        {#        display: flex;#}
                 {#justify-content: center;#}
                 {#align-items: center;#}
-                font-family: 'Roboto', sans-serif;
-                position: relative;
-            }
+        {#        font-family: 'Roboto', sans-serif;#}
+        {#        position: relative;#}
+                {#white-space: nowrap;#}
+                {#font-size: 0;#}
+        {#    }#}
+        {##}
+        {#    .col-container,#}
+        {#    .box2-side {#}
+        {#        transition: all .3s ease-out;#}
+        {#        color: #69859d;#}
+        {#        position: relative;#}
+        {#}#}
 
-            .col-container,
-            .box2-side {
-                transition: all .3s ease-out;
-                color: #69859d;
-                position: relative;
-        }
+            .textcols1 {
+                white-space: nowrap;
+                font-size: 0;
+            }
+            .textcols1-item {
+                white-space: normal;
+                display: inline-block;
+                width: 30%;
+                vertical-align: middle;
+                background:#E8E8E8;
+                margin-right: 5%;
+                {#margin-left: 2%;#}
+                font-size: 14px;
+                border-radius: 8px;
+            }
+            .textcols1 .textcols1-item:last-child {
+                margin-right: 0 ;
+                {#margin-left: 0 ;#}
+            }
 
             .btn {
                 display: flex;
@@ -312,9 +333,88 @@
             All receivers (with a sampling rate of 1 second). The raw data is saved in the
             Rinex 3.02 format. Based on the results of the measurements, the variations
             of the TEC for each satellite-receiver beam are calculated.</p>
-                <div class="column1">
-                    <div class="col-container">
+
+{#                <div class="column1">#}
+{#                    <div class="col-container">#}
+{#                        <h2>Javad Sigma</h2>#}
+{#                        <br>#}
+{#                        <p class="p2">Coordinates: <br>#}
+{#                            latitude: 54°57´ <br>#}
+{#                            longitude: 37°46´#}
+{#                            <br>#}
+{#                            <br>#}
+{#                            <ul>#}
+{#                                <li>GPS L1/L2/L5</li>#}
+{#                                <li>GLONASS L1/L2</li>#}
+{#                                <li>SBAS L1/L5</li>#}
+{#                                <li>1 Hz update rate</li>#}
+{#                            </ul>#}
+{#                        </p>#}
+{#                        <div class="box2-side">#}
+{#                            <form method="post" id="vlf">#}
+{#                                <br>#}
+{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
+{#                                <input type="hidden" id="source" name="source" value="vlf">#}
+{#                            </form>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="column2">#}
+{#                   <div class="col-container">#}
+{#                        <h2>Javad Prego</h2>#}
+{#                        <br>#}
+{#                        <p class="p2">Coordinates: <br>#}
+{#                            latitude: 54°57´ <br>#}
+{#                            longitude: 37°46´#}
+{#                            <br>#}
+{#                            <br>#}
+{#                            <ul>#}
+{#                                <li>GPS L1/L2/L5</li>#}
+{#                                <li>1 Hz update rate</li>#}
+{#                            </ul>#}
+{#                            <br>#}
+{#                            <br>#}
+{#                        </p>#}
+{#                        <div class="box2-side">#}
+{#                            <form method="post" id="vlf">#}
+{#                                <br>#}
+{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
+{#                                <input type="hidden" id="source" name="source" value="vlf">#}
+{#                            </form>#}
+{#                        </div>#}
+{#                   </div>#}
+{#                </div>#}
+{#                <div class="column3">#}
+{#                   <div class="col-container">#}
+{#                        <h2>Trimble 5700</h2>#}
+{#                        <br>#}
+{#                        <p class="p2">Coordinates: <br>#}
+{#                            latitude: 54°57´ <br>#}
+{#                            longitude: 37°46´#}
+{#                            <br>#}
+{#                            <br>#}
+{#                            <ul>#}
+{#                                <li>GPS L1/L2/L5</li>#}
+{#                                <li>1 Hz update rate</li>#}
+{#                            </ul>#}
+{#                            <br>#}
+{#                            <br>#}
+{#                        </p>#}
+{#                        <div class="box2-side">#}
+{#                            <form method="post" id="vlf">#}
+{#                                <br>#}
+{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
+{#                                <input type="hidden" id="source" name="source" value="vlf">#}
+{#                            </form>#}
+{#                        </div>#}
+{#                   </div>#}
+{#                </div>#}
+
+          <div class="textcols1">
+            <div class="textcols1-item">
+{#                <b>Текст первой колонки</b>#}
                         <h2>Javad Sigma</h2>
+                        <br>
                         <br>
                         <p class="p2">Coordinates: <br>
                             latitude: 54°57´ <br>
@@ -334,37 +434,12 @@
                                 <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
                                 <input type="hidden" id="source" name="source" value="vlf">
                             </form>
+                            <br>
                         </div>
-                    </div>
-                </div>
-                <div class="column2">
-                   <div class="col-container">
+            </div>
+            <div class="textcols1-item">
                         <h2>Javad Prego</h2>
                         <br>
-                        <p class="p2">Coordinates: <br>
-                            latitude: 54°57´ <br>
-                            longitude: 37°46´
-                            <br>
-                            <br>
-                            <ul>
-                                <li>GPS L1/L2/L5</li>
-                                <li>1 Hz update rate</li>
-                            </ul>
-                            <br>
-                            <br>
-                        </p>
-                        <div class="box2-side">
-                            <form method="post" id="vlf">
-                                <br>
-                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
-                                <input type="hidden" id="source" name="source" value="vlf">
-                            </form>
-                        </div>
-                   </div>
-                </div>
-                <div class="column3">
-                   <div class="col-container">
-                        <h2>Trimble 5700</h2>
                         <br>
                         <p class="p2">Coordinates: <br>
                             latitude: 54°57´ <br>
@@ -384,9 +459,36 @@
                                 <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
                                 <input type="hidden" id="source" name="source" value="vlf">
                             </form>
+                            <br>
                         </div>
-                   </div>
-                </div>
+            </div>
+            <div class="textcols1-item">
+                        <h2>Trimble 5700</h2>
+                        <br>
+                        <br>
+                        <p class="p2">Coordinates: <br>
+                            latitude: 54°57´ <br>
+                            longitude: 37°46´
+                            <br>
+                            <br>
+                            <ul>
+                                <li>GPS L1/L2/L5</li>
+                                <li>1 Hz update rate</li>
+                            </ul>
+                            <br>
+                            <br>
+                        </p>
+                        <div class="box2-side">
+                            <form method="post" id="vlf">
+                                <br>
+                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>
+                                <input type="hidden" id="source" name="source" value="vlf">
+                            </form>
+                            <br>
+                        </div>
+            </div>
+        </div>
+
 {#          </div>#}
       </div>
     </div>

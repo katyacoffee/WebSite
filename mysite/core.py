@@ -19,7 +19,7 @@ class Card:
 server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
-base_dir_serv_gps = '~madrigal/IMG/WorldPlotAnim' #!!
+base_dir_serv_gps = '~mikhnevo/gnss/tec_rot/prego/png' #!!
 source_vlf = 'vlf'
 source_tec = 'tec'
 source_gps = 'gps'
