@@ -104,7 +104,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     elif source == source_tec:
         data_path = base_dir_serv + '/' + yr + '/' + mon
     elif source == source_gps:
-        data_path = base_dir_serv + '/' + yr + '/' + mon #!!
+        data_path = base_dir_serv + '/' + yr + '/' + mon
 
     new_image_list = []
     try:
@@ -118,6 +118,13 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
             no_data = True
             for pic in img_list:
                 if get_day_from_tec_pic(pic) == int(day):
+                    img_list = [pic]
+                    no_data = False
+                    break
+        elif source == source_gps:
+            no_data = True
+            for pic in img_list:
+                if get_day_from_gps_pic(pic) == int(day):
                     img_list = [pic]
                     no_data = False
                     break
@@ -155,6 +162,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
             data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
         elif source == source_tec:
             data_path = base_dir_serv + '/' + year + '/' + mon
+        elif source == source_gps:
+            data_path = base_dir_serv + '/' + year + '/' + mon
         site = 'https://' + server_dir + '/' + data_path
 
         try:
@@ -167,6 +176,13 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 no_data = True
                 for pic in img_list:
                     if get_day_from_tec_pic(pic) == int(day):
+                        img_list = [pic]
+                        no_data = False
+                        break
+            elif source == source_gps:
+                no_data = True
+                for pic in img_list:
+                    if get_day_from_gps_pic(pic) == int(day):
                         img_list = [pic]
                         no_data = False
                         break
@@ -192,3 +208,14 @@ def get_day_from_tec_pic(pic: str) -> int:
     if len(b) < 1:
         return 0
     return int(b[0])
+
+
+def get_day_from_gps_pic(pic: str) -> int:
+    a = pic.split('_')
+    if len(a) < 5:
+        return 0
+    b = a[4].split('.')
+    if len(b) < 1:
+        return 0
+    c = b[1].split('-')
+    return int(c[2])
