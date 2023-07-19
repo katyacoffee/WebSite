@@ -101,10 +101,10 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     data_path = ''
     if source == source_vlf:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
-    elif source == source_tec:
+    elif source == source_tec or source == source_gps:
         data_path = base_dir_serv + '/' + yr + '/' + mon
-    elif source == source_gps:
-        data_path = base_dir_serv + '/' + yr + '/' + mon
+    # elif source == source_gps:
+    #     data_path = base_dir_serv + '/' + yr + '/' + mon
 
     new_image_list = []
     try:
@@ -121,6 +121,8 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
                     img_list = [pic]
                     no_data = False
                     break
+            if no_data:
+                img_list = []
         elif source == source_gps:
             no_data = True
             for pic in img_list:
@@ -145,10 +147,10 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
     # print(source)
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
-    elif source == source_tec:
+    elif source == source_tec or source == source_gps:
         base_dir_serv = base_dir_serv_tec
-    elif source == source_gps:
-        base_dir_serv = base_dir_serv_gps
+    # elif source == source_gps:
+    #     base_dir_serv = base_dir_serv_gps
 
     s = sess()
 
@@ -160,10 +162,10 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         # TODO для gps!
         if source == source_vlf:
             data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
-        elif source == source_tec:
+        elif source == source_tec or source == source_gps:
             data_path = base_dir_serv + '/' + year + '/' + mon
-        elif source == source_gps:
-            data_path = base_dir_serv + '/' + year + '/' + mon
+        # elif source == source_gps:
+        #     data_path = base_dir_serv + '/' + year + '/' + mon
         site = 'https://' + server_dir + '/' + data_path
 
         try:
@@ -179,6 +181,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                         img_list = [pic]
                         no_data = False
                         break
+                if no_data:
+                    img_list = []
             elif source == source_gps:
                 no_data = True
                 for pic in img_list:
@@ -218,4 +222,5 @@ def get_day_from_gps_pic(pic: str) -> int:
     if len(b) < 1:
         return 0
     c = b[1].split('-')
+    print(int(c[2]))
     return int(c[2])
