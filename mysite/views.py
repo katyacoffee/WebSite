@@ -28,6 +28,10 @@ def data(request):
     return render(request, "data.html")
 
 
+def gps(request):
+    return render(request, "gps.html")
+
+
 def date_selection(request):
     if request.method == "POST":
         cache.clear()
@@ -39,7 +43,7 @@ def date_selection(request):
         current_year = str(current_date.year)
         try:
             source = str(source)
-            # print(source)
+            print(source)
             days = core.get_available_days(current_year, current_month, source)
             return render(request, "date_selection.html", context={
                 "current_month": current_month,
@@ -61,11 +65,11 @@ def equipment(request):
     return render(request, "equipment.html")
 
 
-def get_vlf_data(request):
+def get_data(request):
     if request.method == "POST":
         cache.clear()
         source = str(request.POST.get("source"))
-        # print(source)
+        print(source)
         date = str(request.POST.get("mydate"))
         new_year = request.POST.get("new_year")
         new_month = request.POST.get("new_month")
@@ -225,67 +229,3 @@ def get_gps_stat(request):
 
 def contacts(request):
     return render(request, "contacts.html")
-
-
-# def lessons(request):
-#     lessons = core.get_lessons()
-#     return render(request, "lessons.html", context={"lessons": lessons})
-#
-#
-# def cards(request):
-#     words = core.cards_to_tuple_with_pics(core.get_all_cards())
-#     return render(request, "cards.html", context={"words": words})
-#
-#
-# def test(request):
-#     words = core.cards_to_tuple(core.get_all_cards())
-#     return render(request, "test.html", context={"words": words})
-
-
-
-
-
-
-
-
-
-
-def submit_login(request):
-    data = json.loads(request.body)
-    user = data['title']
-    pwd = data['body']
-    if user == "":
-        return HttpResponse("Имя пользователя не заполнено.")
-    print(user, pwd)
-    correct_pwd = core.get_password(user)
-    if correct_pwd is None:
-        return HttpResponse("Пользователь '" + user +
-                            "' не найден. Пожалуйста, зарегистрируйтесь.")
-    elif correct_pwd != pwd:
-        return HttpResponse("Неверный пароль для пользователя '" + user + "'!")
-    return HttpResponse("TRUE")
-
-
-def submit_register(request):
-    data = json.loads(request.body)
-    user = data['title']
-    pwd = data['body']
-    if user == "":
-        return HttpResponse("Имя пользователя не заполнено.")
-    print(user, pwd)
-    all_users = core.get_all_logins()
-    if user in all_users:
-        return HttpResponse("Пользователь уже зарегистрирован.")
-    if len(pwd) < 3:
-        return HttpResponse("Пароль слишком короткий.")
-    core.new_user(user, pwd)
-    return HttpResponse("TRUE")
-
-
-def show_stats(request):
-    all_res = core.get_all_stats()
-    return render(request, "stats.html", context={"results": all_res})
-
-# def sign_in(request):
-#     users = core.get_all_logins()
-#     return render(request, "equipment.html", context={"users": users})

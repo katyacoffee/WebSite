@@ -69,6 +69,7 @@ def compare(st: str) -> str:
 
 
 def get_images(response: Response) -> list[str]:
+    print(response.status_code, response.text)
     if f'{response.status_code}' != '200':
         return []
     html_body = response.text
@@ -84,9 +85,6 @@ def get_images(response: Response) -> list[str]:
 
 
 def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
-    # base_dir = '/Users/ekaterinakozakova/Desktop/Data for Website'
-    # base_dir = '\\192.168.9.49\Metronix\DataBase\Figures'
-
     base_dir_serv = ''
     print(source)
     if source == source_vlf:
@@ -109,8 +107,15 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     new_image_list = []
     try:
         site = 'https://' + server_dir + '/' + data_path
+        if source == source_gps:
+            payload = {
+                'inUserName': 'guest',  # TODO! password!!
+                'inUserPass': 'qwe123'
+            }
+            r = s.post(site, data=payload)
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
+        print(img_list)
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
@@ -125,6 +130,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
                 img_list = []
         elif source == source_gps:
             no_data = True
+            print('GPS!!!')
             for pic in img_list:
                 if get_day_from_gps_pic(pic) == int(day):
                     img_list = [pic]
@@ -144,63 +150,66 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
 def get_available_days(year: str, mon: str, source: str) -> list[int]:
     days = []
     base_dir_serv = ''
-    # print(source)
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
-    elif source == source_tec or source == source_gps:
+    elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
-    # elif source == source_gps:
-    #     base_dir_serv = base_dir_serv_gps
+    elif source == source_gps:
+        base_dir_serv = base_dir_serv_gps
 
-    s = sess()
-
-    for i in range(1, 32):
-        day = str(i)
-        if len(day) == 1:
-            day = '0' + day
-        data_path = ''
-        # TODO для gps!
-        if source == source_vlf:
-            data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
-        elif source == source_tec or source == source_gps:
-            data_path = base_dir_serv + '/' + year + '/' + mon
-        # elif source == source_gps:
-        #     data_path = base_dir_serv + '/' + year + '/' + mon
-        site = 'https://' + server_dir + '/' + data_path
-
-        try:
-            resp = s.get(site, timeout=2)
-            img_list = get_images(resp)
+    with sess() as s:
+        for i in range(1, 32):
+            day = str(i)
+            if len(day) == 1:
+                day = '0' + day
+            data_path = ''
             # TODO для gps!
             if source == source_vlf:
-                img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-            elif source == source_tec:
-                no_data = True
-                for pic in img_list:
-                    if get_day_from_tec_pic(pic) == int(day):
-                        img_list = [pic]
-                        no_data = False
-                        break
-                if no_data:
-                    img_list = []
-            elif source == source_gps:
-                no_data = True
-                for pic in img_list:
-                    if get_day_from_gps_pic(pic) == int(day):
-                        img_list = [pic]
-                        no_data = False
-                        break
-                if no_data:
-                    img_list = []
+                data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
+            elif source == source_tec or source == source_gps:
+                data_path = base_dir_serv + '/' + year + '/' + mon
+            # elif source == source_gps:
+            #     data_path = base_dir_serv + '/' + year + '/' + mon
+            site = 'https://' + server_dir + '/' + data_path
 
-            new_image_list = []
-            for img in img_list:
-                new_image_list.append('https://' + server_dir + '/' + data_path + img)
+            try:
+                if source == source_gps:
+                    payload = {
+                        'inUserName': 'guest',  # TODO! password!!
+                        'inUserPass': 'qwe123'
+                    }
+                    r = s.post(site, data=payload)
+                resp = s.get(site, timeout=2)
+                img_list = get_images(resp)
+                if source == source_vlf:
+                    img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+                elif source == source_tec:
+                    no_data = True
+                    for pic in img_list:
+                        if get_day_from_tec_pic(pic) == int(day):
+                            img_list = [pic]
+                            no_data = False
+                            break
+                    if no_data:
+                        img_list = []
+                elif source == source_gps:
+                    no_data = True
+                    for pic in img_list:
+                        if get_day_from_gps_pic(pic) == int(day):
+                            img_list = [pic]
+                            no_data = False
+                            break
+                    if no_data:
+                        img_list = []
 
-            if len(new_image_list) != 0:
-                days.append(i)
-        except ConnectTimeout:
-            raise ServerDownException('server down')
+                new_image_list = []
+                for img in img_list:
+                    new_image_list.append('https://' + server_dir + '/' + data_path + img)
+
+                if len(new_image_list) != 0:
+                    days.append(i)
+            except ConnectTimeout:
+                raise ServerDownException('server down')
     return days
 
 
@@ -218,12 +227,9 @@ def get_day_from_gps_pic(pic: str) -> int:
     a = pic.split('_')
     if len(a) < 5:
         return 0
-    b = a[4].split('.')
-    # num = a[5] # number of station
-    if len(b) < 1:
-        return 0
-    c = b[1].split('-')
-    print(int(c[2]))
-    return int(c[2])
+    b = a[4].split('-')
+    # num = a[5] # number of station?
+    print(int(b[2]))
+    return int(b[2])
 
 

@@ -25,13 +25,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('date-selection', views.date_selection),
-    path('get-vlf-data', views.get_vlf_data),
-    path('stats', views.show_stats),
+    path('get-vlf-data', views.get_data),
     path('contacts', views.contacts),
-    path('submit-login', views.submit_login),
     path('equipment', views.equipment),
     path('data', views.data),
     path('get-gps-stat', views.get_gps_stat),
+    path('gps', views.gps),
     path('menu', views.get_menu),
 ]
 

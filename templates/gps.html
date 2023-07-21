@@ -33,120 +33,135 @@
         </form>
         <a href="/" class="btn" style="float: right;">To Home Page</a>
     </div>
-    <span class="fs-2"></span>
-    <div class="fw-bold">{% if success %}{{ date_test }}
-        <style>
-            .btn-previous {
-                float: left;
-                display: inline-block;
-                background: #8e9798;
+   <style>
+        .new1 div {
+          border: 1px solid #0e0e0e;
+        }
+
+        .new1 .first-li {
+          grid-column-start: 3;
+          grid-column-end: 1;
+          {#grid-row-start: 1;#}
+          {#grid-row-end: 2;#}
+        }
+
+        * { box-sizing: border-box; }
+        body { margin: 0; border-color: #1a1e21; }
+
+        .grid
+        {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          {#grid-gap: 10px;#}
+          width: 90%;
+          margin-left: 5%;
+
+          background-color: #fbfbfc;
+          padding: 10px;
+
+          min-height: 100vh;
+        }
+
+        .grid__item
+        {
+          border-radius: 4px;
+            border: 1px solid #030303;
+          min-height: 20vh;
+        }
+
+        .grid__item--small
+        {
+          background-color: #e5e9ea;
+            min-height: 20vh;
+            {#float: right;#}
+            {#grid-column: 2;#}
+        }
+
+        .grid__item--big
+        {
+          background-color: #e5e9ea;
+          grid-row: 5 span;
+          {#float: left;#}
+            grid-column: 1;
+        }
+
+        .btn_view {
+                display: inline-flex;
+                background: #68819a;
+            {#font-size: 16px;#} width: 140px;
+                height: 45px;
+                color: #ffffff;
                 font-size: 20px;
-                color: #fcfafa;
                 font-family: 'Roboto', sans-serif;
-                width: 140px;
+                border: #68819a;
                 border-radius: 8px;
-                border: 1px solid #8e9798;
-            }
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                vertical-align: center;
+        }
 
-            .btn-previous:hover {
-                background: #7b8283;
-                border: 1px solid #7b8283;
-            }
+        .btn_view:hover {
+                background: #5c748c;
+                color: #f8f6f6;
+        }
+    </style>
 
-            .btn-next {
-                float: right;
-                display: inline-block;
-                background: #8e9798;
-                font-size: 20px;
-                color: #fcfafa;
-                font-family: 'Roboto', sans-serif;
-                border-radius: 8px;
-                width: 130px;
-                border: 1px solid #8e9798;
-            }
 
-            .btn-next:hover {
-                background: #7b8283;
-                border: 1px solid #7b8283;
-            }
-        </style>
-{#        {% if no_data %}#}
-{#            <span style="align-items: center;">NO DATA</span>#}
-{#        {% else %}#}
+<div class="grid">
+    <div class="grid__item grid__item--big">
+        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+    <div class="grid__item grid__item--small">
+        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+    <div class="grid__item grid__item--small">
+      <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+    <div class="grid__item grid__item--small">
+        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+    <div class="grid__item grid__item--small">
+        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+    <div class="grid__item grid__item--small">
+        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    </div>
+</div>
 
-        <form method="post" id="date_form">
-            <div class="container px-4 py-5" id="main-contents">
-                <input class="btn-previous" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
-                <input class="btn-next" type="submit" formaction="/get-vlf-data" value="Next day" onclick="next()">
-                <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
-                    <br><br>
-                    NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
-                </span>
-                <input type="hidden" id="button_name" name="button_name" value="">
-                <input type="hidden" id="new_day" name="new_day" value="">
-                <input type="hidden" id="new_month" name="new_month" value="">
-                <input type="hidden" id="new_year" name="new_year" value="">
-                <input type="hidden" id="source" name="source" value="{{ source }}">
-            </div>
+    <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
+        <br>
+        <label for="stations" style="font-family: 'Roboto', sans-serif;">Select
+            station </label>
+        <select id="stations" onchange="stat()"></select>
+        <br>
+        <br>
+        <form method="post" id="gps">
+            <button type="submit" formaction="/data" class="btn_view" onclick="view_data()">View</button>
+{#            <input type="hidden" id="source" name="source" value="gps">#}
+{#            <input type="hidden" id="new_stat" name="new_stat" value="">#}
         </form>
-            <script>
+    </div>
+    <script>
 
-                if ('{{ no_data }}' === 'True') {
-                    document.getElementById("figures").style.display = 'none';
-                } else {
-                    document.getElementById("nodata").style.display = 'none';
-                }
+        currentStat = {{ new_stat }};
+        selectStat = document.getElementById("stations");
 
+        function stat(){
+            let selectStat = document.getElementById('stations');
+            for (var i = 0; i < 32; i++){
+            selectStat.options[selectStat.options.length] = new Option(i+1, i);
+          }
+        }
+        stat();
 
-                
-                function next() {
-                    let currentMonth = '{{ current_month }}';
-                    let currentYear = '{{ current_year }}';
-                    let currentDay = '{{ current_day }}';
-                    const new_day = document.getElementById("new_day");
-                    new_day.value = currentDay;
-                    const new_month = document.getElementById("new_month");
-                    new_month.value = currentMonth;
-                    const new_year = document.getElementById("new_year");
-                    new_year.value = currentYear;
-                    const button_name = document.getElementById("button_name");
-                    button_name.value = 'next';
-                }
+        function view_data() {
+                currentStat = {{ new_stat }};
+                const new_stat = document.getElementById("new_stat");
+                new_stat.value = currentStat;
+                {#showCalendar(currentMonth, currentYear);#}
+        }
 
-                function previous() {
-                    let currentMonth = '{{ current_month }}';
-                    let currentYear = '{{ current_year }}';
-                    let currentDay = '{{ current_day }}';
-                    const new_day = document.getElementById("new_day");
-                    new_day.value = currentDay;
-                    const new_month = document.getElementById("new_month");
-                    new_month.value = currentMonth;
-                    const new_year = document.getElementById("new_year");
-                    new_year.value = currentYear;
-                    const button_name = document.getElementById("button_name");
-                    button_name.value = 'previous';
-                }
-            </script>
-
-            <style>
-                .img1 {
-                    margin: auto;
-                    width: 100%;
-                    max-width: 900px;
-                    display: block;
-                    align-items: center;
-                    justify-content: center;
-                }
-            </style>
-            <picture>
-                {% for image in images %}
-                    <div id="figures">
-                        <img class="img1" id="img_{{ image }}" src='{{ image }}' width=100%
-                             style="display: block; align-items: center; justify-content: center; object-position: center;"/>
-                    </div>
-                {% endfor %}
-            </picture>
-{#            </a>#}
-        {% endif %}
+    </script>
 {#    {% else %}Ваш запрос завершился с ошибкой.{% endif %}</div>#}
 {% endblock %}
