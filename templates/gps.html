@@ -137,26 +137,25 @@
         <br>
         <br>
         <form method="post" id="gps">
-            <button type="submit" formaction="/data" class="btn_view" onclick="view_data()">View</button>
+            <button type="submit" formaction="/gps" class="btn_view" onclick="view_data()">View</button>
 {#            <input type="hidden" id="source" name="source" value="gps">#}
-{#            <input type="hidden" id="new_stat" name="new_stat" value="">#}
+            <input type="hidden" id="new_stat" name="new_stat" value="">
         </form>
     </div>
     <script>
-
-        currentStat = {{ new_stat }};
-        selectStat = document.getElementById("stations");
-
         function stat(){
             let selectStat = document.getElementById('stations');
             for (var i = 0; i < 32; i++){
-            selectStat.options[selectStat.options.length] = new Option(i+1, i);
-          }
+                selectStat.options[selectStat.options.length] = new Option((i+1).toString(), i.toString());
+            }
         }
         stat();
+        const selectStat = document.getElementById('stations');
+        selectStat.selectedIndex = {{ new_stat }} - 1;
 
         function view_data() {
-                currentStat = {{ new_stat }};
+               const selectStat = document.getElementById('stations');
+                let currentStat = selectStat.options[selectStat.selectedIndex].text;
                 const new_stat = document.getElementById("new_stat");
                 new_stat.value = currentStat;
                 {#showCalendar(currentMonth, currentYear);#}

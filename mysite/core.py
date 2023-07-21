@@ -69,7 +69,6 @@ def compare(st: str) -> str:
 
 
 def get_images(response: Response) -> list[str]:
-    print(response.status_code, response.text)
     if f'{response.status_code}' != '200':
         return []
     html_body = response.text
@@ -86,14 +85,12 @@ def get_images(response: Response) -> list[str]:
 
 def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     base_dir_serv = ''
-    print(source)
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
         base_dir_serv = base_dir_serv_gps
-    print(base_dir_serv)
 
     s = sess()
     data_path = ''
@@ -115,7 +112,6 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
             r = s.post(site, data=payload)
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
-        print(img_list)
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
@@ -130,7 +126,6 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
                 img_list = []
         elif source == source_gps:
             no_data = True
-            print('GPS!!!')
             for pic in img_list:
                 if get_day_from_gps_pic(pic) == int(day):
                     img_list = [pic]

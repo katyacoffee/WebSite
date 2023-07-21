@@ -29,7 +29,18 @@ def data(request):
 
 
 def gps(request):
-    return render(request, "gps.html")
+    if request.method == "POST":
+        cache.clear()
+        #stat = str(request.POST.get("stat"))
+        new_stat = str(request.POST.get("new_stat"))
+        print(new_stat)
+        context = {
+            "success": True,
+            "new_stat": new_stat,
+        }
+        # TODO!!! как в get_data
+        return render(request, "gps.html", context=context)
+    return render(request, "index.html")
 
 
 def date_selection(request):
@@ -43,7 +54,6 @@ def date_selection(request):
         current_year = str(current_date.year)
         try:
             source = str(source)
-            print(source)
             days = core.get_available_days(current_year, current_month, source)
             return render(request, "date_selection.html", context={
                 "current_month": current_month,
@@ -69,14 +79,15 @@ def get_data(request):
     if request.method == "POST":
         cache.clear()
         source = str(request.POST.get("source"))
-        print(source)
         date = str(request.POST.get("mydate"))
         new_year = request.POST.get("new_year")
         new_month = request.POST.get("new_month")
         new_day = request.POST.get("new_day")
         selected_new_month = request.POST.get("selected_new_month")
         button_name = request.POST.get("button_name")
-        print(new_year, new_month, new_day, button_name, selected_new_month)
+
+        if source == core.source_gps:
+            return gps(request)
 
         context = {
             "success": True,
@@ -99,7 +110,6 @@ def get_data(request):
                 if len(next_mon_str) == 1:
                     next_mon_str = '0' + next_mon_str
                 im_list = core.get_img_list(str(next_yr), next_mon_str, next_day_str, source)
-                print(im_list)
                 no_data = False
                 if len(im_list) == 0:
                     no_data = True
@@ -108,7 +118,6 @@ def get_data(request):
                 context["current_year"] = next_yr
                 context["images"] = im_list
                 context["no_data"] = no_data
-                print(context)
             else:
                 previous_date = datetime.date(yr_int, mon_int, day_int) - datetime.timedelta(days=1)
                 prev_day = previous_date.day
@@ -121,7 +130,6 @@ def get_data(request):
                 if len(prev_mon_str) == 1:
                     prev_mon_str = '0' + prev_mon_str
                 im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source)
-                print(im_list)
                 no_data = False
                 if len(im_list) == 0:
                     no_data = True
@@ -130,7 +138,6 @@ def get_data(request):
                 context["current_year"] = prev_yr
                 context["images"] = im_list
                 context["no_data"] = no_data
-                print(context)
             return render(request, "vlf_data.html", context)
 
         mon_str = str(int(new_month) + 1)
@@ -191,7 +198,6 @@ def get_data(request):
             return render(request, "date_selection.html", context)
         if context["success"]:
             context["success-title"] = ""
-        print(date)
 
         no_data = False
         img_list = core.get_img_list(yr, mon, day, source)
