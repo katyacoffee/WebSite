@@ -219,8 +219,11 @@ def get_day_from_gps_pic(pic: str) -> int:
     if len(a) < 5:
         return 0
     b = a[4].split('.')
+    # num = a[5] # number of station
     if len(b) < 1:
         return 0
     c = b[1].split('-')
     print(int(c[2]))
     return int(c[2])
+
+
