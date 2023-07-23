@@ -33,7 +33,7 @@
         </form>
         <a href="/" class="btn" style="float: right;">To Home Page</a>
     </div>
-   <style>
+    <style>
         .new1 div {
           border: 1px solid #0e0e0e;
         }
@@ -107,28 +107,16 @@
         }
     </style>
 
-
-<div class="grid">
-    <div class="grid__item grid__item--big">
-        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
+    <div class="grid">
+        <div class="grid__item grid__item--big">
+            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 5%;">
+        </div>
+        {% for im in images %}
+            <div class="grid__item grid__item--small">
+                <img src="{% static im %}" alt="" style="width: 90%; margin-left: 5%;">
+            </div>
+        {% endfor %}
     </div>
-    <div class="grid__item grid__item--small">
-        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
-    </div>
-    <div class="grid__item grid__item--small">
-      <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
-    </div>
-    <div class="grid__item grid__item--small">
-        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
-    </div>
-    <div class="grid__item grid__item--small">
-        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
-    </div>
-    <div class="grid__item grid__item--small">
-        <img src="{% static 'test.jpg' %}" alt="" style="width: 90%; margin-left: 5%;">
-    </div>
-</div>
-
     <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
         <br>
         <label for="stations" style="font-family: 'Roboto', sans-serif;">Select
@@ -138,7 +126,6 @@
         <br>
         <form method="post" id="gps">
             <button type="submit" formaction="/gps" class="btn_view" onclick="view_data()">View</button>
-{#            <input type="hidden" id="source" name="source" value="gps">#}
             <input type="hidden" id="new_stat" name="new_stat" value="">
         </form>
     </div>
@@ -158,7 +145,6 @@
                 let currentStat = selectStat.options[selectStat.selectedIndex].text;
                 const new_stat = document.getElementById("new_stat");
                 new_stat.value = currentStat;
-                {#showCalendar(currentMonth, currentYear);#}
         }
 
     </script>

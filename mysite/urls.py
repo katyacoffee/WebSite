@@ -29,7 +29,6 @@ urlpatterns = [
     path('contacts', views.contacts),
     path('equipment', views.equipment),
     path('data', views.data),
-    path('get-gps-stat', views.get_gps_stat),
     path('gps', views.gps),
     path('menu', views.get_menu),
 ]

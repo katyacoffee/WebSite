@@ -34,11 +34,16 @@ def gps(request):
         #stat = str(request.POST.get("stat"))
         new_stat = str(request.POST.get("new_stat"))
         print(new_stat)
-        context = {
-            "success": True,
-            "new_stat": new_stat,
-        }
-        # TODO!!! как в get_data
+        no_data = False
+        # im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source) # TODO - получать im_all и im_list !!
+        im_all = 'test.jpg'
+        im_list = ['test.jpg', 'test.jpg', 'test.jpg']
+        context = {"success": True,
+                   "new_stat": new_stat,
+                   "im_all": im_all,
+                   "images": im_list,
+                   "no_data": no_data
+                   }
         return render(request, "gps.html", context=context)
     return render(request, "index.html")
 
@@ -214,23 +219,6 @@ def get_data(request):
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)
-
-
-def get_gps_stat(request):
-    if request.method == "POST":
-        cache.clear()
-        stat = str(request.POST.get("stat"))
-        # print(source)
-        new_stat = request.POST.get("new_stat")
-        # button_name = request.POST.get("button_name")
-        print(new_stat)
-
-        context = {
-            "success": True,
-            "new_stat": new_stat,
-        }
-        print(context)
-        return render(request, "data.html", context) # Поменять
 
 
 def contacts(request):
