@@ -37,7 +37,7 @@ def gps(request):
         no_data = False
         # im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source) # TODO - получать im_all и im_list !!
         im_all = 'test.jpg'
-        im_list = ['test.jpg', 'test.jpg', 'test.jpg']
+        im_list = ['test.jpg', 'test.jpg', 'test.jpg', 'Lemi018_2021_01_28_Bx_en.png']
         context = {"success": True,
                    "new_stat": new_stat,
                    "im_all": im_all,
