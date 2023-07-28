@@ -59,6 +59,7 @@ def date_selection(request):
         current_year = str(current_date.year)
         try:
             source = str(source)
+            print(source)
             days = core.get_available_days(current_year, current_month, source)
             return render(request, "date_selection.html", context={
                 "current_month": current_month,
@@ -90,6 +91,8 @@ def get_data(request):
         new_day = request.POST.get("new_day")
         selected_new_month = request.POST.get("selected_new_month")
         button_name = request.POST.get("button_name")
+
+        print(source)
 
         if source == core.source_gps:
             return gps(request)

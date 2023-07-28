@@ -20,9 +20,11 @@ server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
 base_dir_serv_gps = '~mikhnevo/gnss/tec_rot/prego/png' #!!
+base_dir_serv_lem = '~mikhnevo/LEMI018/PNG'
 source_vlf = 'vlf'
 source_tec = 'tec'
 source_gps = 'gps'
+source_lem = 'lem'
 
 
 class ServerDownException(Exception):
@@ -55,9 +57,22 @@ def get_station_to_freq_dict() -> dict[str:int]:
     }
 
 
+# def get_par_lem() -> dict[str:int]:
+#     return {
+#         'VTX1': 16.3,
+#     }
+
+
 def get_station_name(pic: str) -> str:
     s = pic.split('_')
     return s[4]
+
+
+def get_par_name(pic: str) -> str:
+    s = pic.split('_')
+    if s[5] == 'en.png':
+        return s[4]
+    # TODO переделать потом!
 
 
 def compare(st: str) -> str:
@@ -91,10 +106,12 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
         base_dir_serv = base_dir_serv_gps
+    elif source == source_lem:
+        base_dir_serv = base_dir_serv_lem
 
     s = sess()
     data_path = ''
-    if source == source_vlf:
+    if source == source_vlf or source == source_lem:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
     elif source == source_tec or source == source_gps:
         data_path = base_dir_serv + '/' + yr + '/' + mon
@@ -104,17 +121,20 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     new_image_list = []
     try:
         site = 'https://' + server_dir + '/' + data_path
-        if source == source_gps:
+        if source == source_gps or source == source_lem:
             payload = {
                 'inUserName': 'guest',  # TODO! password!!
                 'inUserPass': 'qwe123'
             }
             r = s.post(site, data=payload)
+            print(r.status_code)
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+        elif source == source_lem:
+            img_list.sort()
         elif source == source_tec:
             no_data = True
             for pic in img_list:
@@ -151,6 +171,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
         base_dir_serv = base_dir_serv_gps
+    elif source == source_lem:
+        base_dir_serv = base_dir_serv_lem
 
     with sess() as s:
         for i in range(1, 32):
@@ -159,25 +181,30 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 day = '0' + day
             data_path = ''
             # TODO для gps!
-            if source == source_vlf:
+            if source == source_vlf or source == source_lem:
                 data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
             elif source == source_tec or source == source_gps:
                 data_path = base_dir_serv + '/' + year + '/' + mon
             # elif source == source_gps:
             #     data_path = base_dir_serv + '/' + year + '/' + mon
             site = 'https://' + server_dir + '/' + data_path
+            print(site)
 
             try:
-                if source == source_gps:
+                if source == source_gps or source == source_lem:
                     payload = {
                         'inUserName': 'guest',  # TODO! password!!
                         'inUserPass': 'qwe123'
                     }
                     r = s.post(site, data=payload)
+                    print(r.text)
                 resp = s.get(site, timeout=2)
                 img_list = get_images(resp)
                 if source == source_vlf:
                     img_list.sort(key=lambda pic: compare(get_station_name(pic)))
+                elif source == source_lem:
+                    img_list.sort()
+                # TODO для LEMI
                 elif source == source_tec:
                     no_data = True
                     for pic in img_list:
