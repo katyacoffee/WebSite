@@ -72,6 +72,7 @@ def get_par_name(pic: str) -> str:
     s = pic.split('_')
     if s[5] == 'en.png':
         return s[4]
+    return ''
     # TODO переделать потом!
 
 
@@ -81,6 +82,10 @@ def compare(st: str) -> str:
     if freq is None:
         return 'b' + st
     return f'a{freq}'
+
+
+# def sort_lem(par: str) -> str:
+#     par_lem = par.sort()
 
 
 def get_images(response: Response) -> list[str]:
@@ -121,20 +126,25 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
     new_image_list = []
     try:
         site = 'https://' + server_dir + '/' + data_path
-        if source == source_gps or source == source_lem:
-            payload = {
-                'inUserName': 'guest',  # TODO! password!!
-                'inUserPass': 'qwe123'
-            }
-            r = s.post(site, data=payload)
-            print(r.status_code)
+        # if source == source_gps or source == source_lem:
+        #     payload = {
+        #         'inUserName': 'guest',  # TODO! password!!
+        #         'inUserPass': 'qwe123'
+        #     }
+        #     r = s.post(site, data=payload)
+        #     print(r.status_code)
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
+        img_list1 = []
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
         elif source == source_lem:
-            img_list.sort()
+            for pic in img_list:
+                if get_par_name(pic) != '':
+                    img_list1.append(pic)
+                    img_list1.sort()
+            img_list = img_list1
         elif source == source_tec:
             no_data = True
             for pic in img_list:
