@@ -7,7 +7,6 @@
     <list default="true" id="ac05ab67-6ae1-4edf-9879-8af6b6cbf27b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/data.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +171,7 @@
       <workItem from="1689321111358" duration="67000" />
       <workItem from="1689321267203" duration="137000" />
       <workItem from="1689321432398" duration="4211000" />
-      <workItem from="1689754100903" duration="114966000" />
+      <workItem from="1689754100903" duration="127914000" />
     </task>
     <servers />
   </component>
