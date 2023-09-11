@@ -210,15 +210,15 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         #     else: # TODO: а тут наоборот условие
         #         no_data = False
         #     print("imglist", img_list)
-        # elif source == source_tec:
-        #     no_data = True
-        #     for pic in img_list:
-        #         if get_day_from_tec_pic(pic) == int(day):
-        #             img_list = [pic]
-        #             no_data = False
-        #             break
-        #     if no_data:
-        #         img_list = []
+        elif source == source_tec:
+            no_data = True
+            for pic in img_list:
+                if get_day_from_tec_pic(pic) == int(day):
+                    img_list = [pic]
+                    no_data = False
+                    break
+            if no_data:
+                img_list = []
         elif source == source_k_ind:
             no_data = True
             for pic in img_list:
