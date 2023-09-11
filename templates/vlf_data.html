@@ -28,11 +28,18 @@
             }
         </style>
         <form method="post" id="date_form">
+
+{#            <div class="row-fluid">#}
+{#              <div class="span4 text-left"><a href="#" class="btn">Btn1</a></div>#}
+{#              <div class="span4 text-center"><a href="#" class="btn">Btn2</a></div>#}
+{#              <div class="span4 text-right"><a href="#" class="btn">Btn3</a></div>#}
+{#            </div>#}
+
 {#        <a href="/date-selection" class="btn">Back to date picker</a>#}
-            <input class="btn" type="submit" formaction="/date-selection" value="Back to date picker">
+            <input class="btn" type="submit" formaction="/date-selection" value="Back to calendar">
             <input type="hidden" id="source" name="source" value="{{ source }}">
         </form>
-        <a href="/" class="btn" style="float: right;">To Home Page</a>
+        <a href="/" class="btn" style="float: right;">Home Page</a>
     </div>
     <span class="fs-2"></span>
     <div class="fw-bold">{% if success %}{{ date_test }}
@@ -77,8 +84,8 @@
 
         <form method="post" id="date_form">
             <div class="container px-4 py-5" id="main-contents">
-                <input class="btn-previous" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
-                <input class="btn-next" type="submit" formaction="/get-vlf-data" value="Next day" onclick="next()">
+                <input class="btn" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
+                <input class="btn" type="submit" formaction="/get-vlf-data" style="float: right;" value="Next day" onclick="next()">
                 <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
                     NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
@@ -139,6 +146,7 @@
                     justify-content: center;
                 }
             </style>
+            <br>
             <picture>
                 {% for image in images %}
                     <div id="figures">
