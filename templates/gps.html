@@ -31,7 +31,7 @@
             <input class="btn" type="submit" formaction="/date-selection" value="Back to date picker">
             <input type="hidden" id="source" name="source" value="{{ source }}">
         </form>
-        <a href="/" class="btn" style="float: right;">To Home Page</a>
+        <a href="/" class="btn" style="float: right;">Home Page</a>
     </div>
     <style>
         .new1 div {
@@ -65,13 +65,15 @@
         .grid__item
         {
           border-radius: 4px;
-            border: 1px solid #030303;
+            border: 1px solid #f6f5f5;
+            {#border: 1px solid #030303;#}
           min-height: 20vh;
         }
 
         .grid__item--small
         {
-          background-color: #e5e9ea;
+            background-color: #fbfbfc;
+          {#background-color: #e5e9ea;#}
             min-height: 20vh;
             {#float: right;#}
             {#grid-column: 2;#}
@@ -79,7 +81,7 @@
 
         .grid__item--big
         {
-          background-color: #e5e9ea;
+          background-color: #fbfbfc;
           grid-row: 5 span;
           {#float: left;#}
             grid-column: 1;

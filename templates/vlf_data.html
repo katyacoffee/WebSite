@@ -8,14 +8,14 @@
 
 {% block content %}
     <body style='background-color: #dadfe0'>
-    <div class="container px-4 py-5" id="main-contents">
+{#    <div class="container px-4 py-5" id="main-contents">#}
         <style>
             .btn {
                 float: left;
                 display: inline-block;
                 background: #68819a;
                 font-size: 20px;
-                width: 200px;
+                width: 160px;
                 color: white;
                 font-family: 'Roboto', sans-serif;
                 border: #68819a;
@@ -27,7 +27,7 @@
                 color: #f8f8f8;
             }
         </style>
-        <form method="post" id="date_form">
+{#        <form method="post" id="date_form">#}
 
 {#            <div class="row-fluid">#}
 {#              <div class="span4 text-left"><a href="#" class="btn">Btn1</a></div>#}
@@ -36,12 +36,12 @@
 {#            </div>#}
 
 {#        <a href="/date-selection" class="btn">Back to date picker</a>#}
-            <input class="btn" type="submit" formaction="/date-selection" value="Back to calendar">
-            <input type="hidden" id="source" name="source" value="{{ source }}">
-        </form>
-        <a href="/" class="btn" style="float: right;">Home Page</a>
-    </div>
-    <span class="fs-2"></span>
+{#            <input class="btn" type="submit" formaction="/date-selection" value="Calendar">#}
+{#            <input type="hidden" id="source" name="source" value="{{ source }}">#}
+{#        </form>#}
+{#        <a href="/" class="btn" style="float: right;">Home Page</a>#}
+{#    </div>#}
+{#    <span class="fs-2"></span>#}
     <div class="fw-bold">{% if success %}{{ date_test }}
         <style>
             .btn-previous {
@@ -77,15 +77,49 @@
                 background: #7b8283;
                 border: 1px solid #7b8283;
             }
+
+            .three-inline-buttons .btn {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .three-inline-buttons {
+                 display: table;
+                 margin: 0 auto;
+            }
+
+            @media only screen and (max-width: 960px) {
+
+                .three-inline-buttons .btn{
+                    width: 100%;
+                    margin: 40px;
+                    text-align: center;
+                }
+
+            }
+
         </style>
 {#        {% if no_data %}#}
 {#            <span style="align-items: center;">NO DATA</span>#}
 {#        {% else %}#}
 
         <form method="post" id="date_form">
-            <div class="container px-4 py-5" id="main-contents">
-                <input class="btn" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
-                <input class="btn" type="submit" formaction="/get-vlf-data" style="float: right;" value="Next day" onclick="next()">
+{#            <div class="container px-4 py-5" id="main-contents">#}
+{#                <div class="three-inline-buttons">#}
+                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">
+{#                    <form method="post" id="date_form">#}
+                        <div class="col d-flex" style="justify-content: center; align-items: center">
+                            <input class="btn" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
+                        </div>
+                        <div class="col d-flex" style="justify-content: center; align-items: center">
+                            <input class="btn" type="submit" formaction="/date-selection" value="Calendar">
+                        </div>
+{#                    </form>#}
+                    <input type="hidden" id="source" name="source" value="{{ source }}">
+                    <div class="col d-flex" style="justify-content: center; align-items: center">
+                        <input class="btn" type="submit" formaction="/get-vlf-data" style="float: right;" value="Next day" onclick="next()">
+                    </div>
+                </div>
                 <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
                     NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
@@ -95,7 +129,7 @@
                 <input type="hidden" id="new_month" name="new_month" value="">
                 <input type="hidden" id="new_year" name="new_year" value="">
                 <input type="hidden" id="source" name="source" value="{{ source }}">
-            </div>
+{#            </div>#}
         </form>
             <script>
 

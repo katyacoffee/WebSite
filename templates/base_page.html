@@ -19,6 +19,9 @@
 
 <main>
     <style>
+        {#body{#}
+        {#    min-height: 100vh;#}
+        {#}#}
         * {
             padding: 0;
             margin: 0;
@@ -76,6 +79,11 @@
 
         body {
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            {#display: flex;#}
+            {#flex-direction: column;#}
         }
 
         /* Add a black background color to the top navigation */
@@ -187,11 +195,22 @@
 
     <style>
         .my_footer {
-            clear: both;
-            position: relative;
-            height: 50px;
-            margin-top: -50px;
-        }
+            {#position: relative;#}
+            height: 10px;
+
+            margin-top: auto;
+
+            {##}
+            {#margin-top: auto;#}
+            {#position: fixed;#}
+
+           {#bottom: 20px;#}
+           {#width: 100%;#}
+
+
+           {#height: 60px;#}
+
+            }
     </style>
     <div class="container px-4 py-5" id="main-contents">
         <footer class="footer my_footer pt-3 mt-4 text-muted"
