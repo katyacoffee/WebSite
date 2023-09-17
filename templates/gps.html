@@ -48,16 +48,26 @@
         * { box-sizing: border-box; }
         body { margin: 0; border-color: #1a1e21; }
 
+        .outer-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         .grid
         {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
+          {#grid-template-columns: 1fr 1fr;#}
           {#grid-gap: 10px;#}
-          width: 95%;
-          margin-left: 5%;
+          width: 100%;
+          min-width: 300px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
 
-          background-color: #fbfbfc;
-          padding: 10px;
+
+          {#background-color: #fbfbfc;#}
+          {#padding: 10px;#}
 
           min-height: 100vh;
         }
@@ -72,7 +82,7 @@
 
         .grid__item--small
         {
-            background-color: #fbfbfc;
+            {#background-color: #fbfbfc;#}
           {#background-color: #e5e9ea;#}
             min-height: 20vh;
             {#float: right;#}
@@ -81,7 +91,7 @@
 
         .grid__item--big
         {
-          background-color: #fbfbfc;
+          {#background-color: #fbfbfc;#}
           grid-row: 5 span;
           {#float: left;#}
             grid-column: 1;
@@ -144,6 +154,7 @@
 
     </style>
 
+    <div class="outer-grid">
     <div class="grid">
         <div class="grid__item grid__item--big">
             <div class="gallery">
@@ -154,11 +165,14 @@
 {#            <input type="hidden" id="new_year" name="new_year" value="">#}
             </div>
         </div>
+    </div>
+    <div class="grid">
         {% for im in images %}
             <div class="grid__item grid__item--small">
                 <img src="{% static im %}" alt="" style="width: 90%; margin-left: 5%;">
             </div>
         {% endfor %}
+    </div>
     </div>
     <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
         <br>
