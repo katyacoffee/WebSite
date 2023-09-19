@@ -10,215 +10,239 @@
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <style>
-    {#body, table, td, p, div, ul, ol, li {#}
-    {#    font: 10pt/12pt "Helvetica", sans-serif#}
-    {
-    #}#}
+            html,
+            body{
+                height: 100%;
+            }
+
+            .wrapper_base {
+                {#position: relative;#}
+                {#min-height: 100%;#}
+
+                display: block;
+                min-height: 100vh;
+                  position: relative;
+                  padding-bottom: footer height;
+
+            }
+
+            {#body {#}
+            {#    overflow-x: hidden;#}
+            {#    min-height: 100vh;#}
+            {#    display: flex;#}
+            {#    flex-direction: column;#}
+            {##}
+                {#display: flex;#}
+                {#flex-direction: column;#}
+            {#}#}
 </style>
 <body>
+    <main>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
 
-<main>
-    <style>
-        {#body{#}
-        {#    min-height: 100vh;#}
-        {#}#}
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #68819a;
-            overflow-x: hidden;
-            padding-top: 4rem;
-            transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-        {#font-family: "Bebas Neue";#}
-        }
-
-        .sidenav a {
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            color: #f8f6f6;
-            display: block;
-            transition: 0.4s;
-            white-space: nowrap;
-            font-size: 1.5rem;
-        }
-
-        .sidenav a:hover {
-            color: #b2a9a9;
-            background: #68819a;
-        }
-
-        /* Position and style the close button (top right corner) */
-        .sidenav .close-btn {
-            position: absolute;
-            top: -1rem;
-            right: 1rem;
-            font-size: 5rem;
-        }
-
-        .sidenav .close-btn:hover {
-            background: initial;
-            transform: scale(1.2);
-        }
-
-        /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-        #main {
-            transition: margin-left 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-            padding: 20px;
-            width: 100%;
-        }
-
-        body {
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            {#display: flex;#}
-            {#flex-direction: column;#}
-        }
-
-        /* Add a black background color to the top navigation */
-        .topnav {
-        {#background-color: #316e8d;#} background-color: #68819a;
-            overflow: hidden;
-            vertical-align: center;
-            {#align-content: center;#}
-            align-items: center;
-        }
-
-        /* Style the links inside the navigation bar */
-        .topnav a {
-            float: left;
-            display: block;
-            padding: 1rem;
-            text-decoration: none;
-        }
-
-        .header_1 {
-            margin: auto;
-            width: 80%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Change the color of links on hover */
-        .topnav a:hover {
-            background-color: #68819a;
-            color: #5e5b5b;
-        }
-
-        /* On smaller screens, where height is less than 480px, change the style of the sidenav (less padding and a smaller font size) */
-        @media screen and (max-height: 480px) {
             .sidenav {
-                padding-top: 3rem;
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #68819a;
+                overflow-x: hidden;
+                padding-top: 4rem;
+                transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            {#font-family: "Bebas Neue";#}
             }
 
             .sidenav a {
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                color: #f8f6f6;
+                display: block;
+                transition: 0.4s;
+                white-space: nowrap;
                 font-size: 1.5rem;
             }
-        }
 
-        a svg {
-            transition: all 0.5s ease;
-        }
-
-        a svg:hover {
-            transform: rotate(180deg);
-        }
-
-        section h1 {
-            font-family: "Bebas Neue";
-            font-size: 4rem;
-        }
-
-        section p {
-            font-family: "Lato";
-            line-height: 1.8;
-            font-size: 1.5rem;
-        }
-
-        .ham-icon {
-            vertical-align: middle;
-            justify-content: center;
-            width: 10%;
-            height: 10%;
-        }
-    </style>
-    <div id="sideNavigation" class="sidenav">
-        <a href="#" class="close-btn">&times;</a>
-        <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
-{#        <a href="/date-selection" style="font-family: 'Roboto', sans-serif;">VLF</a>#}
-        <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
-        <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
-    </div>
-    <nav class="topnav">
-        <header class="header">
-            <div class="fs-1">
-                <a href="#" class="ham-icon" style="align-items: center;">
-                    <svg width="30" height="30">
-                        <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
-                        <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
-                        <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
-                    </svg>
-                </a>
-                <a href="/" class="header_1" style="text-align: center">
-                    {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                    <span style="font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
-                    {#              font-size: 3vw;#}
-                </a>
-            </div>
-        </header>
-        <script>
-            document.querySelector("a.ham-icon").addEventListener("click", function (event) {
-                document.getElementById("sideNavigation").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            });
-
-            document.querySelector("a.close-btn").addEventListener("click", function (event) {
-                document.getElementById("sideNavigation").style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            });
-        </script>
-    </nav>
-    <br>
-    {% block content %}{% endblock %}
-
-    <style>
-        .my_footer {
-            {#position: relative;#}
-            height: 10px;
-
-            margin-top: auto;
-
-            {##}
-            {#margin-top: auto;#}
-            {#position: fixed;#}
-
-           {#bottom: 20px;#}
-           {#width: 100%;#}
-
-
-           {#height: 60px;#}
-
+            .sidenav a:hover {
+                color: #b2a9a9;
+                background: #68819a;
             }
-    </style>
-    <div class="container px-4 py-5" id="main-contents">
-        <footer class="footer my_footer pt-3 mt-4 text-muted"
-                style="font-family: 'Roboto', sans-serif; border-top: 1px solid #9d9b9b;">© IDG RAS
+
+            /* Position and style the close button (top right corner) */
+            .sidenav .close-btn {
+                position: absolute;
+                top: -1rem;
+                right: 1rem;
+                font-size: 5rem;
+            }
+
+            .sidenav .close-btn:hover {
+                background: initial;
+                transform: scale(1.2);
+            }
+
+            /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+            #main {
+                transition: margin-left 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+                padding: 20px;
+                width: 100%;
+            }
+
+            /* Add a black background color to the top navigation */
+            .topnav {
+            {#background-color: #316e8d;#} background-color: #68819a;
+                overflow: hidden;
+                vertical-align: center;
+                {#align-content: center;#}
+                align-items: center;
+            }
+
+            /* Style the links inside the navigation bar */
+            .topnav a {
+                float: left;
+                display: block;
+                padding: 1rem;
+                text-decoration: none;
+            }
+
+            .header_1 {
+                margin: auto;
+                width: 80%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Change the color of links on hover */
+            .topnav a:hover {
+                background-color: #68819a;
+                color: #5e5b5b;
+            }
+
+            /* On smaller screens, where height is less than 480px, change the style of the sidenav (less padding and a smaller font size) */
+            @media screen and (max-height: 480px) {
+                .sidenav {
+                    padding-top: 3rem;
+                }
+
+                .sidenav a {
+                    font-size: 1.5rem;
+                }
+            }
+
+            a svg {
+                transition: all 0.5s ease;
+            }
+
+            a svg:hover {
+                transform: rotate(180deg);
+            }
+
+            section h1 {
+                font-family: "Bebas Neue";
+                font-size: 4rem;
+            }
+
+            section p {
+                font-family: "Lato";
+                line-height: 1.8;
+                font-size: 1.5rem;
+            }
+
+            .ham-icon {
+                vertical-align: middle;
+                justify-content: center;
+                width: 10%;
+                height: 10%;
+            }
+        </style>
+        <div class="wrapper_base">
+            <div id="sideNavigation" class="sidenav">
+                <a href="#" class="close-btn">&times;</a>
+                <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
+        {#        <a href="/date-selection" style="font-family: 'Roboto', sans-serif;">VLF</a>#}
+                <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
+                <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
+            </div>
+            <nav class="topnav">
+                <header class="header">
+                    <div class="fs-1">
+                        <a href="#" class="ham-icon" style="align-items: center;">
+                            <svg width="30" height="30">
+                                <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
+                                <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
+                                <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
+                            </svg>
+                        </a>
+                        <a href="/" class="header_1" style="text-align: center">
+                            {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
+                            <span style="font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
+                            {#              font-size: 3vw;#}
+                        </a>
+                    </div>
+                </header>
+                <script>
+                    document.querySelector("a.ham-icon").addEventListener("click", function (event) {
+                        document.getElementById("sideNavigation").style.width = "250px";
+                        document.getElementById("main").style.marginLeft = "250px";
+                    });
+
+                    document.querySelector("a.close-btn").addEventListener("click", function (event) {
+                        document.getElementById("sideNavigation").style.width = "0";
+                        document.getElementById("main").style.marginLeft = "0";
+                    });
+                </script>
+            </nav>
             <br>
-            Institute of geosphere dynamics of Russian academy of sciences
-        </footer>
-    </div>
-</main>
+            {% block content %}{% endblock %}
+
+            <style>
+                .my_footer {
+                    {#position: relative;#}
+
+                    {#position: fixed;#}
+                    {#bottom: 1px;#}
+                    width: 100%;
+                    {#justify-content: center;#}
+                    {#display: flex;#}
+                    {#background-color: #ffffff;#}
+
+                      position: absolute;
+                      bottom: 0;
+
+
+                    {#position: absolute;#}
+                    left: 0;
+                    {#bottom: 0;#}
+                    {#width: 100%;#}
+                    {#height: 80px;#}
+
+                {#margin-top: auto;#}
+                    {#margin-bottom: 0;#}
+
+
+                    {#height: 10px;#}
+                    {##}
+                    {#margin-top: auto;#}
+                }
+            </style>
+{#        <div class="wrapper_base">#}
+            <div class="container px-4 py-5" id="main-contents">
+                <footer class="my_footer pt-3 mt-4 text-muted" style="font-family: 'Roboto', sans-serif; border-top: 1px solid #9d9b9b;">
+                    &nbsp;© IDG RAS
+                    <br>
+                    &nbsp;Institute of geosphere dynamics of Russian academy of sciences
+                    <br>
+                    <br>
+                </footer>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

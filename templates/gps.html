@@ -61,9 +61,10 @@
           {#grid-gap: 10px;#}
           width: 100%;
           min-width: 300px;
-          max-width: 600px;
+          max-width: 700px;
           margin-left: auto;
           margin-right: auto;
+            float: left;
 
 
           {#background-color: #fbfbfc;#}
@@ -85,7 +86,9 @@
             {#background-color: #fbfbfc;#}
           {#background-color: #e5e9ea;#}
             min-height: 20vh;
-            {#float: right;#}
+            {#align-items: center;#}
+            justify-content: left;
+            float: left;
             {#grid-column: 2;#}
         }
 
@@ -93,6 +96,8 @@
         {
           {#background-color: #fbfbfc;#}
           grid-row: 5 span;
+          justify-content: right;
+          float: right;
           {#float: left;#}
             grid-column: 1;
         }
@@ -128,14 +133,14 @@
         }
         .gallery img {
           height: auto; width: 200px; margin: 10px;
-          box-shadow: 0 0 0 5px #fff, 0 0 0 6px #919191;
+          {#box-shadow: 0 0 0 5px #fff, 0 0 0 6px #919191;#}
           {#transition: .5s linear; cursor: pointer;#}
         }
         .show img { opacity: .25; pointer-events: none; }
         .active {
           transition: box-shadow .5s linear .5s;
           {#transition: box-shadow .5s linear .5s, top 1s ease-out, left 1s ease-out, transform 1s ease-out, width 1s ease-in, height 1s ease-in;#}
-          box-shadow: 0 0 0 10px #fff; filter: drop-shadow(1px 2px 6px #000);
+          {#box-shadow: 0 0 0 10px #fff; filter: drop-shadow(1px 2px 6px #000);#}
           pointer-events: none;
         }
         .close {
@@ -161,7 +166,7 @@
 {#            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 5%;"#}
 {#            onclick="largeImg()" id="img1">#}
 {#            убрать!#}
-            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 5%;">
+            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 10%; float: right">
 {#            <input type="hidden" id="new_year" name="new_year" value="">#}
             </div>
         </div>
@@ -169,7 +174,7 @@
     <div class="grid">
         {% for im in images %}
             <div class="grid__item grid__item--small">
-                <img src="{% static im %}" alt="" style="width: 90%; margin-left: 5%;">
+                <img src="{% static im %}" alt="" style="width: 90%; margin-right: 10%; float: left">
             </div>
         {% endfor %}
     </div>
