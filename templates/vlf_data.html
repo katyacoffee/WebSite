@@ -106,7 +106,7 @@
         <form method="post" id="date_form">
 {#            <div class="container px-4 py-5" id="main-contents">#}
 {#                <div class="three-inline-buttons">#}
-                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">
+{#                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">#}
 {#                    <form method="post" id="date_form">#}
                         <div class="col d-flex" style="justify-content: center; align-items: center">
                             <input class="btn" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
@@ -119,7 +119,7 @@
                     <div class="col d-flex" style="justify-content: center; align-items: center">
                         <input class="btn" type="submit" formaction="/get-vlf-data" style="float: right;" value="Next day" onclick="next()">
                     </div>
-                </div>
+{#                </div>#}
                 <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
                     NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
