@@ -1,7 +1,7 @@
 {% extends "base_page.html" %}
 
 {% block pagetitle %}
-    VLF data
+    Data
 {% endblock %}
 
 {% load static %}
@@ -83,11 +83,6 @@
                 margin-right: 15px;
             }
 
-            .three-inline-buttons {
-                 display: table;
-                 margin: 0 auto;
-            }
-
             @media only screen and (max-width: 960px) {
 
                 .three-inline-buttons .btn{
@@ -98,27 +93,55 @@
 
             }
 
+            .btn_up {
+                display: inline-block;
+                background: #68819a;
+                font-size: 20px;
+                width: 160px;
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                border: #68819a;
+                border-radius: 8px;
+                min-height: 40px;
+            }
+
+
+            .mom {
+                width: 100%; /* Try setting this to 400px or something */
+                {#display: table;#}
+            }
+            .child {
+                {#display: table-cell;#}
+                align-content: center;
+                width: 33%;
+            }
+            .child:first-child .childinner {
+                margin-left: 0;
+            }
+
         </style>
 {#        {% if no_data %}#}
 {#            <span style="align-items: center;">NO DATA</span>#}
 {#        {% else %}#}
 
         <form method="post" id="date_form">
-{#            <div class="container px-4 py-5" id="main-contents">#}
+            <table class="mom">
+                <td class="child">
 {#                <div class="three-inline-buttons">#}
 {#                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">#}
-{#                    <form method="post" id="date_form">#}
-                        <div class="col d-flex" style="justify-content: center; align-items: center">
-                            <input class="btn" type="submit" formaction="/get-vlf-data" value="Previous day" onclick="previous()">
-                        </div>
-                        <div class="col d-flex" style="justify-content: center; align-items: center">
-                            <input class="btn" type="submit" formaction="/date-selection" value="Calendar">
-                        </div>
+{#                        <div class="col d-flex" style="justify-content: center; align-items: center">#}
+                            <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: right" value="Previous day" onclick="previous()">
+                </td>
+                <td class="child" style="text-align: center;">
+                    <input class="btn_up" type="submit" formaction="/date-selection" style="text-align:center;" value="Calendar">
+                </td>
 {#                    </form>#}
-                    <input type="hidden" id="source" name="source" value="{{ source }}">
-                    <div class="col d-flex" style="justify-content: center; align-items: center">
-                        <input class="btn" type="submit" formaction="/get-vlf-data" style="float: right;" value="Next day" onclick="next()">
-                    </div>
+                <td class="child">
+                    <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: left" value="Next day" onclick="next()">
+                </td>
+            </table>
+                                <input type="hidden" id="source" name="source" value="{{ source }}">
+
 {#                </div>#}
                 <span style="align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
