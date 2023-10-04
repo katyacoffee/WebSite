@@ -141,7 +141,28 @@
             justify-content: center;
             width: 10%;
             height: 10%;
+            {#display: flex;#}
+            {#justify-content: space-around; #}
         }
+
+        .topnav a1 {
+          float: right;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a1:hover {
+          {#background-color: #ddd;#}
+          color: #b2a9a9;
+        }
+        {##}
+        {#.topnav a1.active {#}
+        {#  background-color: #04AA6D;#}
+        {#  color: white;#}
+}
     </style>
     <div id="sideNavigation" class="sidenav">
         <a href="#" class="close-btn">&times;</a>
@@ -162,8 +183,11 @@
                 </a>
                 <a href="/" class="header_1" style="text-align: center">
                     {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 30px;">Geophysical Observatory Mikhnevo</span>
+                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>
                     {#              font-size: 3vw;#}
+                      <a1 href="/data" style="font-family: 'Roboto', sans-serif;">Data</a1>
+                      <a1 href="#contact">Equipment</a1>
+                      <a1 href="#about">Contacts</a1>
                 </a>
             </div>
         </header>

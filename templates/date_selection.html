@@ -171,6 +171,11 @@
             border-radius: 3px;
             padding: 5px 1em;
         }
+        {#.pointer {cursor: pointer;}#}
+
+        .clickable {
+          cursor: pointer;
+        }
     </style>
     <br>
     <form method="post" id="date_form">
@@ -207,6 +212,7 @@
                 <table class="table-calendar" id="calendar" data-lang="en">
                     <thead id="thead-month"></thead>
                     <tbody id="calendar-body"></tbody>
+{#                    <p class="pointer">pointer</p>#}
                 </table>
                 <div class="footer-container-calendar">
                     <label for="month" style="font-family: 'Roboto', sans-serif;">Select
@@ -257,7 +263,7 @@
             selectMonth = document.getElementById("month");
 
 
-            createYear = generate_year_range(2010, 2050);
+            createYear = generate_year_range(2005, 2050);
             /** or
              * createYear = generate_year_range( 1970, currentYear );
              */
@@ -377,6 +383,7 @@
                         if (d !== date) {
                             continue;
                         }
+
                         cell.style.fontWeight = 'bold';
                         cell.style.textDecoration = "underline";
                         cell.addEventListener("click", function (event) {
@@ -394,6 +401,10 @@
                             {#cell.setAttribute("selected_day", cell_date);#}
                             sessionStorage.setItem("selected_mon", cell_mon)
                             sessionStorage.setItem("selected_year", year)
+
+                            {#document.getElementById(cell_date.id).focus();#}
+                            {#document.getElementById(cell_date.id).select();#}
+
                             const mydate = document.getElementById("mydate")
                             mydate.value = cell_date + '/' + cell_mon + '/' + year
                         })
