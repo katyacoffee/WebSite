@@ -22,11 +22,13 @@ base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
 base_dir_serv_gps = '~mikhnevo/gnss/tec_rot/prego/png' #!!
 base_dir_serv_lem = '~mikhnevo/LEMI018/PNG'
 base_dir_serv_k_ind = '~mikhnevo/K-INDEX/PNG'
+base_dir_serv_meteo = '~mikhnevo/METEO/PNG/'
 source_vlf = 'vlf'
 source_tec = 'tec'
 source_gps = 'gps'
 source_lem = 'lem'
 source_k_ind = 'k_ind'
+source_meteo = 'meteo'
 
 
 class ServerDownException(Exception):
@@ -158,10 +160,12 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         base_dir_serv = base_dir_serv_lem
     elif source == source_k_ind:
         base_dir_serv = base_dir_serv_k_ind
+    elif source == source_meteo:
+        base_dir_serv = base_dir_serv_meteo
 
     s = sess()
     data_path = ''
-    if source == source_vlf or source == source_lem:
+    if source == source_vlf or source == source_lem or source == source_meteo:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
         print(data_path)
     elif source == source_tec or source == source_gps or source == source_k_ind:
@@ -190,7 +194,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-        elif source == source_lem:
+        elif source == source_lem or source == source_meteo:
             for pic in img_list:
                 if get_par_name(pic) != '':
                     img_list1.append(pic)
@@ -259,6 +263,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         base_dir_serv = base_dir_serv_lem
     elif source == source_k_ind:
         base_dir_serv = base_dir_serv_k_ind
+    elif source == source_meteo:
+        base_dir_serv = base_dir_serv_meteo
 
     with sess() as s:
         for i in range(1, 32):
@@ -267,7 +273,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 day = '0' + day
             data_path = ''
             # TODO для gps!
-            if source == source_vlf or source == source_lem:
+            if source == source_vlf or source == source_lem or source == source_meteo:
                 data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
             elif source == source_tec or source == source_gps or source == source_k_ind:
                 data_path = base_dir_serv + '/' + year + '/' + mon
@@ -292,7 +298,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 img_list = get_images(resp)
                 if source == source_vlf:
                     img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-                elif source == source_lem:
+                elif source == source_lem or source == source_meteo:
                     img_list.sort()
                     print(img_list)
                 # TODO для LEMI

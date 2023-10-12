@@ -16,6 +16,37 @@
 
 {% block content %}
 
+
+{#<nav class="navbar navbar-light bg-light fixed-top">#}
+{#  <div class="container-fluid">#}
+{#    <a class="navbar-brand" href="#">Навигационная панель Offcanvas</a>#}
+{#    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">#}
+{#      <span class="navbar-toggler-icon"></span>#}
+{#    </button>#}
+{#    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">#}
+{#      <div class="offcanvas-header">#}
+{#        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>#}
+{#        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>#}
+{#      </div>#}
+{#      <div class="offcanvas-body">#}
+{#        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link active" aria-current="page" href="#">Главная</a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="#">Ссылка</a>#}
+{#          </li>#}
+{#        </ul>#}
+{#        <form class="d-flex">#}
+{#          <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">#}
+{#          <button class="btn btn-outline-success" type="submit">Поиск</button>#}
+{#        </form>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</nav>#}
+
+
 <style>
 
         p {
@@ -328,88 +359,6 @@
         </div>
       </div>
     </div>
-{#          <div class="textcols1">#}
-{#            <div class="textcols1-item" style="max-height: 1000px; min-height: 400px">#}
-{#                <b>Текст первой колонки</b>#}
-{#                        <h2> <br>#}
-{#                            Javad Sigma</h2>#}
-{#                        <br>#}
-{#                        <br>#}
-{#                        <p class="p2">Coordinates: <br>#}
-{#                            latitude: 54°57´ <br>#}
-{#                            longitude: 37°46´#}
-{#                            <br>#}
-{#                            <br>#}
-{#                            <ul>#}
-{#                                <li>GPS L1/L2/L5</li>#}
-{#                                <li>GLONASS L1/L2</li>#}
-{#                                <li>SBAS L1/L5</li>#}
-{#                                <li>1 Hz update rate</li>#}
-{#                            </ul>#}
-{#                        </p>#}
-{#                        <div class="box2-side">#}
-{#                            <form method="post" id="vlf">#}
-{#                                <br>#}
-{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
-{#                                <input type="hidden" id="source" name="source" value="vlf">#}
-{#                            </form>#}
-{#                            <br>#}
-{#                        </div>#}
-{#            </div>#}
-{#            <div class="textcols1-item" style="max-height: 1000px; min-height: 400px">#}
-{#                        <h2> <br>#}
-{#                            Javad Prego</h2>#}
-{#                        <br>#}
-{#                        <br>#}
-{#                        <p class="p2">Coordinates: <br>#}
-{#                            latitude: 54°57´ <br>#}
-{#                            longitude: 37°46´#}
-{#                            <br>#}
-{#                            <br>#}
-{#                            <ul>#}
-{#                                <li>GPS L1/L2/L5</li>#}
-{#                                <li>1 Hz update rate</li>#}
-{#                            </ul>#}
-{#                            <br>#}
-{#                            <br>#}
-{#                        </p>#}
-{#                        <div class="box2-side">#}
-{#                            <form method="post" id="gps">#}
-{#                                <br>#}
-{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
-{#                                <input type="hidden" id="source" name="source" value="gps">#}
-{#                            </form>#}
-{#                            <br>#}
-{#                        </div>#}
-{#            </div>#}
-{#            <div class="textcols1-item" style="max-height: 1000px; min-height: 400px">#}
-{#                        <h2> <br>#}
-{#                            Trimble 5700</h2>#}
-{#                        <br>#}
-{#                        <br>#}
-{#                        <p class="p2">Coordinates: <br>#}
-{#                            latitude: 54°57´ <br>#}
-{#                            longitude: 37°46´#}
-{#                            <br>#}
-{#                            <br>#}
-{#                            <ul>#}
-{#                                <li>GPS L1/L2/L5</li>#}
-{#                                <li>1 Hz update rate</li>#}
-{#                            </ul>#}
-{#                            <br>#}
-{#                            <br>#}
-{#                        </p>#}
-{#                        <div class="box2-side">#}
-{#                            <form method="post" id="vlf">#}
-{#                                <br>#}
-{#                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:2vw;">⟶</button>#}
-{#                                <input type="hidden" id="source" name="source" value="vlf">#}
-{#                            </form>#}
-{#                            <br>#}
-{#                        </div>#}
-{#            </div>#}
-{#        </div>#}
-
     <div class="box-container">
       <div class="box1-content content">
         <h1>LEMI018</h1>
@@ -444,67 +393,67 @@
 
     <div class="box-container">
       <div class="box1-content content">
-        <h1>Temperature</h1>
+        <h1>Weather data</h1>
           <br>
         <p></p>
            <div class="box1-side">
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
-            <form method="post" id="vlf">
+            <form method="post" id="meteo">
                 <br>
                 <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>
-                <input type="hidden" id="source" name="source" value="vlf">
+                <input type="hidden" id="source" name="source" value="meteo">
             </form>
            </div>
       </div>
     </div>
 
-    <div class="box-container">
-      <div class="box1-content content">
-        <h1>Humidity</h1>
-          <br>
-        <p></p>
-           <div class="box1-side">
+{#    <div class="box-container">#}
+{#      <div class="box1-content content">#}
+{#        <h1>Humidity</h1>#}
+{#          <br>#}
+{#        <p></p>#}
+{#           <div class="box1-side">#}
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
-            <form method="post" id="vlf">
-                <br>
-                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>
-                <input type="hidden" id="source" name="source" value="vlf">
-            </form>
-           </div>
-      </div>
-    </div>
-
-    <div class="box-container">
-      <div class="box1-content content">
-        <h1>Atmosphere pressure</h1>
-          <br>
-        <p></p>
-           <div class="box1-side">
+{#            <form method="post" id="vlf">#}
+{#                <br>#}
+{#                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>#}
+{#                <input type="hidden" id="source" name="source" value="vlf">#}
+{#            </form>#}
+{#           </div>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <div class="box-container">#}
+{#      <div class="box1-content content">#}
+{#        <h1>Atmosphere pressure</h1>#}
+{#          <br>#}
+{#        <p></p>#}
+{#           <div class="box1-side">#}
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
-            <form method="post" id="vlf">
-                <br>
-                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>
-                <input type="hidden" id="source" name="source" value="vlf">
-            </form>
-           </div>
-      </div>
-    </div>
-
-    <div class="box-container">
-      <div class="box1-content content">
-        <h1>Wind speed</h1>
-          <br>
-        <p></p>
-           <div class="box1-side">
+{#            <form method="post" id="vlf">#}
+{#                <br>#}
+{#                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>#}
+{#                <input type="hidden" id="source" name="source" value="vlf">#}
+{#            </form>#}
+{#           </div>#}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <div class="box-container">#}
+{#      <div class="box1-content content">#}
+{#        <h1>Wind speed</h1>#}
+{#          <br>#}
+{#        <p></p>#}
+{#           <div class="box1-side">#}
 {#               TODO ИЗМЕНИТЬ ПОТОМ#}
-            <form method="post" id="vlf">
-                <br>
-                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>
-                <input type="hidden" id="source" name="source" value="vlf">
-            </form>
-           </div>
-      </div>
-    </div>
+{#            <form method="post" id="vlf">#}
+{#                <br>#}
+{#                <button type="submit" formaction="/date-selection" class="button" style="font-size:28px; justify-content: center">Data</button>#}
+{#                <input type="hidden" id="source" name="source" value="vlf">#}
+{#            </form>#}
+{#           </div>#}
+{#      </div>#}
+{#    </div>#}
     <div class="box-container">
       <div class="box1-content">
         <h1>Median TEC</h1>

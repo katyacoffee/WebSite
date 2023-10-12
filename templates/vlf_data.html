@@ -106,14 +106,19 @@
             }
 
 
-            .mom {
-                width: 100%; /* Try setting this to 400px or something */
+            .center {
+                max-width: 1000px;
+                align-content: center;
+                margin-left: auto;
+                margin-right: auto;
+                {#width: 100%; /* Try setting this to 400px or something */#}
                 {#display: table;#}
             }
             .child {
                 {#display: table-cell;#}
                 align-content: center;
                 width: 33%;
+                padding: 0 15px;
             }
             .child:first-child .childinner {
                 margin-left: 0;
@@ -125,7 +130,7 @@
 {#        {% else %}#}
 
         <form method="post" id="date_form">
-            <table class="mom">
+            <table class="center">
                 <td class="child">
 {#                <div class="three-inline-buttons">#}
 {#                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">#}
