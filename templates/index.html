@@ -9,8 +9,164 @@
     <!-- CSS -->
     <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
 </head>
+
+
+{#<div style="margin-top:210px;padding:15px 15px 2500px;font-size:30px">#}
+{#  <p><b>This example demonstrates how to shrink a navigation bar when the user starts to scroll the page.</b></p>#}
+{#  <p>Scroll down this frame to see the effect!</p>#}
+{#  <p>Scroll to the top to remove the effect.</p>#}
+{#  <p><b>Note:</b> We have also made the navbar responsive, resize the browser window to see the effect.</p>#}
+{#  <p>Lorem ipsum dolor dummy text to enable scrolling, sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
+{#</div>#}
+
+{#<script>#}
+{#// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size#}
+{#window.onscroll = function() {scrollFunction()};#}
+{##}
+{#function scrollFunction() {#}
+{#  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {#}
+{#    document.getElementById("navbar").style.padding = "30px 10px";#}
+{#    document.getElementById("logo").style.fontSize = "25px";#}
+{#  } else {#}
+{#    document.getElementById("navbar").style.padding = "80px 10px";#}
+{#    document.getElementById("logo").style.fontSize = "35px";#}
+{#  }#}
+{#}#}
+{#</script>#}
+
+{#<body>#}
+{#<main>#}
+
+
+<style>
+    * {box-sizing: border-box;}
+
+    body {
+      margin: 0;
+      font-family: Roboto, sans-serif;
+    }
+
+    #ham-icon {
+        vertical-align: middle;
+        justify-content: center;
+        width: 10%;
+        height: 10%;
+    }
+
+    #navbar {
+      overflow: hidden;
+      background-color: #68819a;
+      font-family: 'Roboto', sans-serif;
+      padding: 30px 10px;
+      {#transition: 0.4s;#}
+      {#position: fixed;#}
+      width: 100%;
+      top: 0;
+      {#z-index: 99;#}
+    }
+
+    #navbar a {
+      float: left;
+      color: White;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      line-height: 25px;
+      border-radius: 4px;
+      transition: 0.4s;
+    }
+
+    #navbar #logo {
+      font-size: 30px;
+      {#font-weight: bold;#}
+      transition: 0.4s;
+      min-width: 500px;
+    }
+
+    #navbar a:hover {
+      background-color: #68819a;
+      color: #b2a9a9;
+    }
+
+    {##navbar a.active {#}
+    {#  background-color: dodgerblue;#}
+    {#  color: white;#}
+    {#}#}
+
+    #navbar-right {
+      float: right;
+      font-size: 20px;
+      transition: 0.4s;
+    }
+
+    @media screen and (max-width: 980px) {
+      {##navbar {#}
+        {#padding: 20px 10px !important;#}
+          {#overflow: hidden;#}
+      {#}#}
+      #navbar #logo {
+        {#font-size: 30px;#}
+        {#transition: 0.4s;#}
+        text-align: center;
+        {#float: right;#}
+        align-items: center;
+        justify-content: center;
+        {#min-width: 550px;#}
+      }
+      #navbar a {
+        float: none;
+        {#display: flex;#}
+        text-align: left;
+      }
+      #navbar-right {
+        {#float: none;#}
+        display: none;
+      }
+      #ham-icon {
+        vertical-align: middle;
+        justify-content: center;
+        width: 10%;
+        height: 10%;
+      }
+    }
+</style>
+
+<body>
+
+    <div id="navbar">
+        <a href="#" class="ham-icon" style="align-items: center;">
+            <svg width="30" height="30">
+                <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
+                <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
+                <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
+            </svg>
+        </a>
+{#        <a href="/" class="header_1" style="text-align: center">#}
+{#            <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>#}
+
+
+                    {#              font-size: 3vw;#}
+{#                      <a1 href="/data" style="font-family: 'Roboto', sans-serif;">Data</a1>#}
+{#                      <a1 href="#contact">Equipment</a1>#}
+{#                      <a1 href="#about">Contacts</a1>#}
+{#        </a>#}
+
+
+      <a href="/" id="logo" style="display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; vertical-align: center">Geophysical Observatory Mikhnevo</a>
+      <div id="navbar-right">
+        <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
+        <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
+        <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
+      </div>
+    </div>
+</body>
+
 <body>
 <main>
+
+
     <style>
         * {
             padding: 0;
@@ -30,14 +186,14 @@
             overflow-x: hidden;
             padding-top: 4rem;
             transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-            font-family: "Open Sans", serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         .sidenav a {
             padding: 0.5rem 1rem;
             text-decoration: none;
             color: #f8f6f6;
-            font-family: "Open Sans", serif;
+            font-family: 'Roboto', sans-serif;
             display: block;
             transition: 0.4s;
             white-space: nowrap;
@@ -76,8 +232,7 @@
 
         /* Add a black background color to the top navigation */
         .topnav {
-        {#background-color: #316e8d;#} background-color: #68819a;
-            {#background-color: #5a728a;#}
+            background-color: #68819a;
             overflow: hidden;
             vertical-align: center;
             align-content: center;
@@ -102,7 +257,6 @@
         /* Change the color of links on hover */
         .topnav a:hover {
             background-color: #68819a;
-            {#background-color: #5a728a;#}
             color: #5e5b5b;
         }
 
@@ -110,6 +264,7 @@
         @media screen and (max-height: 480px) {
             .sidenav {
                 padding-top: 3rem;
+
             }
 
             .sidenav a {
@@ -126,12 +281,12 @@
         }
 
         section h1 {
-            font-family: "Open Sans", serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 4rem;
         }
 
         section p {
-            font-family: "Open Sans", serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.8;
             font-size: 1.5rem;
         }
@@ -141,8 +296,6 @@
             justify-content: center;
             width: 10%;
             height: 10%;
-            {#display: flex;#}
-            {#justify-content: space-around; #}
         }
 
         .topnav a1 {
@@ -155,42 +308,31 @@
         }
 
         .topnav a1:hover {
-          {#background-color: #ddd;#}
           color: #b2a9a9;
         }
-        {##}
-        {#.topnav a1.active {#}
-        {#  background-color: #04AA6D;#}
-        {#  color: white;#}
-}
     </style>
+
     <div id="sideNavigation" class="sidenav">
         <a href="#" class="close-btn">&times;</a>
         <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
-{#        <a href="/date-selection" style="font-family: 'Roboto', sans-serif;">VLF</a>#}
         <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
         <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
     </div>
-    <nav class="topnav">
-        <header class="header">
-            <div class="fs-1">
-                <a href="#" class="ham-icon" style="align-items: center;">
-                    <svg width="30" height="30">
-                        <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>
-                        <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>
-                        <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
-                    </svg>
-                </a>
-                <a href="/" class="header_1" style="text-align: center">
-                    {#                  <img src="{% static 'fav-planet.png' %}" width=7% height=7%>#}
-                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>
-                    {#              font-size: 3vw;#}
-                      <a1 href="/data" style="font-family: 'Roboto', sans-serif;">Data</a1>
-                      <a1 href="#contact">Equipment</a1>
-                      <a1 href="#about">Contacts</a1>
-                </a>
-            </div>
-        </header>
+{#    <nav class="topnav">#}
+{#        <header class="header">#}
+{#            <div class="fs-1">#}
+{#                <a href="#" class="ham-icon" style="align-items: center;">#}
+{#                    <svg width="30" height="30">#}
+{#                        <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>#}
+{#                        <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>#}
+{#                        <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>#}
+{#                    </svg>#}
+{#                </a>#}
+{#                <a href="/" class="header_1" style="text-align: center">#}
+{#                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>#}
+{#                </a>#}
+{#            </div>#}
+{#        </header>#}
         <script>
             document.querySelector("a.ham-icon").addEventListener("click", function (event) {
                 document.getElementById("sideNavigation").style.width = "250px";
@@ -202,8 +344,9 @@
                 document.getElementById("main").style.marginLeft = "0";
             });
         </script>
-    </nav>
+{#    </nav>#}
     <br>
+
     <style>
         .img1 {
             /*padding: 0;*/

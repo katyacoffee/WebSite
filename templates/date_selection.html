@@ -4,12 +4,6 @@
     Date picker
 {% endblock %}
 
-{#{% block page-title %}#}
-{#{% endblock %}#}
-{##}
-{#{% block page-lead %}#}
-{#{% endblock %}#}
-
 
 {% block content %}
 
@@ -32,15 +26,57 @@
                 background: #5c748c;
                 color: #f8f8f8;
             }
+
+            .btn_up {
+                display: inline-block;
+                background: #68819a;
+                font-size: 20px;
+                width: 160px;
+                color: white;
+                font-family: 'Roboto', sans-serif;
+                border: #68819a;
+                border-radius: 8px;
+                min-height: 40px;
+            }
+
+            .btn_up:hover {
+                background: #5c748c;
+                color: #f8f8f8;
+            }
+
+
+            .center {
+                max-width: 1000px;
+                align-content: center;
+                margin-left: auto;
+                margin-right: auto;
+                {#width: 100%; /* Try setting this to 400px or something */#}
+                {#display: table;#}
+            }
+            .child {
+                {#display: table-cell;#}
+                align-content: center;
+                width: 50%;
+                padding: 0 15px;
+            }
+            .child:first-child .childinner {
+                margin-left: 0;
+            }
         </style>
+
 {#        <form method="post" id="date_form">#}
-{#        <a href="/date-selection" class="btn">Back to date picker</a>#}
-        <a href="/data" class="btn" style="float: left;">To data selection</a>
-{#            <input class="btn" type="submit" formaction="/data" value="To data selection">#}
-{#        </form>#}
-        <a href="/" class="btn" style="float: right;">Home Page</a>
+            <table class="center">
+                <td class="child">
+                    <a href="/data" class="btn" style="float: right; font-family: 'Roboto', sans-serif;">Data selection</a>
+{#                    <input class="btn_up" type="submit" formaction="/data" style="float: right; font-family: 'Roboto', sans-serif;" value="Data selection">#}
+                </td>
+                <td class="child" style="text-align: center;">
+                    <a href="/" class="btn" style="float: left; font-family: 'Roboto', sans-serif;">Home Page</a>
+{#                    <input class="btn_up" type="submit" formaction="/" style="text-align:center; font-family: 'Roboto', sans-serif;" value="Home Page">#}
+                </td>
+            </table>
     </div>
-    <br>
+{#    <br>#}
 
     <style>
         .wrapper {
