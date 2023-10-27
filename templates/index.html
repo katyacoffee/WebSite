@@ -27,12 +27,12 @@
               overflow: hidden;
               background-color: #68819a;
               font-family: 'Roboto', sans-serif;
-              padding: 30px 10px;
-                vertical-align: center;
+              padding: 25px 10px;
+              vertical-align: middle;
               {#transition: 0.4s;#}
               {#position: fixed;#}
               width: 100%;
-                height: 100px;
+              height: 80px;
               top: 0;
               {#z-index: 99;#}
             }
@@ -42,66 +42,69 @@
               color: White;
               text-align: center;
               {#padding: 12px;#}
-                margin-left: 12px;
+              margin-left: 12px;
+              margin-right: 18px;
               text-decoration: none;
+              font-weight: 300;
               font-family: 'Roboto', sans-serif;
               font-size: 20px;
               line-height: 25px;
               border-radius: 4px;
               transition: 0.4s;
-                justify-content: center;
-                    align-items: center;
+              justify-content: center;
+              align-items: center;
             }
 
             #navbar #logo {
               font-size: 30px;
-                margin: 12px;
+              margin: 10px;
+              vertical-align: middle;
               {#font-weight: bold;#}
               {#transition: 0.4s;#}
               min-width: 500px;
+
+            }
+
+            #navbar #logo:hover {
+              color: White;
             }
 
             #navbar a:hover {
               background-color: #68819a;
               color: #b2a9a9;
-                margin-left: 12px;
+              margin-left: 12px;
             }
-
-            {##navbar a.active {#}
-            {#  background-color: dodgerblue;#}
-            {#  color: white;#}
-            {#}#}
 
             #navbar-right {
               float: right;
+              height: 35px;
               font-size: 20px;
               transition: 0.4s;
+              {#margin-right: 22px;#}
+              {#margin-left: 22px;#}
             }
 
             .ham-icon {
-                    vertical-align: middle;
-                    justify-content: center;
-                    align-items: center;
-                    height: 30px;
-                    width: 30px;
-                    padding: 0;
+                vertical-align: middle;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                width: 30px;
+                padding: 0;
+                margin-right: 16px;
                 }
 
             @media screen and (max-width: 980px) {
-            {##navbar {#}
-            {#padding: 20px 10px !important;#}
-            {#overflow: hidden;#}
-            {#}#}
                 #navbar {
                   overflow: hidden;
                   background-color: #68819a;
                   font-family: 'Roboto', sans-serif;
-                  padding: 30px 10px;
-                    vertical-align: middle;
+                  padding: 25px 10px;
+                  vertical-align: middle;
                   {#transition: 0.4s;#}
                   {#position: fixed;#}
                   width: 100%;
-                    height: 100px;
+                  height: 80px;
                   top: 0;
                   {#z-index: 99;#}
                 }
@@ -120,15 +123,15 @@
                   color: White;
                   text-align: center;
                   {#padding: 12px;#}
-                    margin-left: 12px;
+                  margin-left: 12px;
                   text-decoration: none;
                   font-family: 'Roboto', sans-serif;
                   font-size: 20px;
                   line-height: 25px;
                   border-radius: 4px;
                   transition: 0.4s;
-                    justify-content: center;
-                    align-items: center;
+                  justify-content: center;
+                  align-items: center;
                 }
 
                 #navbar-right {
@@ -149,6 +152,7 @@
                 padding-top: 4rem;
                 transition: 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
                 font-family: 'Roboto', sans-serif;
+                font-weight: 300;
             }
 
             .sidenav a {
@@ -181,39 +185,12 @@
                 transform: scale(1.2);
             }
 
-            /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-            {##main {#}
-            {#    transition: margin-left 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);#}
-            {#    padding: 20px;#}
-            {#    width: 100%;#}
-            {#}#}
-            {##}
-            {#body {#}
-            {#    overflow-x: hidden;#}
-            {#}#}
-
-            /* Add a black background color to the top navigation */
-            .topnav {
-                background-color: #68819a;
-                overflow: hidden;
-                vertical-align: center;
-                align-content: center;
-            }
-
             /* Style the links inside the navigation bar */
             .topnav a {
                 float: left;
                 display: block;
                 padding: 1rem;
                 text-decoration: none;
-            }
-
-            .header_1 {
-                margin: auto;
-                width: 80%;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
             }
 
             /* Change the color of links on hover */
@@ -244,21 +221,16 @@
 
             section h1 {
                 font-family: 'Roboto', sans-serif;
+                font-weight: 300;
                 font-size: 4rem;
             }
 
             section p {
                 font-family: 'Roboto', sans-serif;
+                font-weight: 300;
                 line-height: 1.8;
                 font-size: 1.5rem;
             }
-
-            {#.ham-icon {#}
-            {#    vertical-align: middle;#}
-            {#    justify-content: center;#}
-            {#    width: 10%;#}
-            {#    height: 10%;#}
-            {#}#}
 
             .topnav a1 {
               float: right;
@@ -281,45 +253,20 @@
                     <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>
                 </svg>
             </a>
-    {#        <a href="/" class="header_1" style="text-align: center">#}
-    {#            <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>#}
-
-
-                        {#              font-size: 3vw;#}
-    {#                      <a1 href="/data" style="font-family: 'Roboto', sans-serif;">Data</a1>#}
-    {#                      <a1 href="#contact">Equipment</a1>#}
-    {#                      <a1 href="#about">Contacts</a1>#}
-    {#        </a>#}
-
 
           <a href="/" id="logo">Geophysical Observatory Mikhnevo</a>
           <div id="navbar-right">
-            <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
-            <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
-            <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
+            <a href="/data" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Data</a>
+            <a href="/equipment" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Equipment</a>
+            <a href="/contacts" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Contacts</a>
           </div>
         </div>
         <div id="sideNavigation" class="sidenav">
             <a href="#" class="close-btn">&times;</a>
-            <a href="/data" style="font-family: 'Roboto', sans-serif;">Data</a>
-            <a href="/equipment" style="font-family: 'Roboto', sans-serif;">Equipment</a>
-            <a href="/contacts" style="font-family: 'Roboto', sans-serif;">Contacts</a>
+            <a href="/data" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Data</a>
+            <a href="/equipment" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Equipment</a>
+            <a href="/contacts" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Contacts</a>
         </div>
-{#    <nav class="topnav">#}
-{#        <header class="header">#}
-{#            <div class="fs-1">#}
-{#                <a href="#" class="ham-icon" style="align-items: center;">#}
-{#                    <svg width="30" height="30">#}
-{#                        <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"></path>#}
-{#                        <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"></path>#}
-{#                        <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"></path>#}
-{#                    </svg>#}
-{#                </a>#}
-{#                <a href="/" class="header_1" style="text-align: center">#}
-{#                    <span style=" font-family: 'Roboto', sans-serif; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; margin: 0 auto; font-size: 27px; vertical-align: center">Geophysical Observatory Mikhnevo</span>#}
-{#                </a>#}
-{#            </div>#}
-{#        </header>#}
         <script>
             document.querySelector("a.ham-icon").addEventListener("click", function (event) {
                 document.getElementById("sideNavigation").style.width = "250px";
@@ -350,42 +297,39 @@
             /*transform: translateY(50%);*/
             justify-content: center;
         }
-                        .btn {
-                            display: inline-flex;
-                            background: #68819a;
-                        {#font-size: 16px;#}
-                            width: 150px;
-                            height: 45px;
-                            color: #ffffff;
-                            font-size: 18px;
-                            font-family: 'Roboto', sans-serif;
-                            border: #68819a;
-                            border-radius: 8px;
-                            margin: auto;
-                            justify-content: center;
-                            align-items: center;
-                            vertical-align: center;
-                        }
-                        .btn:hover {
-                            background: #576f88;
-                            color: #f8f6f6;
-                        }
-                     </style>
-    <!--            <img class="img1" src="{% static 'map.jpg' %}">-->
-    <!--            <div class="container-fluid py-5">-->
-    <!--                <h1 class="display-1 fw-bold">{% block page-title %}{% endblock %}</h1>-->
-    <!--                <p class="col-md-8 fs-4">{% block page-lead %}{% endblock %}</p>-->
-    <!--            </div>-->
-    <!--        </div>-->
+
+        .btn {
+            display: inline-flex;
+            background: #68819a;
+        {#font-size: 16px;#}
+            width: 150px;
+            height: 45px;
+            color: #ffffff;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            border: #68819a;
+            border-radius: 8px;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            vertical-align: center;
+        }
+
+        .btn:hover {
+            background: #576f88;
+            color: #f8f6f6;
+        }
+    </style>
     <img class="img1" src="{% static 'map.jpg' %}">
     <div class="container px-4 py-5" id="main-contents">
         {#        <div class="container">#}
         {#            <div class="col-md-7">#}
         <h2 class="pb-2 border-bottom"
-            style="font-family: 'Roboto', sans-serif; font-size: 30px;">The
+            style="font-family: 'Roboto', sans-serif; font-size: 30px; font-weight: 300;">The
             Observatory</h2>
         {#            <hr>#}
-        <p style="font-family: 'Roboto', sans-serif;">The Geophysical Observatory
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">The Geophysical Observatory
             Mikhnevo was founded in 1954. The
             Observatory is located at 80 km to
             the south of Moscow (54 ° 57' N, 37 ° 46' E). The Observatory carries
@@ -394,13 +338,13 @@
             geospheres of the Earth.
             The observatory is equipped with a multifunctional measuring systems,
             which includes:</p>
-        <p style="font-family: 'Roboto', sans-serif;">- Small aperture seismic
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">- Small aperture seismic
             array</p>
-        <p style="font-family: 'Roboto', sans-serif;">- Magnetometric complex</p>
-        <p style="font-family: 'Roboto', sans-serif;">- HF, LF, VLF and ELF
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">- Magnetometric complex</p>
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">- HF, LF, VLF and ELF
             receivers</p>
-        <p style="font-family: 'Roboto', sans-serif;">- Weather station</p>
-        <p style="font-family: 'Roboto', sans-serif;">This equipment makes it
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">- Weather station</p>
+        <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">This equipment makes it
             possible to carry out synchronous and
             coordinated measurements of
             lithospheric, atmospheric and ionospheric processes.</p>
@@ -408,7 +352,7 @@
         {#        </div>#}
         {#    <div class="container px-4 py-5" id="main-contents">#}
         <h2 class="pb-2 border-bottom"
-            style="font-family: 'Roboto', sans-serif; font-size: 30px;">Menu</h2>
+            style="font-family: 'Roboto', sans-serif; font-size: 30px; font-weight: 300;">Menu</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="col d-flex" style="justify-content: center; align-items: center">
                 <div>
@@ -442,7 +386,7 @@
             Institute of geosphere dynamics of Russian academy of sciences
         </footer>
     </div>
-</main>
+    </main>
 </body>
 </html>
 

@@ -34,6 +34,7 @@
                 width: 160px;
                 color: white;
                 font-family: 'Roboto', sans-serif;
+                font-weight: 300;
                 border: #68819a;
                 border-radius: 8px;
                 min-height: 40px;
@@ -67,11 +68,11 @@
 {#        <form method="post" id="date_form">#}
             <table class="center">
                 <td class="child">
-                    <a href="/data" class="btn" style="float: right; font-family: 'Roboto', sans-serif;">Data selection</a>
+                    <a href="/data" class="btn" style="float: right; font-family: 'Roboto', sans-serif;font-weight: 300;">Data selection</a>
 {#                    <input class="btn_up" type="submit" formaction="/data" style="float: right; font-family: 'Roboto', sans-serif;" value="Data selection">#}
                 </td>
                 <td class="child" style="text-align: center;">
-                    <a href="/" class="btn" style="float: left; font-family: 'Roboto', sans-serif;">Home Page</a>
+                    <a href="/" class="btn" style="float: left; font-family: 'Roboto', sans-serif; font-weight: 300;">Home Page</a>
 {#                    <input class="btn_up" type="submit" formaction="/" style="text-align:center; font-family: 'Roboto', sans-serif;" value="Home Page">#}
                 </td>
             </table>
@@ -124,26 +125,34 @@
             border: 1px solid #e2e2e2;
             text-align: center;
             font-family: 'Roboto', sans-serif;
+            {#font-weight: 300;#}
             vertical-align: top;
             width: 70px
+        }
+
+        .table-calendar td {
+            font-weight: 300;
         }
 
         /* sunday */
         .date-picker:nth-child(1) {
             color: #0a0a0a;
             font-family: 'Roboto', sans-serif;
+            font-weight: 300;
         }
 
         /* friday */
         .date-picker:nth-child(6) {
             color: #0e0e0e;
             font-family: 'Roboto', sans-serif;
+            font-weight: 300;
         }
 
         #monthAndYear {
             text-align: center;
             margin-top: 0;
             font-family: 'Roboto', sans-serif;
+            font-weight: 300;
         }
 
         .button-container-calendar {
@@ -160,6 +169,9 @@
             color: #fff;
             border-radius: 3px;
             font-family: 'Roboto', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            {#vertical-align: middle;#}
             height: 30px;
             width: 26px;
             border: 1px solid #0aa2b5;
@@ -178,6 +190,8 @@
             color: #fff;
             border-radius: 3px;
             font-family: 'Roboto', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
             height: 30px;
             width: 26px;
             border: 1px solid #0aa2b5;
@@ -203,6 +217,7 @@
             background: #ffffff;
             color: #585858;
             font-family: 'Roboto', sans-serif;
+            font-weight: 300;
             border: 1px solid #bfc5c5;
             border-radius: 3px;
             padding: 5px 1em;
@@ -218,12 +233,13 @@
         <div style="margin: 0 auto; width: 280px; height: 45px;">
             <div style="position:relative">
                 <input id="mydate" name="mydate" type="text" class="form-control"
-                       style="font-family: 'Roboto', sans-serif;"
+                       style="font-family: 'Roboto', sans-serif; font-weight: 300;"
                        placeholder="DD/MM/YYYY">
                 <span style="font-size: 20px;
                             position: absolute;
                             margin: 0 auto;
                             font-family: 'Roboto', sans-serif;
+                            font-weight: 300;
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
@@ -251,7 +267,7 @@
 {#                    <p class="pointer">pointer</p>#}
                 </table>
                 <div class="footer-container-calendar">
-                    <label for="month" style="font-family: 'Roboto', sans-serif;">Select
+                    <label for="month" style="font-family: 'Roboto', sans-serif; font-weight: 300;">Select
                         month and year </label>
                     <select id="month" onchange="jump()">
                         <option value=0>Jan</option>
@@ -281,6 +297,7 @@
                 cellText.innerHTML = "Server is temporarily unavailable";
                 cellText.style.textAlign = "center";
                 cellText.style.fontFamily = "Roboto, sans-serif";
+                {#cellText.style.fontWeight = "300"#}
                 main_block.appendChild(cellText);
 
             }
@@ -411,14 +428,14 @@
 
                             today = new Date();
                             if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                        cell.className = "date-picker selected";
+                                cell.className = "date-picker selected";
                             }
                             cell.date = `${date}`
                             // cell.setAttribute("style", "textColor=#fff")
                             for (let d of avail_days) {
-                        if (d !== date) {
-                            continue;
-                        }
+                                if (d !== date) {
+                                    continue;
+                                }
 
                         cell.style.fontWeight = 'bold';
                         cell.style.textDecoration = "underline";
@@ -467,7 +484,7 @@
         </script>
         <div class="row px-5 py-2">
             <button type="submit" formaction="/get-vlf-data" class="btn btn-info" onclick="view_date()"
-                    style="font-family: 'Roboto', sans-serif; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">
+                    style="font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">
                 View
             </button>
         </div>
