@@ -120,6 +120,10 @@
             width: 100%;
         }
 
+        .table-calendar.pointer {
+            cursor: pointer;
+        }
+
         .table-calendar td, .table-calendar th {
             padding: 5px;
             border: 1px solid #e2e2e2;
@@ -399,6 +403,7 @@
             function showCalendar(month, year) {
                 var firstDay = (new Date(year, month, 7)).getDay();
                 tbl = document.getElementById("calendar-body");
+                tbl.style.cursor = "pointer";
                 tbl.innerHTML = "";
                 monthAndYear.innerHTML = months[month] + " " + year;
                 selectYear.value = year;
@@ -432,13 +437,13 @@
                             }
                             cell.date = `${date}`
                             // cell.setAttribute("style", "textColor=#fff")
-                            for (let d of avail_days) {
-                                if (d !== date) {
-                                    continue;
-                                }
-
-                        cell.style.fontWeight = 'bold';
-                        cell.style.textDecoration = "underline";
+                        {#    for (let d of avail_days) {#}
+                        {#        if (d !== date) {#}
+                        {#            continue;#}
+                        {#        }#}
+                        {##}
+                        {#cell.style.fontWeight = 'bold';#}
+                        {#cell.style.textDecoration = "underline";#}
                         cell.addEventListener("click", function (event) {
                             var cell_date = event.currentTarget.date
                             // noinspection EqualityComparisonWithCoercionJS
@@ -460,7 +465,14 @@
 
                             const mydate = document.getElementById("mydate")
                             mydate.value = cell_date + '/' + cell_mon + '/' + year
-                        })
+                            })
+                            for (let d of avail_days) {
+                                if (d !== date) {
+                                    continue;
+                                }
+
+                            cell.style.fontWeight = 'bold';
+                            cell.style.textDecoration = "underline";
                         break
                             }
                             row.appendChild(cell);

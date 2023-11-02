@@ -36,8 +36,10 @@ def gps(request):
         print(new_stat)
         no_data = False
         # im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source) # TODO - получать im_all и im_list !!
-        im_all = 'photo_2023-09-14 08.23.32.jpeg'
-        im_list = ['photo_2023-09-14 08.23.55.jpeg', 'photo_2023-09-14 08.23.41.jpeg', 'photo_2023-09-14 08.23.37.jpeg', 'photo_2023-09-14 08.23.45.jpeg', 'photo_2023-09-14 08.23.51.jpeg']
+        im_all = 'prego_ROT_TEC_GPS_ROT.2022-01-01.png'
+        im_list = ['prego_ROT_TEC_GPS_Az.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_Elev.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png']
+        # im_all = 'photo_2023-09-14 08.23.32.jpeg'
+        # im_list = ['photo_2023-09-14 08.23.55.jpeg', 'photo_2023-09-14 08.23.41.jpeg', 'photo_2023-09-14 08.23.37.jpeg', 'photo_2023-09-14 08.23.45.jpeg', 'photo_2023-09-14 08.23.51.jpeg']
         context = {"success": True,
                    "new_stat": new_stat,
                    "im_all": im_all,

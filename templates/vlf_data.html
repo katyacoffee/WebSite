@@ -9,24 +9,25 @@
 {% block content %}
     <body style='background-color: #dadfe0'>
 {#    <div class="container px-4 py-5" id="main-contents">#}
-        <style>
-            .btn {
-                float: left;
-                display: inline-block;
-                background: #68819a;
-                font-size: 20px;
-                width: 160px;
-                color: white;
-                font-family: 'Roboto', sans-serif;
-                border: #68819a;
-                border-radius: 8px;
-            }
+{#        <style>#}
+{#            .btn {#}
+{#                float: left;#}
+{#                display: inline-block;#}
+{#                background: #68819a;#}
+{#                font-size: 20px;#}
+{#                width: 160px;#}
+{#                color: white;#}
+{#                font-family: 'Roboto', sans-serif;#}
+{#                border: #68819a;#}
+{#                border-radius: 8px;#}
+{#            }#}
+{##}
+{#            .btn:hover {#}
+{#                background: #5c748c;#}
+{#                color: #f8f8f8;#}
+{#            }#}
+{#        </style>#}
 
-            .btn:hover {
-                background: #5c748c;
-                color: #f8f8f8;
-            }
-        </style>
 {#        <form method="post" id="date_form">#}
 
 {#            <div class="row-fluid">#}
@@ -44,39 +45,39 @@
 {#    <span class="fs-2"></span>#}
     <div class="fw-bold">{% if success %}{{ date_test }}
         <style>
-            .btn-previous {
-                float: left;
-                display: inline-block;
-                background: #8e9798;
-                font-size: 20px;
-                color: #fcfafa;
-                font-family: 'Roboto', sans-serif;
-                width: 140px;
-                border-radius: 8px;
-                border: 1px solid #8e9798;
-            }
-
-            .btn-previous:hover {
-                background: #7b8283;
-                border: 1px solid #7b8283;
-            }
-
-            .btn-next {
-                float: right;
-                display: inline-block;
-                background: #8e9798;
-                font-size: 20px;
-                color: #fcfafa;
-                font-family: 'Roboto', sans-serif;
-                border-radius: 8px;
-                width: 130px;
-                border: 1px solid #8e9798;
-            }
-
-            .btn-next:hover {
-                background: #7b8283;
-                border: 1px solid #7b8283;
-            }
+            {#.btn-previous {#}
+            {#    float: left;#}
+            {#    display: inline-block;#}
+            {#    background: #8e9798;#}
+            {#    font-size: 20px;#}
+            {#    color: #fcfafa;#}
+            {#    font-family: 'Roboto', sans-serif;#}
+            {#    width: 140px;#}
+            {#    border-radius: 8px;#}
+            {#    border: 1px solid #8e9798;#}
+            {#}#}
+            {##}
+            {#.btn-previous:hover {#}
+            {#    background: #7b8283;#}
+            {#    border: 1px solid #7b8283;#}
+            {#}#}
+            {##}
+            {#.btn-next {#}
+            {#    float: right;#}
+            {#    display: inline-block;#}
+            {#    background: #8e9798;#}
+            {#    font-size: 20px;#}
+            {#    color: #fcfafa;#}
+            {#    font-family: 'Roboto', sans-serif;#}
+            {#    border-radius: 8px;#}
+            {#    width: 130px;#}
+            {#    border: 1px solid #8e9798;#}
+            {#}#}
+            {##}
+            {#.btn-next:hover {#}
+            {#    background: #7b8283;#}
+            {#    border: 1px solid #7b8283;#}
+            {#}#}
 
             .three-inline-buttons .btn {
                 margin-left: 15px;
@@ -141,7 +142,7 @@
 {#                <div class="three-inline-buttons">#}
 {#                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">#}
 {#                        <div class="col d-flex" style="justify-content: center; align-items: center">#}
-                            <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: right;" value="Previous day" onclick="previous()">
+                    <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: right;" value="Previous day" onclick="previous()">
                 </td>
                 <td class="child" style="text-align: center;">
                     <input class="btn_up" type="submit" formaction="/date-selection" style="text-align:center;" value="Calendar">
