@@ -29,7 +29,7 @@ urlpatterns = [
     path('contacts', views.contacts),
     path('equipment', views.equipment),
     path('data', views.data),
-    path('gps', views.gps),
+    # path('gps', views.gps),
     path('menu', views.get_menu),
 ]
 

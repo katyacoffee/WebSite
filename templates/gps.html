@@ -220,7 +220,7 @@
 {#            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 5%;"#}
 {#            onclick="largeImg()" id="img1">#}
 {#            убрать!#}
-            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 10%; float: right">
+            <img id="img_{{ im_all }}" src='{{ im_all }}' alt="" style="width: 90%; margin-left: 10%; float: right">
 {#            <input type="hidden" id="new_year" name="new_year" value="">#}
             </div>
         </div>
@@ -228,7 +228,7 @@
     <div class="grid">
         {% for im in images %}
             <div class="grid__item grid__item--small">
-                <img src="{% static im %}" alt="" style="width: 90%; margin-right: 10%; float: left">
+                <img id="img_{{ im }}" src='{{ im }}' alt="" style="width: 90%; margin-right: 10%; float: left">
             </div>
         {% endfor %}
     </div>
@@ -241,7 +241,7 @@
         <br>
         <br>
         <form method="post" id="gps">
-            <button type="submit" formaction="/gps" class="btn_view" onclick="view_data()">View</button>
+            <button type="submit" formaction="/get-vlf-data" class="btn_view" onclick="view_data()">View</button>
             <input type="hidden" id="new_stat" name="new_stat" value="">
         </form>
     </div>
@@ -256,7 +256,7 @@
 
         const oGallery = document.querySelector('.gallery');
         oGallery.addEventListener('click', function(ev) {
-          if (ev.target.tagName != 'IMG') { return false; };
+          if (ev.target.tagName != 'IMG') { return false; }
           let oTarget = ev.target, nWidth, nHeight, nRatio = oTarget.offsetWidth / oTarget.offsetHeight;
           let oBig = this.appendChild(document.createElement('DIV'));
           oBig.style.position = `absolute`;
@@ -266,7 +266,7 @@
             nHeight = this.offsetHeight; nWidth = nHeight * nRatio;
           } else {
             nWidth = this.offsetWidth; nHeight = nWidth / nRatio;
-          };
+          }
           oBig.style.background = `center / 100% 100% no-repeat url('${oTarget.currentSrc}')`;
           oBig.insertAdjacentHTML('beforeend', '<div class="close" style="font-size: 20px">×</div>');
           oBig.addEventListener('transitionend', function() { this.querySelector('.close').style.opacity = 1; });

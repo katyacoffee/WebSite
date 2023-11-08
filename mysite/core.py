@@ -19,7 +19,7 @@ class Card:
 server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
-base_dir_serv_gps = '~mikhnevo/gnss/tec_rot/prego/png' #!!
+base_dir_serv_gps = '~mikhnevo/GNSS/Prego/PNG' #!! https://idg-comp.chph.ras.ru/~mikhnevo/GNSS/Prego/PNG/2022/01/01/
 base_dir_serv_lem = '~mikhnevo/LEMI018/PNG'
 base_dir_serv_k_ind = '~mikhnevo/K-INDEX/PNG'
 base_dir_serv_meteo = '~mikhnevo/METEO/PNG/'
@@ -148,7 +148,7 @@ def get_images(response: Response) -> list[str]:
 # TODO: для других данных сделать условия
 
 
-def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
+def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> list[str]:
     base_dir_serv = ''
     if source == source_vlf:
         base_dir_serv = base_dir_serv_vlf
@@ -165,10 +165,10 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
 
     s = sess()
     data_path = ''
-    if source == source_vlf or source == source_lem or source == source_meteo:
+    if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
-        print(data_path)
-    elif source == source_tec or source == source_gps or source == source_k_ind:
+        # print(data_path)
+    elif source == source_tec or source == source_k_ind:
         data_path = base_dir_serv + '/' + yr + '/' + mon
     # elif source == source_k_ind:
     #     data_path = base_dir_serv
@@ -232,21 +232,14 @@ def get_img_list(yr: str, mon: str, day: str, source: str) -> list[str]:
                     break
             if no_data:
                 img_list = []
-        elif source == source_gps:
-            no_data = True
-            for pic in img_list:
-                if get_day_from_gps_pic(pic) == int(day):
-                    img_list = [pic]
-                    no_data = False
-                    break
-            if no_data:
-                img_list = []
 
         for img in img_list:
+            if source == source_gps and get_sat_from_gps(img) != stat:
+                continue
             new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
     except ConnectTimeout:
         raise ServerDownException('server down')
-
+    print('NIL:', new_image_list)
     return new_image_list
 
 
@@ -273,9 +266,9 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 day = '0' + day
             data_path = ''
             # TODO для gps!
-            if source == source_vlf or source == source_lem or source == source_meteo:
+            if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps:
                 data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
-            elif source == source_tec or source == source_gps or source == source_k_ind:
+            elif source == source_tec or source == source_k_ind:
                 data_path = base_dir_serv + '/' + year + '/' + mon
             # elif source == source_k_ind:
             #     data_path = base_dir_serv
@@ -294,13 +287,13 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                     # print(r.text)
                 resp = s.get(site, timeout=2)
                 # if i == 1: #TODO remove!
-                print(resp.text)
+                # print(resp.text)
                 img_list = get_images(resp)
                 if source == source_vlf:
                     img_list.sort(key=lambda pic: compare(get_station_name(pic)))
                 elif source == source_lem or source == source_meteo:
                     img_list.sort()
-                    print(img_list)
+                    # print(img_list)
                 # TODO для LEMI
                 elif source == source_k_ind:
                     no_data = True
@@ -322,20 +315,11 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 #             break
                 #     if no_data:
                 #         img_list = []
-                    print("imglist2", img_list)
+                    # print("imglist2", img_list)
                 elif source == source_tec:
                     no_data = True
                     for pic in img_list:
                         if get_day_from_tec_pic(pic) == int(day):
-                            img_list = [pic]
-                            no_data = False
-                            break
-                    if no_data:
-                        img_list = []
-                elif source == source_gps:
-                    no_data = True
-                    for pic in img_list:
-                        if get_day_from_gps_pic(pic) == int(day):
                             img_list = [pic]
                             no_data = False
                             break
@@ -363,14 +347,20 @@ def get_day_from_tec_pic(pic: str) -> int:
     return int(b[0])
 
 
-def get_day_from_gps_pic(pic: str) -> int:
-    a = pic.split('_')
-    if len(a) < 5:
+def get_sat_from_gps(pic: str) -> int:
+    a = pic.split('.')
+    if len(a) != 4:
         return 0
-    b = a[4].split('-')
-    # num = a[5] # number of station?
-    print(int(b[2]))
-    return int(b[2])
+    b = a[2]
+    if len(b) < 5:
+        return 0
+    sat = b[3:5]
+    sat_int = 0
+    try:
+        sat_int = int(sat)
+    except Exception:
+        return 0
+    return sat_int
 
 
 def get_day_from_k_pic(pic: str) -> int:
@@ -378,4 +368,5 @@ def get_day_from_k_pic(pic: str) -> int:
     if len(a) < 5:
         return 0
     return int(a[4])
+
 

@@ -28,24 +28,33 @@ def data(request):
     return render(request, "data.html")
 
 
-def gps(request):
+def gps(request, yr, mon, day):
     if request.method == "POST":
         cache.clear()
         #stat = str(request.POST.get("stat"))
         new_stat = str(request.POST.get("new_stat"))
-        print(new_stat)
+        # yr = str(request.POST.get("new_year"))
+        # mon_str = str(request.POST.get("new_month"))
+        # day_str = str(request.POST.get("selected_day"))
+        # source = str(request.POST.get("source"))
+        source = 'gps'
+        print(new_stat, yr, mon, day)
         no_data = False
-        # im_list = core.get_img_list(str(prev_yr), prev_mon_str, prev_day_str, source) # TODO - получать im_all и im_list !!
-        im_all = 'prego_ROT_TEC_GPS_ROT.2022-01-01.png'
-        im_list = ['prego_ROT_TEC_GPS_Az.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_Elev.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png']
-        # im_all = 'photo_2023-09-14 08.23.32.jpeg'
-        # im_list = ['photo_2023-09-14 08.23.55.jpeg', 'photo_2023-09-14 08.23.41.jpeg', 'photo_2023-09-14 08.23.37.jpeg', 'photo_2023-09-14 08.23.45.jpeg', 'photo_2023-09-14 08.23.51.jpeg']
+        all_images = core.get_img_list(yr, mon, day, source, int(new_stat))
+        im_all = core.get_img_list(yr, mon, day, source, 0)
+        if len(im_all) > 0:
+            im_all = im_all[0]
+        else:
+            im_all = ''
+        # all_images = ['prego_ROT_TEC_GPS_Az.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_Elev.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png']
+        # im_all = 'prego_ROT_TEC_GPS_ROT.2022-01-01.png'
         context = {"success": True,
                    "new_stat": new_stat,
                    "im_all": im_all,
-                   "images": im_list,
+                   "images": all_images,
                    "no_data": no_data
                    }
+        print(context)
         return render(request, "gps.html", context=context)
     return render(request, "index.html")
 
@@ -95,9 +104,6 @@ def get_data(request):
         button_name = request.POST.get("button_name")
 
         print(source)
-
-        if source == core.source_gps:
-            return gps(request)
 
         context = {
             "success": True,
@@ -210,7 +216,8 @@ def get_data(request):
             context["success-title"] = ""
 
         no_data = False
-        img_list = core.get_img_list(yr, mon, day, source)
+        # img_list = core.get_img_list(yr, mon, day, source)
+        img_list = im_list  # зачем это?
         if len(img_list) == 0:
             no_data = True
 
@@ -221,6 +228,8 @@ def get_data(request):
         context["current_month"] = mon
         context["current_year"] = yr
         context["source"] = source
+        if source == core.source_gps:
+            return gps(request, yr, mon, day)
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)

@@ -57,6 +57,8 @@
 
             #navbar #logo {
               font-size: 30px;
+              {#margin-right: 2px;#}
+              {#margin-left: 6px;#}
               margin: 10px;
               vertical-align: middle;
               {#font-weight: bold;#}
@@ -198,6 +200,11 @@
                 background-color: #68819a;
                 color: #5e5b5b;
             }
+
+             @media screen and (max-width: 700px) {
+                #navbar #logo {
+                    font-size: 26px;
+                }
 
             /* On smaller screens, where height is less than 480px, change the style of the sidenav (less padding and a smaller font size) */
             @media screen and (max-height: 480px) {
