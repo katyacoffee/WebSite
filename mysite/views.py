@@ -38,7 +38,6 @@ def gps(request, yr, mon, day):
         # source = str(request.POST.get("source"))
         source = 'gps'
         no_data = False
-        print('GPS -------- ', yr, mon, day, source, int(new_stat))
         all_images = core.get_img_list(yr, mon, day, source, int(new_stat))
         im_all = core.get_img_list(yr, mon, day, source, 0)
         if len(im_all) > 0:
@@ -57,7 +56,6 @@ def gps(request, yr, mon, day):
                    "current_month": mon,
                    "current_year": yr
                    }
-        print(context)
         return render(request, "gps.html", context=context)
     return render(request, "index.html")
 
@@ -104,8 +102,6 @@ def get_data(request):
         new_day = request.POST.get("new_day")
         selected_new_month = request.POST.get("selected_new_month")
         button_name = request.POST.get("button_name")
-
-        print('PRINT! ------- ', source, date, new_year, new_month, new_day, selected_new_month, button_name)
 
         context = {
             "success": True,
@@ -166,8 +162,11 @@ def get_data(request):
         mon = str(int(new_month) + 1)
         yr = str(new_year)
 
-        if date is None and source == core.source_gps:
-            return gps(request, yr, str(new_month), day)
+        if date is None:
+            if source == core.source_gps:
+                return gps(request, yr, str(new_month), day)
+            if source == core.source_elf:
+                return gps(request, yr, str(new_month), day) # TODO: ELF!!!
 
         context = {
             "mydate": str(date),
@@ -223,6 +222,8 @@ def get_data(request):
             return render(request, "date_selection.html", context)
         if source == core.source_gps:
             return gps(request, yr, mon, day)
+        if source == core.source_elf:
+            return gps(request, yr, mon, day) #TODO: ELF!!!
         if context["success"]:
             context["success-title"] = ""
 

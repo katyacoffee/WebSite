@@ -100,6 +100,12 @@ def get_station_name(pic: str) -> str:
     return s[4]
 
 
+def get_station_name_gps(pic: str) -> str:
+    s = pic.split('_')
+    s2 = s[4].split('.')
+    return s2[0]
+
+
 def get_par_name(pic: str) -> str:
     s = pic.split('_')
     if s[5] == 'en.png':
@@ -232,8 +238,8 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
         # TODO для gps!
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-        # elif source == source_gps:
-        #     img_list.sort(key=lambda pic: compare_sat(get_station_name(pic))) # TODO: когда будут все данные - раскомментировать
+        elif source == source_gps:
+            img_list.sort(key=lambda pic: compare_sat(get_station_name_gps(pic))) # TODO: когда будут все данные - раскомментировать
         elif source == source_lem or source == source_meteo:
             for pic in img_list:
                 if get_par_name(pic) != '':
@@ -276,19 +282,18 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
             no_data = True
             for pic in img_list:
                 if get_day_from_elf(pic) == int(day):
-                    img_list = [pic]
+                    new_image_list.append('https://' + server_dir + '/' + data_path + '/' + pic)
                     no_data = False
-                    break
             if no_data:
                 img_list = []
 
-        for img in img_list:
-            if source == source_gps and get_sat_from_gps(img) != stat:
-                continue
-            new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
+        if source != source_elf:
+            for img in img_list:
+                if source == source_gps and get_sat_from_gps(img) != stat:
+                    continue
+                new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
     except ConnectTimeout:
         raise ServerDownException('server down')
-    print('NIL:', new_image_list)
     return new_image_list
 
 
