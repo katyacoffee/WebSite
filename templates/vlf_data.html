@@ -152,9 +152,6 @@
                     <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: left;" value="Next day" onclick="next()">
                 </td>
             </table>
-                                <input type="hidden" id="source" name="source" value="{{ source }}">
-
-{#                </div>#}
                 <span style="font-family: Roboto, sans-serif; font-weight: 300; align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
                     <br><br>
                     NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
@@ -164,7 +161,6 @@
                 <input type="hidden" id="new_month" name="new_month" value="">
                 <input type="hidden" id="new_year" name="new_year" value="">
                 <input type="hidden" id="source" name="source" value="{{ source }}">
-{#            </div>#}
         </form>
             <script>
 

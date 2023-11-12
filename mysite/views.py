@@ -31,15 +31,14 @@ def data(request):
 def gps(request, yr, mon, day):
     if request.method == "POST":
         cache.clear()
-        #stat = str(request.POST.get("stat"))
         new_stat = str(request.POST.get("new_stat"))
         # yr = str(request.POST.get("new_year"))
         # mon_str = str(request.POST.get("new_month"))
         # day_str = str(request.POST.get("selected_day"))
         # source = str(request.POST.get("source"))
         source = 'gps'
-        print(new_stat, yr, mon, day)
         no_data = False
+        print('GPS -------- ', yr, mon, day, source, int(new_stat))
         all_images = core.get_img_list(yr, mon, day, source, int(new_stat))
         im_all = core.get_img_list(yr, mon, day, source, 0)
         if len(im_all) > 0:
@@ -52,7 +51,11 @@ def gps(request, yr, mon, day):
                    "new_stat": new_stat,
                    "im_all": im_all,
                    "images": all_images,
-                   "no_data": no_data
+                   "no_data": no_data,
+                   "source": source,
+                   "current_day": day,
+                   "current_month": mon,
+                   "current_year": yr
                    }
         print(context)
         return render(request, "gps.html", context=context)
@@ -70,7 +73,6 @@ def date_selection(request):
         current_year = str(current_date.year)
         try:
             source = str(source)
-            print(source)
             days = core.get_available_days(current_year, current_month, source)
             return render(request, "date_selection.html", context={
                 "current_month": current_month,
@@ -96,14 +98,14 @@ def get_data(request):
     if request.method == "POST":
         cache.clear()
         source = str(request.POST.get("source"))
-        date = str(request.POST.get("mydate"))
+        date = request.POST.get("mydate")
         new_year = request.POST.get("new_year")
         new_month = request.POST.get("new_month")
         new_day = request.POST.get("new_day")
         selected_new_month = request.POST.get("selected_new_month")
         button_name = request.POST.get("button_name")
 
-        print(source)
+        print('PRINT! ------- ', source, date, new_year, new_month, new_day, selected_new_month, button_name)
 
         context = {
             "success": True,
@@ -160,19 +162,26 @@ def get_data(request):
         if len(mon_str) == 1:
             mon_str = '0' + mon_str
 
+        day = str(new_day)
+        mon = str(int(new_month) + 1)
+        yr = str(new_year)
+
+        if date is None and source == core.source_gps:
+            return gps(request, yr, str(new_month), day)
+
         context = {
-            "mydate": date,
+            "mydate": str(date),
             "avail_days": core.get_available_days(str(new_year), mon_str, source),
-            "current_day": str(new_day),
-            "current_month": str(int(new_month) + 1),
-            "current_year": str(new_year),
+            "current_day": day,
+            "current_month": mon,
+            "current_year": yr,
             "source": source,
         }
 
-        if selected_new_month != '':
+        if selected_new_month != '' and selected_new_month is not None:
             return render(request, "date_selection.html", context)
 
-        parsed_date = date.split('/')
+        parsed_date = str(date).split('/')
         if len(parsed_date) != 3:
             context["success"] = False
             # context[
@@ -205,19 +214,19 @@ def get_data(request):
             # context["comment"] = "Введена несуществующая дата"
             context["comment"] = "Invalid date entered"
             return render(request, "date_selection.html", context)
-        im_list = core.get_img_list(str(yr), str(mon), day, source)
-        if len(im_list) == 0:
+        img_list = core.get_img_list(str(yr), str(mon), day, source)
+        if len(img_list) == 0:
             context["success"] = False
             # context[
             #     "comment"] = "В выбранном дне нет данных"
             context["comment"] = "There is no data for the selected day"
             return render(request, "date_selection.html", context)
+        if source == core.source_gps:
+            return gps(request, yr, mon, day)
         if context["success"]:
             context["success-title"] = ""
 
         no_data = False
-        # img_list = core.get_img_list(yr, mon, day, source)
-        img_list = im_list  # зачем это?
         if len(img_list) == 0:
             no_data = True
 
@@ -228,8 +237,6 @@ def get_data(request):
         context["current_month"] = mon
         context["current_year"] = yr
         context["source"] = source
-        if source == core.source_gps:
-            return gps(request, yr, mon, day)
         return render(request, "vlf_data.html", context)
     else:
         date_selection(request)

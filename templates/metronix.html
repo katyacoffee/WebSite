@@ -1,7 +1,7 @@
 {% extends "base_page.html" %}
 
 {% block pagetitle %}
-    GPS
+    ELF
 {% endblock %}
 
 {% load static %}
@@ -9,24 +9,6 @@
 {% block content %}
     <div class="fw-bold">
         <style>
-            .btn {
-                float: left;
-                display: inline-block;
-                background: #68819a;
-                font-size: 20px;
-                width: 200px;
-                color: white;
-                font-family: 'Roboto', sans-serif;
-                font-weight: 300;
-                border: #68819a;
-                border-radius: 8px;
-            }
-
-            .btn:hover {
-                background: #5c748c;
-                color: #f8f8f8;
-            }
-
             .btn_up {
                 display: inline-block;
                 background: #68819a;
@@ -65,13 +47,9 @@
             }
         </style>
         <form method="post" id="date_form">
-{#        <a href="/date-selection" class="btn">Back to date picker</a>#}
 
             <table class="center">
                 <td class="child">
-{#                <div class="three-inline-buttons">#}
-{#                <div class="row g-1 py-2 row-cols-1 row-cols-lg-3">#}
-{#                        <div class="col d-flex" style="justify-content: center; align-items: center">#}
                     <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: right;" value="Previous day" onclick="previous()">
                 </td>
                 <td class="child" style="text-align: center;">
@@ -81,16 +59,8 @@
                 <td class="child">
                     <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: left;" value="Next day" onclick="next()">
                 </td>
-                <input type="hidden" id="new_stat" name="new_stat" value="">
-                <input type="hidden" id="new_day" name="new_day" value="">
-                <input type="hidden" id="new_month" name="new_month" value="">
-                <input type="hidden" id="new_year" name="new_year" value="">
-                <input type="hidden" id="source" name="source" value="{{ source }}">
             </table>
-{#            <input class="btn" type="submit" formaction="/date-selection" value="Back to date picker">#}
-{#            <input type="hidden" id="source" name="source" value="{{ source }}">#}
         </form>
-{#        <a href="/" class="btn" style="float: right;">Home Page</a>#}
     </div>
     <style>
         .new1 div {
@@ -218,44 +188,60 @@
 
     </style>
 
-    <div class="outer-grid">
-    <div class="grid">
-        <div class="grid__item grid__item--big">
-            <div class="gallery">
-{#            <img src="{% static im_all %}" alt="" style="width: 90%; margin-left: 5%;"#}
-{#            onclick="largeImg()" id="img1">#}
-{#            убрать!#}
-            <img id="img_{{ im_all }}" src='{{ im_all }}' alt="" style="width: 90%; margin-left: 10%; float: right">
-{#            <input type="hidden" id="new_year" name="new_year" value="">#}
-            </div>
-        </div>
-    </div>
-    <div class="grid">
-        {% for im in images %}
-            <div class="grid__item grid__item--small">
-                <img id="img_{{ im }}" src='{{ im }}' alt="" style="width: 90%; margin-right: 10%; float: left">
-            </div>
+    <div class="row">
+        {% for image in images %}
+          <div class="column">
+            <img src="img_snow.jpg" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="img_forest.jpg" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+          </div>
         {% endfor %}
     </div>
-    </div>
-    <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
-        <br>
-        <label for="stations" style="font-family: 'Roboto', sans-serif;">Select
-            station </label>
-        <select id="stations" onchange="stat()"></select>
-        <br>
-        <br>
-        <form method="post" id="gps">
-            <button type="submit" formaction="/get-vlf-data" class="btn_view" onclick="view_data()">View</button>
-            <input type="hidden" id="new_stat" name="new_stat" value="">
-            <input type="hidden" id="new_day" name="new_day" value="">
-            <input type="hidden" id="new_month" name="new_month" value="">
-            <input type="hidden" id="new_year" name="new_year" value="">
-            <input type="hidden" id="source" name="source" value="{{ source }}">
-        </form>
-    </div>
+
+{#    <div class="outer-grid">#}
+{#    <div class="grid">#}
+{#        <div class="grid__item grid__item--big">#}
+{#            <div class="gallery">#}
+{#            <img id="img_{{ im_all }}" src='{{ im_all }}' alt="" style="width: 90%; margin-left: 10%; float: right">#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="grid">#}
+{#        {% for im in images %}#}
+{#            <div class="grid__item grid__item--small">#}
+{#                <img id="img_{{ im }}" src='{{ im }}' alt="" style="width: 90%; margin-right: 10%; float: left">#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#    </div>#}
+{#    <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">#}
+{#        <br>#}
+{#        <label for="stations" style="font-family: 'Roboto', sans-serif;">Select#}
+{#            station </label>#}
+{#        <select id="stations" onchange="stat()"></select>#}
+{#        <br>#}
+{#        <br>#}
+{#        <form method="post" id="gps">#}
+{#            <button type="submit" formaction="/get-vlf-data" class="btn_view" onclick="view_data()">View</button>#}
+{#            <input type="hidden" id="new_stat" name="new_stat" value="">#}
+{#            <input type="hidden" id="new_day" name="new_day" value="">#}
+{#            <input type="hidden" id="new_month" name="new_month" value="">#}
+{#            <input type="hidden" id="new_year" name="new_year" value="">#}
+{#            <input type="hidden" id="source" name="source" value="{{ source }}">#}
+{#        </form>#}
+{#    </div>#}
 
     <script>
+
+    // Убрать!
+    {#img = document.getElementById("img1");#}
+    {#function largeImg() {#}
+    {#    img.style.transform = "scale(1.5)";#}
+    {#}#}
 
         const oGallery = document.querySelector('.gallery');
         oGallery.addEventListener('click', function(ev) {
@@ -312,38 +298,8 @@
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
                 new_year.value = currentYear;
-        }
-
-        function next() { //TODO: day + 1!
-               const selectStat = document.getElementById('stations');
-                let currentStat = selectStat.options[selectStat.selectedIndex].text;
-                const new_stat = document.getElementById("new_stat");
-                new_stat.value = currentStat;
-                let currentMonth = '{{ current_month }}';
-                let currentYear = '{{ current_year }}';
-                let currentDay = '{{ current_day }}';
-                const new_day = document.getElementById("new_day");
-                new_day.value = currentDay;
-                const new_month = document.getElementById("new_month");
-                new_month.value = currentMonth;
-                const new_year = document.getElementById("new_year");
-                new_year.value = currentYear;
-        }
-
-        function previous() { //TODO: day - 1!
-               const selectStat = document.getElementById('stations');
-                let currentStat = selectStat.options[selectStat.selectedIndex].text;
-                const new_stat = document.getElementById("new_stat");
-                new_stat.value = currentStat;
-                let currentMonth = '{{ current_month }}';
-                let currentYear = '{{ current_year }}';
-                let currentDay = '{{ current_day }}';
-                const new_day = document.getElementById("new_day");
-                new_day.value = currentDay;
-                const new_month = document.getElementById("new_month");
-                new_month.value = currentMonth;
-                const new_year = document.getElementById("new_year");
-                new_year.value = currentYear;
+                {#const button_name = document.getElementById("new_stat");#}
+                {#button_name.value = 'view_data';#}
         }
 
     </script>
