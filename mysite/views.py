@@ -60,6 +60,42 @@ def gps(request, yr, mon, day):
     return render(request, "index.html")
 
 
+def elf(request, yr, mon, day):
+    if request.method == "POST":
+        cache.clear()
+        # yr = str(request.POST.get("new_year"))
+        # mon_str = str(request.POST.get("new_month"))
+        # day_str = str(request.POST.get("selected_day"))
+        # source = str(request.POST.get("source"))
+        source = 'elf'
+        no_data = False
+        all_images = core.get_img_list(yr, mon, day, source)
+        print(all_images)
+        im_all = core.get_img_list(yr, mon, day, source, 0)
+        if len(im_all) > 0:
+            im_all = im_all[0]
+        else:
+            im_all = ''
+        # all_images = ['prego_ROT_TEC_GPS_Az.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_Elev.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png']
+        # im_all = 'prego_ROT_TEC_GPS_ROT.2022-01-01.png'
+        context = {"success": True,
+                   'group1': [all_images[0], all_images[1]],
+                   'group2': [all_images[2], all_images[3]],
+                   'group3': [all_images[4], all_images[5]],
+                   'group4': [all_images[6], all_images[7], all_images[8]],
+                   'group5': [all_images[9], all_images[10]],
+                   "images": all_images,
+                   "no_data": no_data,
+                   "source": source,
+                   "current_day": day,
+                   "current_month": mon,
+                   "current_year": yr,
+                   # ""
+                   }
+        return render(request, "elf.html", context=context)
+    return render(request, "index.html")
+
+
 def date_selection(request):
     if request.method == "POST":
         cache.clear()
@@ -223,7 +259,7 @@ def get_data(request):
         if source == core.source_gps:
             return gps(request, yr, mon, day)
         if source == core.source_elf:
-            return gps(request, yr, mon, day) #TODO: ELF!!!
+            return elf(request, yr, mon, day) #TODO: ELF!!!
         if context["success"]:
             context["success-title"] = ""
 

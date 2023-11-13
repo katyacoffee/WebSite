@@ -106,6 +106,12 @@ def get_station_name_gps(pic: str) -> str:
     return s2[0]
 
 
+def get_num_freq_elf(pic: str) -> str:
+    s = pic.split('_')
+    # print(f'{s[1]}_{s[2]}')
+    return f'{s[1]}_{s[2]}'
+
+
 def get_par_name(pic: str) -> str:
     s = pic.split('_')
     if s[5] == 'en.png':
@@ -170,9 +176,10 @@ def compare_sat(st: str) -> str:
     return f'{num}'
 
 
-def compare_metron(st: str) -> str:
+def compare_elf(st: str) -> str:
     par_dict = get_freq_elf()
     freq = par_dict.get(st)
+    #print(freq)
     return f'{freq}'
 
 # def sort_lem(par: str) -> str:
@@ -235,11 +242,11 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
         resp = s.get(site, timeout=2)
         img_list = get_images(resp)
         img_list1 = []
-        # TODO для gps!
+
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
         elif source == source_gps:
-            img_list.sort(key=lambda pic: compare_sat(get_station_name_gps(pic))) # TODO: когда будут все данные - раскомментировать
+            img_list.sort(key=lambda pic: compare_sat(get_station_name_gps(pic)))
         elif source == source_lem or source == source_meteo:
             for pic in img_list:
                 if get_par_name(pic) != '':
@@ -277,15 +284,16 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
                     break
             if no_data:
                 img_list = []
-
         elif source == source_elf:
             no_data = True
             for pic in img_list:
+                print(get_day_from_elf(pic), int(day))
                 if get_day_from_elf(pic) == int(day):
                     new_image_list.append('https://' + server_dir + '/' + data_path + '/' + pic)
                     no_data = False
             if no_data:
                 img_list = []
+            img_list.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
 
         if source != source_elf:
             for img in img_list:
