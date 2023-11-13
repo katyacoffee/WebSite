@@ -81,12 +81,17 @@
                 <td class="child">
                     <input class="btn_up" type="submit" formaction="/get-vlf-data" style="float: left;" value="Next day" onclick="next()">
                 </td>
-                <input type="hidden" id="new_stat" name="new_stat" value="">
-                <input type="hidden" id="new_day" name="new_day" value="">
-                <input type="hidden" id="new_month" name="new_month" value="">
-                <input type="hidden" id="new_year" name="new_year" value="">
-                <input type="hidden" id="source" name="source" value="{{ source }}">
             </table>
+            <input type="hidden" id="button_name" name="button_name" value="">
+            <input type="hidden" id="new_stat" name="new_stat" value="">
+            <input type="hidden" id="new_day" name="new_day" value="">
+            <input type="hidden" id="new_month" name="new_month" value="">
+            <input type="hidden" id="new_year" name="new_year" value="">
+            <input type="hidden" id="source" name="source" value="{{ source }}">
+            <span style="font-family: Roboto, sans-serif; font-weight: 300; align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id="nodata">
+                <br><br>
+                NO DATA FOR {{ current_day }}/{{ current_month }}/{{ current_year }}
+            </span>
 {#            <input class="btn" type="submit" formaction="/date-selection" value="Back to date picker">#}
 {#            <input type="hidden" id="source" name="source" value="{{ source }}">#}
         </form>
@@ -218,7 +223,7 @@
 
     </style>
 
-    <div class="outer-grid">
+    <div class="outer-grid" id="figures">
     <div class="grid">
         <div class="grid__item grid__item--big">
             <div class="gallery">
@@ -243,6 +248,7 @@
         <br>
         <form method="post" id="gps">
             <button type="submit" formaction="/get-vlf-data" class="btn_view" onclick="view_data()">View</button>
+            <input type="hidden" id="button_name" name="button_name" value="">
             <input type="hidden" id="new_stat" name="new_stat" value="">
             <input type="hidden" id="new_day" name="new_day" value="">
             <input type="hidden" id="new_month" name="new_month" value="">
@@ -252,6 +258,12 @@
     </div>
 
     <script>
+
+        if ('{{ no_data }}' === 'True') {
+            document.getElementById("figures").style.display = 'none';
+        } else {
+            document.getElementById("nodata").style.display = 'none';
+        }
 
         const oGallery = document.querySelector('.gallery');
         oGallery.addEventListener('click', function(ev) {
@@ -310,7 +322,7 @@
                 new_year.value = currentYear;
         }
 
-        function next() { //TODO: day + 1!
+        function next() {
                const selectStat = document.getElementById('stations');
                 let currentStat = selectStat.options[selectStat.selectedIndex].text;
                 const new_stat = document.getElementById("new_stat");
@@ -324,9 +336,11 @@
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
                 new_year.value = currentYear;
+                const button_name = document.getElementById("button_name");
+                button_name.value = 'next';
         }
 
-        function previous() { //TODO: day - 1!
+        function previous() {
                const selectStat = document.getElementById('stations');
                 let currentStat = selectStat.options[selectStat.selectedIndex].text;
                 const new_stat = document.getElementById("new_stat");
@@ -340,6 +354,8 @@
                 new_month.value = currentMonth;
                 const new_year = document.getElementById("new_year");
                 new_year.value = currentYear;
+                const button_name = document.getElementById("button_name");
+                button_name.value = 'previous';
         }
 
     </script>

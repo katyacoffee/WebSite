@@ -44,8 +44,10 @@ def gps(request, yr, mon, day):
             im_all = im_all[0]
         else:
             im_all = ''
-        # all_images = ['prego_ROT_TEC_GPS_Az.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_Elev.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png', 'prego_ROT_TEC_GPS_ROT.2022-01-01.sat01.png']
-        # im_all = 'prego_ROT_TEC_GPS_ROT.2022-01-01.png'
+
+        if im_all == '' or len(all_images) == 0:
+            no_data = True
+
         context = {"success": True,
                    "new_stat": new_stat,
                    "im_all": im_all,
@@ -168,6 +170,9 @@ def get_data(request):
                 context["current_year"] = next_yr
                 context["images"] = im_list
                 context["no_data"] = no_data
+                day = next_day_str
+                mon = next_mon_str
+                yr = str(next_yr)
             else:
                 previous_date = datetime.date(yr_int, mon_int, day_int) - datetime.timedelta(days=1)
                 prev_day = previous_date.day
@@ -188,6 +193,13 @@ def get_data(request):
                 context["current_year"] = prev_yr
                 context["images"] = im_list
                 context["no_data"] = no_data
+                day = prev_day_str
+                mon = prev_mon_str
+                yr = str(prev_yr)
+            if source == core.source_gps:
+                return gps(request, yr, mon, day)
+            if source == core.source_elf:
+                return elf(request, yr, mon, day)
             return render(request, "vlf_data.html", context)
 
         mon_str = str(int(new_month) + 1)
@@ -202,7 +214,7 @@ def get_data(request):
             if source == core.source_gps:
                 return gps(request, yr, str(new_month), day)
             if source == core.source_elf:
-                return gps(request, yr, str(new_month), day) # TODO: ELF!!!
+                return elf(request, yr, str(new_month), day)
 
         context = {
             "mydate": str(date),
@@ -259,7 +271,7 @@ def get_data(request):
         if source == core.source_gps:
             return gps(request, yr, mon, day)
         if source == core.source_elf:
-            return elf(request, yr, mon, day) #TODO: ELF!!!
+            return elf(request, yr, mon, day)
         if context["success"]:
             context["success-title"] = ""
 
