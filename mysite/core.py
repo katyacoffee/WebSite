@@ -75,17 +75,17 @@ def get_par_sat() -> dict[str:int]:
 
 def get_freq_elf() -> dict[str:int]:
     return {
-        'Hx_0-0.05': 1,
-        'Hy_0-0.05': 2,
-        'Hx_0-0.4': 3,
-        'Hy_0-0.4': 4,
-        'Hx_0-4': 5,
-        'Hy_0-4': 6,
-        'Hx_0-50': 7,
-        'Hy_0-50': 8,
-        'Hz_0-50': 9,
-        'Hx_50-100': 10,
-        'Hy_50-100': 11,
+        'Hx_0-0.05': 10,
+        'Hy_0-0.05':11,
+        'Hx_0-0.4': 12,
+        'Hy_0-0.4': 13,
+        'Hx_0-4': 14,
+        'Hy_0-4': 15,
+        'Hx_0-50': 16,
+        'Hy_0-50': 17,
+        'Hz_0-50': 18,
+        'Hx_50-100': 19,
+        'Hy_50-100': 20,
     }
 
 
@@ -224,6 +224,8 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
     elif source == source_tec or source == source_k_ind or source == source_elf:
         data_path = base_dir_serv + '/' + yr + '/' + mon
+    # elif source == source_elf:
+    #     data_path = base_dir_serv + yr + '/' + mon
     # elif source == source_k_ind:
     #     data_path = base_dir_serv
 
@@ -285,15 +287,27 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
             if no_data:
                 img_list = []
         elif source == source_elf:
+            new_image_list1 = []
             no_data = True
             for pic in img_list:
-                print(get_day_from_elf(pic), int(day))
+                # print(get_day_from_elf(pic), int(day))
                 if get_day_from_elf(pic) == int(day):
-                    new_image_list.append('https://' + server_dir + '/' + data_path + '/' + pic)
+                    # new_image_list1 = [pic]
+                    new_image_list1.append(pic)
                     no_data = False
+            new_image_list1.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
+            # print(new_image_list1)
+            new_image_list = []
+            for im in new_image_list1:
+                new_image_list.append('https://' + server_dir + '/' + data_path + '/' + im)
+                # no_data = False
+            print('!!!', img_list)
             if no_data:
                 img_list = []
-            img_list.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
+            print('!!!', img_list)
+            # new_image_list.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
+            # print(img_list)
+            # print(new_image_list)
 
         if source != source_elf:
             for img in img_list:

@@ -86,7 +86,7 @@ def elf(request, yr, mon, day):
                    'group3': [all_images[4], all_images[5]],
                    'group4': [all_images[6], all_images[7], all_images[8]],
                    'group5': [all_images[9], all_images[10]],
-                   "images": all_images,
+                   # "images": all_images,
                    "no_data": no_data,
                    "source": source,
                    "current_day": day,
