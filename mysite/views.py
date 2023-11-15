@@ -72,7 +72,7 @@ def elf(request, yr, mon, day):
         source = 'elf'
         no_data = False
         all_images = core.get_img_list(yr, mon, day, source)
-        print(all_images)
+        # print(all_images)
         im_all = core.get_img_list(yr, mon, day, source, 0)
         if len(im_all) > 0:
             im_all = im_all[0]

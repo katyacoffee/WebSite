@@ -108,7 +108,6 @@ def get_station_name_gps(pic: str) -> str:
 
 def get_num_freq_elf(pic: str) -> str:
     s = pic.split('_')
-    # print(f'{s[1]}_{s[2]}')
     return f'{s[1]}_{s[2]}'
 
 
@@ -179,7 +178,6 @@ def compare_sat(st: str) -> str:
 def compare_elf(st: str) -> str:
     par_dict = get_freq_elf()
     freq = par_dict.get(st)
-    #print(freq)
     return f'{freq}'
 
 # def sort_lem(par: str) -> str:
@@ -292,7 +290,6 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
             for pic in img_list:
                 # print(get_day_from_elf(pic), int(day))
                 if get_day_from_elf(pic) == int(day):
-                    # new_image_list1 = [pic]
                     new_image_list1.append(pic)
                     no_data = False
             new_image_list1.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
@@ -301,12 +298,9 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
             for im in new_image_list1:
                 new_image_list.append('https://' + server_dir + '/' + data_path + '/' + im)
                 # no_data = False
-            print('!!!', img_list)
             if no_data:
                 img_list = []
-            print('!!!', img_list)
             # new_image_list.sort(key=lambda pic: compare_elf(get_num_freq_elf(pic)))
-            # print(img_list)
             # print(new_image_list)
 
         if source != source_elf:

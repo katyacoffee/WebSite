@@ -45,7 +45,70 @@
             .child:first-child .childinner {
                 margin-left: 0;
             }
+
+            h1 {
+                font-size: 30px;
+                font-weight: 300;
+                text-align: justify;
+            }
+
+            .box-container {
+                margin: 20px auto;
+                {#width: 80%;#}
+                max-width: 80%;
+                {#min-width: 50%;#}
+                {#max-width: 800px;#}
+                min-width: 500px;
+                display: flex;
+                text-align: justify;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                position: relative;
+                justify-content: space-between;
+            }
+
+            .box1-content {
+                flex: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                color: #888484;
+                margin: 0 auto;
+                display: block;
+                border-radius: 8px;
+            }
+
+            .box1-content,
+            .box1-side {
+              transition: all .3s ease-out;
+              color: #69859d;
+                position: relative;
+            }
+
+            .box1-content {
+              background: whitesmoke;
+              flex: 4;
+              width: 180px;
+              padding: 10px 10px;
+              font-family: 'Roboto', sans-serif;
+              font-weight: 300;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .box1-side {
+                width: 160px;
+                float: right;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 300;
+                position: relative;
+            }
         </style>
+
         <form method="post" id="date_form">
 
             <table class="center">
@@ -213,27 +276,32 @@
             </tr>
         </table>
 
-        <table style="border:1px solid white; border-radius: 5px; width:80%; border-collapse: collapse; margin-left: 10%">
-            <tr>
-                <th colspan="2" style="border:1px solid white; border-collapse: collapse; height: 50px; text-align: center; font-size: 2.2vw; font-family: Roboto, sans-serif; font-weight: 300">50-100 Hz</th>
-            </tr>
-            <tr>
-                <td style="border:1px solid white; border-collapse: collapse; text-align: center; height: 50px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">H<sub>x</sub>
-                </td>
-                <td style="border:1px solid white; border-collapse: collapse; text-align: center; height: 50px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">H<sub>y</sub>
-                </td>
-            </tr>
-            <tr>
-                {% for im in group5 %}
-                    <td style="border:1px solid white; border-collapse: collapse; text-align: center; height: 150px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">
-    {#                    <br>#}
-                        <img id="img_{{ im }}" src='{{ im }}' style="width: 80%;">
-    {#                    <img src="{% static 'test_1.jpg' %}" style="width: 80%">#}
-                        <br> <br>
-                    </td>
-                {% endfor %}
-            </tr>
-        </table>
+        <div class="box-container">
+            <div class="box1-content content">
+
+                <table style="border:1px solid whitesmoke; border-radius: 5px; width:96%; border-collapse: collapse; margin-left: 2%">
+                    <tr>
+                        <th colspan="2" style="border:1px solid whitesmoke; border-collapse: collapse; height: 50px; text-align: center; font-size: 2.2vw; font-family: Roboto, sans-serif; font-weight: 300">50-100 Hz</th>
+                    </tr>
+{#                    <tr>#}
+{#                        <td style="border:1px solid white; border-collapse: collapse; text-align: center; height: 50px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">H<sub>x</sub>#}
+{#                        </td>#}
+{#                        <td style="border:1px solid white; border-collapse: collapse; text-align: center; height: 50px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">H<sub>y</sub>#}
+{#                        </td>#}
+{#                    </tr>#}
+                    <tr>
+                        {% for im in group5 %}
+                            <td style="border:1px solid whitesmoke; border-collapse: collapse; text-align: center; height: 150px; font-size: 1.7vw; font-family: Roboto, sans-serif; font-weight: 300">
+{#                                <br>#}
+                                <img id="img_{{ im }}" src='{{ im }}' style="width: 80%;">
+            {#                    <img src="{% static 'test_1.jpg' %}" style="width: 80%">#}
+                                <br> <br>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
