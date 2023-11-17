@@ -32,10 +32,6 @@ def gps(request, yr, mon, day):
     if request.method == "POST":
         cache.clear()
         new_stat = str(request.POST.get("new_stat"))
-        # yr = str(request.POST.get("new_year"))
-        # mon_str = str(request.POST.get("new_month"))
-        # day_str = str(request.POST.get("selected_day"))
-        # source = str(request.POST.get("source"))
         source = 'gps'
         no_data = False
         all_images = core.get_img_list(yr, mon, day, source, int(new_stat))
@@ -146,7 +142,7 @@ def get_data(request):
             "source": source,
         }
 
-        if button_name is not None:
+        if button_name is not None and str(button_name) != '':
             yr_int = int(new_year)
             mon_int = int(new_month)
             day_int = int(new_day)

@@ -494,6 +494,19 @@
             if ('{{ success }}' === 'False') {
                 alert('{{ comment }}')
             }
+
+            var form = document.getElementById("date_form");
+
+            mydate.addEventListener("keydown", (event) => {
+                if (event.isComposing) {
+                    return;
+                }
+                if (event.code == "keyEnter"){
+                    alert("haha")
+                    view_date()
+                    form.submit()
+                }
+            });
         </script>
         <div class="row px-5 py-2">
             <button type="submit" formaction="/get-vlf-data" class="btn btn-info" onclick="view_date()"
