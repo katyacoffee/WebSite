@@ -497,6 +497,28 @@
 
             var form = document.getElementById("date_form");
 
+
+            var searchField = document.getElementById('mydate');
+            var searchButton = document.getElementById('view_btn');
+
+
+            {#searchField.addEventListener('keypress', function (e) {#}
+            {#    var key = e.which || e.keyCode;#}
+            {#    if (key === 13) { // код клавиши Enter#}
+            {#        searchButton.click();#}
+                    {#alert("haha")#}
+            {#    }#}
+            {#});#}
+
+
+            document.getElementById('date_form').onkeydown = function(e) {
+                if (e.keyCode == 13) {
+                    alert("haha")
+                    view_date()
+                    form.submit()
+                }
+            }
+
             mydate.addEventListener("keydown", (event) => {
                 if (event.isComposing) {
                     return;
@@ -509,7 +531,7 @@
             });
         </script>
         <div class="row px-5 py-2">
-            <button type="submit" formaction="/get-vlf-data" class="btn btn-info" onclick="view_date()"
+            <button type="submit" id ="view_btn" formaction="/get-vlf-data" class="btn btn-info" onclick="view_date()"
                     style="font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 20px; color: white; margin: 0 auto; background-color: #00a2b7; width: 150px; height: 45px; border: #00a2b7; display: inline-block">
                 View
             </button>
