@@ -104,27 +104,34 @@
 
                 .outer-grid {
                     display: flex;
+                    {#display: block;#}
                     flex-wrap: wrap;
                 }
 
-                .grid
+                .grid-left
                 {
                   display: grid;
-                  grid-template-columns: 1fr;
-                  {#grid-template-columns: 1fr 1fr;#}
-                  {#grid-gap: 10px;#}
+                  {#grid-template-columns: 1fr;#}
                   width: 100%;
                   min-width: 300px;
-                  max-width: 700px;
+                  max-width: 600px;
                   margin-left: auto;
+                  {#margin-left: auto;#}
+                  {#margin-right: auto;#}
+                  {#min-height: 90vh;#}
+                }
+
+                .grid-right
+                {
+                  display: grid;
+                  {#grid-template-columns: 1fr;#}
+                  width: 100%;
+                  min-width: 300px;
+                  max-width: 600px;
                   margin-right: auto;
-                    float: left;
-
-
-                  {#background-color: #fbfbfc;#}
-                  {#padding: 10px;#}
-
-                  min-height: 100vh;
+                  {#margin-left: auto;#}
+                  {#margin-right: auto;#}
+                  {#min-height: 90vh;#}
                 }
 
                 .grid__item
@@ -132,17 +139,21 @@
                   border-radius: 4px;
                     {#border: 1px solid #fbfbfc;#}
                     {#border: 1px solid #030303;#}
-                  min-height: 20vh;
+                  min-height: 16vh;
                 }
 
                 .grid__item--small
                 {
                     {#background-color: #fbfbfc;#}
                   {#background-color: #e5e9ea;#}
-                    min-height: 20vh;
+                  {#  min-height: 20vh;#}
                     {#align-items: center;#}
                     justify-content: left;
                     float: left;
+                    {#max-height: 195px;#}
+                    {#margin-left: 0;#}
+                    {#margin: 15px;#}
+                    margin: 0;
                     {#grid-column: 2;#}
                 }
 
@@ -155,6 +166,57 @@
                   {#float: left;#}
                     grid-column: 1;
                 }
+
+                .img_big {
+                    width: 100%;
+                    margin-left: 10px;
+                    {#margin-left: 20%;#}
+                    {#margin-right: 5%;#}
+                }
+
+                .img_small {
+                    margin-right: 10px;
+                    {#margin-right: 20%;#}
+                    {#margin-left: 5%;#}
+                }
+
+                 @media (min-width:0px) and (max-width:1199px) {
+                     .grid-left {
+                         {#float: none;#}
+                         justify-content: center;
+                         margin-right: auto;
+                         margin-left: auto;
+                         width: 100%;
+                     }
+
+                     .grid-right {
+                         {#float: none;#}
+                         justify-content: center;
+                         margin-right: auto;
+                         margin-left: auto;
+                         width: 100%;
+                     }
+
+                     .grid__item--small {
+                         float: none;
+                         justify-content: center;
+                         display: flex;
+                     }
+
+                     .img_big {
+                            width: 100%;
+                            margin-left: auto;
+                         padding-left: 10px;
+                         padding-right: 10px;
+                     }
+
+                        .img_small {
+                            width: 100%;
+                            margin-right: auto;
+                            padding-left: 10px;
+                            padding-right: 10px;
+                        }
+                 }
 
                 .btn_view {
                         display: inline-flex;
@@ -180,13 +242,21 @@
 
                 {#body { margin: 0; height: 100vh; overflow: hidden; background: 0% 0% / auto no-repeat url('https://i.stack.imgur.com/m9NKc.png'), #58555c; }#}
                 .gallery {
-                  position: relative; display: flex; flex-flow: row wrap;
-                  justify-content: space-evenly; align-items: center;
-                  height: 100%; width: 90%; margin: 0 auto;
-                  background-color: #fff;
+                    position: relative;
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: space-evenly;
+                    {#align-items: center;#}
+                    {#height: 100%; #}
+                    {#width: 90%;#}
+                    margin: 0 auto;
+                    background-color: #fff;
+                    {#width: 100%#}
                 }
                 .gallery img {
-                  height: auto; width: 200px; margin: 10px;
+                  height: auto;
+                    {#margin: 10px;#}
+                    {#width: 200px; #}
                   {#box-shadow: 0 0 0 5px #fff, 0 0 0 6px #919191;#}
                   {#transition: .5s linear; cursor: pointer;#}
                 }
@@ -214,17 +284,17 @@
             </style>
 
             <div class="outer-grid" id="figures">
-                <div class="grid">
+                <div class="grid-left">
                     <div class="grid__item grid__item--big">
                         <div class="gallery">
-                            <img id="img_{{ im_all }}" src='{{ im_all }}' alt="" style="width: 90%; margin-left: 10%; float: right">
+                            <img class="img_big" id="img_{{ im_all }}" src='{{ im_all }}' alt="">
                         </div>
                     </div>
                 </div>
-                <div class="grid">
+                <div class="grid-right">
                     {% for im in images %}
                         <div class="grid__item grid__item--small">
-                            <img id="img_{{ im }}" src='{{ im }}' alt="" style="width: 90%; margin-right: 10%; float: left">
+                            <img class="img_small" id="img_{{ im }}" src='{{ im }}' alt="">
                         </div>
                     {% endfor %}
                 </div>
