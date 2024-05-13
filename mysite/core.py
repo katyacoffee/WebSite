@@ -20,6 +20,7 @@ server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
 base_dir_serv_gps = '~mikhnevo/GNSS/Prego/PNG' #!! https://idg-comp.chph.ras.ru/~mikhnevo/GNSS/Prego/PNG/2022/01/01/
+base_dir_serv_javad_sigma = '~mikhnevo/GNSS/Sigma/PNG'
 base_dir_serv_lem = '~mikhnevo/LEMI018/PNG'
 base_dir_serv_k_ind = '~mikhnevo/K-INDEX/PNG'
 base_dir_serv_meteo = '~mikhnevo/METEO/PNG/'
@@ -27,6 +28,7 @@ base_dir_serv_elf = '~mikhnevo/metronix/METRONIX_FULL/'
 source_vlf = 'vlf'
 source_tec = 'tec'
 source_gps = 'gps'
+source_javad_sigma = 'javad_sigma'
 source_lem = 'lem'
 source_k_ind = 'k_ind'
 source_meteo = 'meteo'
@@ -207,6 +209,8 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
         base_dir_serv = base_dir_serv_gps
+    elif source == source_javad_sigma:
+        base_dir_serv = base_dir_serv_javad_sigma
     elif source == source_lem:
         base_dir_serv = base_dir_serv_lem
     elif source == source_k_ind:
@@ -218,7 +222,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
 
     s = sess()
     data_path = ''
-    if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps:
+    if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps or source == source_javad_sigma:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
     elif source == source_tec or source == source_k_ind or source == source_elf:
         data_path = base_dir_serv + '/' + yr + '/' + mon
@@ -245,7 +249,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
 
         if source == source_vlf:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
-        elif source == source_gps:
+        elif source == source_gps or source == source_javad_sigma:
             img_list.sort(key=lambda pic: compare_sat(get_station_name_gps(pic)))
         elif source == source_lem or source == source_meteo:
             for pic in img_list:
@@ -305,7 +309,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
 
         if source != source_elf:
             for img in img_list:
-                if source == source_gps and get_sat_from_gps(img) != stat:
+                if (source == source_gps or source == source_javad_sigma) and get_sat_from_gps(img) != stat:
                     continue
                 new_image_list.append('https://' + server_dir + '/' + data_path + '/' + img)
     except ConnectTimeout:
@@ -322,6 +326,8 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
         base_dir_serv = base_dir_serv_gps
+    elif source == source_javad_sigma:
+        base_dir_serv = base_dir_serv_javad_sigma
     elif source == source_lem:
         base_dir_serv = base_dir_serv_lem
     elif source == source_k_ind:
@@ -338,7 +344,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 day = '0' + day
             data_path = ''
             # TODO для gps!
-            if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps:
+            if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps or source == source_javad_sigma:
                 data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
             elif source == source_tec or source == source_k_ind or source == source_elf:
                 data_path = base_dir_serv + '/' + year + '/' + mon
@@ -347,7 +353,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
             site = 'https://' + server_dir + '/' + data_path
 
             try:
-                if source == source_gps or source == source_lem or source == source_k_ind:
+                if source == source_gps or source == source_javad_sigma or source == source_lem or source == source_k_ind:
                     payload = {
                         'inUserName': 'guest',  # TODO! password!!
                         'inUserPass': 'qwe123'

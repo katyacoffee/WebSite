@@ -58,6 +58,36 @@ def gps(request, yr, mon, day):
     return render(request, "index.html")
 
 
+def javad_sigma(request, yr, mon, day):
+    if request.method == "POST":
+        cache.clear()
+        new_stat = str(request.POST.get("new_stat"))
+        source = 'javad_sigma'
+        no_data = False
+        all_images = core.get_img_list(yr, mon, day, source, int(new_stat))
+        im_all = core.get_img_list(yr, mon, day, source, 0)
+        if len(im_all) > 0:
+            im_all = im_all[0]
+        else:
+            im_all = ''
+
+        if im_all == '' or len(all_images) == 0:
+            no_data = True
+
+        context = {"success": True,
+                   "new_stat": new_stat,
+                   "im_all": im_all,
+                   "images": all_images,
+                   "no_data": no_data,
+                   "source": source,
+                   "current_day": day,
+                   "current_month": mon,
+                   "current_year": yr
+                   }
+        return render(request, "gps.html", context=context)
+    return render(request, "index.html")
+
+
 def elf(request, yr, mon, day):
     if request.method == "POST":
         cache.clear()
@@ -194,6 +224,8 @@ def get_data(request):
                 yr = str(prev_yr)
             if source == core.source_gps:
                 return gps(request, yr, mon, day)
+            if source == core.source_javad_sigma:
+                return javad_sigma(request, yr, mon, day)
             if source == core.source_elf:
                 return elf(request, yr, mon, day)
             return render(request, "vlf_data.html", context)
@@ -209,6 +241,8 @@ def get_data(request):
         if date is None:
             if source == core.source_gps:
                 return gps(request, yr, str(new_month), day)
+            if source == core.source_javad_sigma:
+                return javad_sigma(request, yr, str(new_month), day)
             if source == core.source_elf:
                 return elf(request, yr, str(new_month), day)
 
@@ -266,6 +300,8 @@ def get_data(request):
             return render(request, "date_selection.html", context)
         if source == core.source_gps:
             return gps(request, yr, mon, day)
+        if source == core.source_javad_sigma:
+            return javad_sigma(request, yr, mon, day)
         if source == core.source_elf:
             return elf(request, yr, mon, day)
         if context["success"]:

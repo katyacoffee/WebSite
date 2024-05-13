@@ -283,6 +283,11 @@
 
             </style>
 
+            <span style="font-family: Roboto, sans-serif; font-weight: 300; align-items: center; font-size: 25px; justify-content: center; margin: auto; display: flex;" id = "data_txt">
+                <br>
+                {{ current_day }}/{{ current_month }}/{{ current_year }}
+            </span>
+
             <div class="outer-grid" id="figures">
                 <div class="grid-left">
                     <div class="grid__item grid__item--big">
@@ -315,6 +320,7 @@
 
         if ('{{ no_data }}' === 'True') {
             document.getElementById("figures").style.display = 'none';
+            document.getElementById("data_txt").style.display = 'none';
         } else {
             document.getElementById("nodata").style.display = 'none';
         }
