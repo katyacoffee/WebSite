@@ -258,13 +258,13 @@ def get_data(request):
         if selected_new_month != '' and selected_new_month is not None:
             return render(request, "date_selection.html", context)
 
-        parsed_date = str(date).split('/')
+        parsed_date = str(date).split('.')
         if len(parsed_date) != 3:
             context["success"] = False
             # context[
-            #     "comment"] = "Неверный формат даты. Введите заново в формате DD/MM/YYYY"
+            #     "comment"] = "Неверный формат даты. Введите заново в формате DD.MM.YYYY"
             context[
-                "comment"] = "Invalid date format. Enter again in the format DD/MM/YYYY"
+                "comment"] = "Invalid date format. Enter again in the format DD.MM.YYYY"
             return render(request, "date_selection.html", context)
         day = parsed_date[0]
         mon = parsed_date[1]

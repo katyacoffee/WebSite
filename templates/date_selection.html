@@ -238,7 +238,7 @@
             <div style="position:relative">
                 <input id="mydate" name="mydate" type="text" class="form-control"
                        style="font-family: 'Roboto', sans-serif; font-weight: 300;"
-                       placeholder="DD/MM/YYYY">
+                       placeholder="DD.MM.YYYY">
                 <span style="font-size: 20px;
                             position: absolute;
                             margin: 0 auto;
@@ -465,7 +465,7 @@
                             {#document.getElementById(cell_date.id).select();#}
 
                             const mydate = document.getElementById("mydate")
-                            mydate.value = cell_date + '/' + cell_mon + '/' + year
+                            mydate.value = cell_date + '.' + cell_mon + '.' + year
                             })
                             for (let d of avail_days) {
                                 if (d !== date) {

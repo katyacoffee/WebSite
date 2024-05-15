@@ -161,10 +161,11 @@
             .btn {
                 display: flex;
                 background: #68819a;
-                width: 80px;
                 {#width: 7vw;#}
-                height: 50px;
+                width: 150px;
+                height: 45px;
                 color: #ffffff;
+                font-size: 18px;
                 font-family: 'Roboto', sans-serif;
                 font-weight: 300;
                 border: #68819a;
@@ -173,36 +174,48 @@
                 transition: all 0.2s;
                 justify-content: center;
                 vertical-align: center;
-                font-size:3vw;
+                {#font-size:3vw;#}
             }
 
             .btn:hover {
                background: #5c748c;
                 transform: scale(1.1);
                 border-radius: 8px;
-                width: 80px;
-                {#width: 7vw;#}
-                height: 50px;
+                width: 150px;
+                height: 45px;
+                font-size: 18px;
                 vertical-align: center;
                 color: #ffffff;
-                font-size:2vw;
+                {#font-size:2vw;#}
                 font-weight: 300;
             }
 </style>
     <div class="box-container">
       <div class="box1-content content">
-        <h1>VLF Signals</h1>
+        <h1>VLF Stations</h1>
           <img class="img1" src="{% static 'map.jpg' %}">
           <br>
         <p>The high sensitive magnetometric systems "Whistler" are installed in Mikhnevo Geophysical Observatory.
             They allow to register signals from VLF stations located around the globe. The site presents the results of
             measuring of the amplitude of signals from the 5 VLF transmitters: JXN, GQD, NAA, DHO, ICV. The "Whistler"
             characteristics can be found in the Equipment section.</p>
-            <div class="box1-side">
+            <div class="box1-side" style="width: 300px;">
                 <form method="post" id="vlf">
                     <br>
-                    <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
-                    <input type="hidden" id="source" name="source" value="vlf">
+                                <table class="center">
+                                    <td class="child" style="padding: 10px">
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right">Data KLN</button>
+                                        <input type="hidden" id="source" name="source" value="vlf">
+                                    </td>
+                                    <td class="child" style="text-align: center; padding: 10px">
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left;">Data MIK</button>
+                                        <input type="hidden" id="source" name="source" value="vlf">
+                                    </td>
+                                </table>
+{#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data KLN</button>#}
+{#                    <input type="hidden" id="source" name="source" value="vlf">#}
+{#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data MIK</button>#}
+{#                    <input type="hidden" id="source" name="source" value="vlf">#}
                 </form>
             </div>
       </div>
@@ -217,7 +230,7 @@
             <div class="box1-side">
                 <form method="post" id="elf">
                     <br>
-                    <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
+                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data</button>
                     <input type="hidden" id="source" name="source" value="elf">
                 </form>
             </div>
@@ -297,7 +310,7 @@
                 </p>
                 <form method="post" id="javad_sigma">
                     <br>
-                    <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center; float: right">Data</button>
+                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center; float: right">Data</button>
                     <input type="hidden" id="source" name="source" value="javad_sigma">
                 </form>
                 <br>
@@ -322,7 +335,7 @@
                             </p>
                             <form method="post" id="gps">
                                 <br>
-                                <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center; float: right">Data</button>
+                                <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center; float: right">Data</button>
                                 <input type="hidden" id="source" name="source" value="gps">
                             </form>
                             <br>
@@ -350,7 +363,7 @@
                       <div class="box2-side">
                           <form method="post" id="vlf">
                               <br>
-                              <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center; float: right">Data</button>
+                              <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center; float: right">Data</button>
                               <input type="hidden" id="source" name="source" value="vlf">
                           </form>
                           <br>
@@ -370,7 +383,7 @@
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
             <form method="post" id="lem">
                 <br>
-                <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
+                <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data</button>
                 <input type="hidden" id="source" name="source" value="lem">
             </form>
            </div>
@@ -386,7 +399,7 @@
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
             <form method="post" id="k_ind">
                 <br>
-                <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
+                <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data</button>
                 <input type="hidden" id="source" name="source" value="k_ind">
             </form>
            </div>
@@ -402,7 +415,7 @@
 {#               # TODO ИЗМЕНИТЬ ПОТОМ#}
             <form method="post" id="meteo">
                 <br>
-                <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
+                <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data</button>
                 <input type="hidden" id="source" name="source" value="meteo">
             </form>
            </div>
@@ -475,7 +488,7 @@
           <div class="box1-side">
             <form method="post" id="tec">
                 <br>
-                <button type="submit" formaction="/date-selection" class="btn" style="font-size:22px; justify-content: center">Data</button>
+                <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data</button>
                 <input type="hidden" id="source" name="source" value="tec">
             </form>
           </div>
