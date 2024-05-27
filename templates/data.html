@@ -202,16 +202,36 @@
             <div class="box1-side" style="width: 300px;">
                 <form method="post" id="vlf">
                     <br>
-                                <table class="center">
+                    <table class="center"><tr><td>
+                    <table class="center">
+                                    <tr>
                                     <td class="child" style="padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right">Data KGD</button>
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude MIK</button>
                                         <input type="hidden" id="source" name="source" value="vlf">
                                     </td>
                                     <td class="child" style="text-align: center; padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left;">Data MIK</button>
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase MIK</button>
                                         <input type="hidden" id="source" name="source" value="vlf">
                                     </td>
-                                </table>
+                                    </tr>
+                                    <tr>
+                                    <td class="child" style="padding: 10px">
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude KGD</button>
+                                        <input type="hidden" id="source" name="source" value="vlf">
+                                    </td>
+                                    <td class="child" style="text-align: center; padding: 10px">
+                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase KGD</button>
+                                        <input type="hidden" id="source" name="source" value="vlf">
+                                    </td>
+                                    </tr>
+                                </table></td></tr>
+                        <tr>
+                                    <td class="child" style="padding: 10px">
+                                        <button type="submit" formaction="/equipment" class="btn" style="width: 150px">About</button>
+                                        <input type="hidden" id="source" name="source" value="vlf">
+                                    </td>
+                                    </tr>
+                        </table>
 {#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data KLN</button>#}
 {#                    <input type="hidden" id="source" name="source" value="vlf">#}
 {#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data MIK</button>#}

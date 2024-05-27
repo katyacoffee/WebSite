@@ -304,9 +304,9 @@
                     {% endfor %}
                 </div>
             </div>
-            <div style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
+            <div id = "selection" style="align-items: center; margin: 0 auto; text-align: center; font-size: 18px">
                 <br>
-                <label for="stations" style="font-family: 'Roboto', sans-serif;">Select
+                <label id = "select_input1" for="stations" style="font-family: 'Roboto', sans-serif;">Select
                     station </label>
                 <select id="stations" onchange="stat()"></select>
                 <br>
@@ -321,6 +321,7 @@
         if ('{{ no_data }}' === 'True') {
             document.getElementById("figures").style.display = 'none';
             document.getElementById("data_txt").style.display = 'none';
+            document.getElementById("selection").style.display = 'none';
         } else {
             document.getElementById("nodata").style.display = 'none';
         }

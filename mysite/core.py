@@ -62,6 +62,9 @@ def get_station_to_freq_dict() -> dict[str:int]:
         'NSY': 45.9,
         'SXA': 49,
         'NDI': 54,
+        'SRC1': 40.4,
+        'SRC2': 42.5,
+        'SRC3': 44.2
     }
 
 
