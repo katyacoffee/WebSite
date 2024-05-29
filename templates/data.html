@@ -40,9 +40,11 @@
         .box-container {
             margin: 20px auto;
             {#width: 80%;#}
-            max-width: 60%;
+            max-width: 70%;
+            {#было 60%#}
             {#min-width: 50%;#}
             {#max-width: 800px;#}
+            {#min-width: 500px;#}
             min-width: 500px;
             display: flex;
             text-align: justify;
@@ -162,7 +164,8 @@
                 display: flex;
                 background: #68819a;
                 {#width: 7vw;#}
-                width: 150px;
+                {#width: 150px;#}
+                width: 145px;
                 height: 45px;
                 color: #ffffff;
                 font-size: 18px;
@@ -199,45 +202,94 @@
             They allow to register signals from VLF stations located around the globe. The site presents the results of
             measuring of the amplitude of signals from the 5 VLF transmitters: JXN, GQD, NAA, DHO, ICV. The "Whistler"
             characteristics can be found in the Equipment section.</p>
-            <div class="box1-side" style="width: 300px;">
-                <form method="post" id="vlf">
-                    <br>
-                    <table class="center"><tr><td>
-                    <table class="center">
-                                    <tr>
-                                    <td class="child" style="padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude MIK</button>
-                                        <input type="hidden" id="source" name="source" value="vlf">
-                                    </td>
-                                    <td class="child" style="text-align: center; padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase MIK</button>
-                                        <input type="hidden" id="source" name="source" value="vlf">
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td class="child" style="padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude KGD</button>
-                                        <input type="hidden" id="source" name="source" value="vlf">
-                                    </td>
-                                    <td class="child" style="text-align: center; padding: 10px">
-                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase KGD</button>
-                                        <input type="hidden" id="source" name="source" value="vlf">
-                                    </td>
-                                    </tr>
-                                </table></td></tr>
-                        <tr>
-                                    <td class="child" style="padding: 10px">
-                                        <button type="submit" formaction="/equipment" class="btn" style="width: 150px">About</button>
-                                        <input type="hidden" id="source" name="source" value="vlf">
-                                    </td>
-                                    </tr>
-                        </table>
+
+{#        <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">#}
+        <div class="row g-5 py-5 row-cols-1 row-cols-lg-5">
+            <form method="post" id="vlf">
+            <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
+                <div>
+                    <a href="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                        Amplitude MIK
+                    </a>
+                    <input type="hidden" id="source" name="source" value="vlf">
+                </div>
+            </div>
+            <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
+                <div>
+                    <a href="/equipment" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                        Phase MIK
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
+                <div>
+                    <a href="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                        Amplitude KGD
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
+                <div>
+                    <a href="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                        Phase KGD
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
+                <div>
+                    <a href="/contacts" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                        About
+                    </a>
+                </div>
+            </div>
+            </form>
+        </div>
+
+
+{#            <div class="box1-side" style="width: 300px;">#}
+{#                <form method="post" id="vlf">#}
+{#                    <br>#}
+{#                    <table class="center"><tr><td>#}
+{#                    <table class="center">#}
+{#                                    <tr>#}
+{#                                    <td class="child" style="padding: 10px">#}
+{#                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude MIK</button>#}
+{#                                        <input type="hidden" id="source" name="source" value="vlf">#}
+{#                                    </td>#}
+{#                                    <td class="child" style="text-align: center; padding: 10px">#}
+{#                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase MIK</button>#}
+{#                                        <input type="hidden" id="source" name="source" value="vlf">#}
+{#                                    </td>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                    <td class="child" style="padding: 10px">#}
+{#                                        <button type="submit" formaction="/date-selection" class="btn" style="float: right; width: 160px">Amplitude KGD</button>#}
+{#                                        <input type="hidden" id="source" name="source" value="vlf">#}
+{#                                    </td>#}
+{#                                    <td class="child" style="text-align: center; padding: 10px">#}
+{#                                        <button type="submit" formaction="/date-selection" class="btn" style="float: left; width: 160px">Phase KGD</button>#}
+{#                                        <input type="hidden" id="source" name="source" value="vlf">#}
+{#                                    </td>#}
+{#                                    </tr>#}
+{#                                </table></td></tr>#}
+{#                        <tr>#}
+{#                                    <td class="child" style="padding: 10px">#}
+{#                                        <button type="submit" formaction="/equipment" class="btn" style="width: 150px">About</button>#}
+{#                                        <input type="hidden" id="source" name="source" value="vlf">#}
+{#                                    </td>#}
+{#                                    </tr>#}
+{#                        </table>#}
 {#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data KLN</button>#}
 {#                    <input type="hidden" id="source" name="source" value="vlf">#}
 {#                    <button type="submit" formaction="/date-selection" class="btn" style="justify-content: center">Data MIK</button>#}
 {#                    <input type="hidden" id="source" name="source" value="vlf">#}
-                </form>
-            </div>
+{#                </form>#}
+{#            </div>#}
       </div>
     </div>
 
