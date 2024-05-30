@@ -55,12 +55,12 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ekaterinakozakova/Desktop/Python&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ekaterinakozakova/Desktop/All/dev/WebSite&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -72,7 +72,7 @@
       <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.mysite">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="mysite" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,6 +180,8 @@
       <workItem from="1701847556321" duration="15652000" />
       <workItem from="1710525121866" duration="7402000" />
       <workItem from="1712252373780" duration="1235000" />
+      <workItem from="1717096835520" duration="321000" />
+      <workItem from="1717097179456" duration="109000" />
     </task>
     <servers />
   </component>

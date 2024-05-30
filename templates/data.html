@@ -204,16 +204,14 @@
             characteristics can be found in the Equipment section.</p>
 
 {#        <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">#}
-        <div class="row g-5 py-5 row-cols-1 row-cols-lg-5">
-            <form method="post" id="vlf">
+        <form method="post" id="vlf">
+          <div class="row g-5 py-5 row-cols-1 row-cols-lg-5">
+
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                <div>
-                    <a href="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
-{#                       style="font-family: 'Roboto', sans-serif; font-size: 18px; background-color: #5a728a; border: #5a728a; width: 150px; height: 45px; margin: auto; display: inline-flex; justify-content: center; align-items: center">#}
+                    <button type="submit" formaction="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
                         Amplitude MIK
-                    </a>
+                    </button>
                     <input type="hidden" id="source" name="source" value="vlf">
-                </div>
             </div>
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
                 <div>
@@ -247,8 +245,8 @@
                     </a>
                 </div>
             </div>
-            </form>
         </div>
+        </form>
 
 
 {#            <div class="box1-side" style="width: 300px;">#}
