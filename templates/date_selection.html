@@ -236,6 +236,7 @@
     <form method="post" id="date_form">
         <div style="margin: 0 auto; width: 280px; height: 45px;">
             <div style="position:relative">
+                <input id="sbmtbtn" type="submit" formaction="/get-vlf-data" style="display: none;" onclick="view_date()" >
                 <input id="mydate" name="mydate" type="text" class="form-control"
                        style="font-family: 'Roboto', sans-serif; font-weight: 300;"
                        placeholder="DD.MM.YYYY">
@@ -495,40 +496,14 @@
                 alert('{{ comment }}')
             }
 
-            var form = document.getElementById("date_form");
-
-
-            var searchField = document.getElementById('mydate');
-            var searchButton = document.getElementById('view_btn');
-
-
-            {#searchField.addEventListener('keypress', function (e) {#}
-            {#    var key = e.which || e.keyCode;#}
-            {#    if (key === 13) { // код клавиши Enter#}
-            {#        searchButton.click();#}
-                    {#alert("haha")#}
-            {#    }#}
-            {#});#}
-
-
-            document.getElementById('date_form').onkeydown = function(e) {
-                if (e.keyCode == 13) {
-                    alert("haha")
-                    view_date()
-                    form.submit()
-                }
+            function submitForm(){
+                view_date()
+                const date_form = document.getElementById("date_form");
+                date_form.setAttribute("action", "/get-vlf-data");
+                date_form.submit();
             }
 
-            mydate.addEventListener("keydown", (event) => {
-                if (event.isComposing) {
-                    return;
-                }
-                if (event.code == "keyEnter"){
-                    alert("haha")
-                    view_date()
-                    form.submit()
-                }
-            });
+            document.onkeyup = function (e) {if (e.which == 13) submitForm();}
         </script>
         <div class="row px-5 py-2">
             <button type="submit" id ="view_btn" formaction="/get-vlf-data" class="btn btn-info" onclick="view_date()"
