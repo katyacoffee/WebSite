@@ -438,36 +438,8 @@
                                 cell.className = "date-picker selected";
                             }
                             cell.date = `${date}`
-                            // cell.setAttribute("style", "textColor=#fff")
-                            {#for (let d of avail_days) {#}
-                            {#    if (d !== date) {#}
-                            {#        continue;#}
-                            {#    }#}
-                        {##}
-                        {#cell.style.fontWeight = 'bold';#}
-                        {#cell.style.textDecoration = "underline";#}
-                        cell.addEventListener("click", function (event) {
-                            var cell_date = event.currentTarget.date
-                            // noinspection EqualityComparisonWithCoercionJS
-                            if (1 == cell_date.length) {
-                                cell_date = '0' + cell_date
-                            }
-                            var cell_mon = `${month + 1}`
-                            // noinspection EqualityComparisonWithCoercionJS
-                            if (1 == cell_mon.length) {
-                                cell_mon = '0' + cell_mon
-                            }
-                            sessionStorage.setItem("selected_day", cell_date)
-                            {#cell.setAttribute("selected_day", cell_date);#}
-                            sessionStorage.setItem("selected_mon", cell_mon)
-                            sessionStorage.setItem("selected_year", year)
 
-                            {#document.getElementById(cell_date.id).focus();#}
-                            {#document.getElementById(cell_date.id).select();#}
-
-                            const mydate = document.getElementById("mydate")
-                            mydate.value = cell_date + '.' + cell_mon + '.' + year
-                            })
+                            let available = false;
                             for (let d of avail_days) {
                                 if (d !== date) {
                                     continue;
@@ -475,8 +447,49 @@
 
                                 cell.style.fontWeight = 'bold';
                                 cell.style.textDecoration = "underline";
+                                available = true
                                 break
                             }
+
+                            if (available) {
+                                cell.addEventListener("click", function (event) {
+                                    let cell_day = event.currentTarget.date
+                                    // noinspection EqualityComparisonWithCoercionJS
+                                    if (1 == cell_day.length) {
+                                        cell_day = '0' + cell_day
+                                    }
+                                    let cell_mon = `${month + 1}`
+                                    // noinspection EqualityComparisonWithCoercionJS
+                                    if (1 == cell_mon.length) {
+                                        cell_mon = '0' + cell_mon
+                                    }
+
+                                    sessionStorage.setItem("selected_day", cell_day);
+                                    sessionStorage.setItem("selected_mon", cell_mon);
+                                    sessionStorage.setItem("selected_year", year);
+
+                                    const mydate = document.getElementById("mydate");
+                                    mydate.value = cell_day + '.' + cell_mon + '.' + year;
+
+                                    submitForm()
+                                })
+                            } else {
+                                cell.addEventListener("click", function (event) {
+                                    let cell_day = event.currentTarget.date
+                                    // noinspection EqualityComparisonWithCoercionJS
+                                    if (1 == cell_day.length) {
+                                        cell_day = '0' + cell_day
+                                    }
+                                    let cell_mon = `${month + 1}`
+                                    // noinspection EqualityComparisonWithCoercionJS
+                                    if (1 == cell_mon.length) {
+                                        cell_mon = '0' + cell_mon
+                                    }
+
+                                    alert('No data for ' + cell_day + '.' + cell_mon + '.' + year)
+                                })
+                            }
+
                             row.appendChild(cell);
                             date++;
                         }
@@ -488,8 +501,7 @@
             function daysInMonth(iMonth, iYear) {
                 return 32 - new Date(iYear, iMonth, 32).getDate();
             }
-        </script>
-        <script>
+
             const mydate = document.getElementById('mydate');
             mydate.value = '{{ mydate }}';
             if ('{{ success }}' === 'False') {
