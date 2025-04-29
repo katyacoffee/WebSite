@@ -18,6 +18,9 @@ class Card:
 
 server_dir = 'idg-comp.chph.ras.ru'
 base_dir_serv_vlf = '~mikhnevo/metronix/METRONIX_SDVamp'
+base_dir_serv_vlf_mikh_amp = '~mikhnevo/metronix/METRONIX_SDVamp'
+base_dir_serv_vlf_kgd_amp = '~kaliningrad/metronix/METRONIX_SDVamp'
+base_dir_serv_vlf_kgd_ph = '~kaliningrad/metronix/METRONIX_SDVph'
 base_dir_serv_tec = '~madrigal/IMG/WorldPlotAnim'
 base_dir_serv_gps = '~mikhnevo/GNSS/Prego/PNG' #!! https://idg-comp.chph.ras.ru/~mikhnevo/GNSS/Prego/PNG/2022/01/01/
 base_dir_serv_javad_sigma = '~mikhnevo/GNSS/Sigma/PNG'
@@ -26,6 +29,9 @@ base_dir_serv_k_ind = '~mikhnevo/K-INDEX/PNG'
 base_dir_serv_meteo = '~mikhnevo/METEO/PNG/'
 base_dir_serv_elf = '~mikhnevo/metronix/METRONIX_FULL/'
 source_vlf = 'vlf'
+source_vlf_mikh_amp = 'vlf_mikh_amp'
+source_vlf_kgd_amp = 'vlf_kgd_amp'
+source_vlf_kgd_ph = 'vlf_kgd_ph'
 source_tec = 'tec'
 source_gps = 'gps'
 source_javad_sigma = 'javad_sigma'
@@ -206,8 +212,12 @@ def get_images(response: Response) -> list[str]:
 
 def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> list[str]:
     base_dir_serv = ''
-    if source == source_vlf:
-        base_dir_serv = base_dir_serv_vlf
+    if source == source_vlf_mikh_amp:
+        base_dir_serv = base_dir_serv_vlf_mikh_amp  # base_dir_serv_vlf
+    elif source == source_vlf_kgd_amp:
+        base_dir_serv = base_dir_serv_vlf_kgd_amp
+    elif source == source_vlf_kgd_ph:
+        base_dir_serv = base_dir_serv_vlf_kgd_ph
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
@@ -225,7 +235,9 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
 
     s = sess()
     data_path = ''
-    if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps or source == source_javad_sigma:
+    if source == source_vlf or source == source_vlf_mikh_amp or source == source_vlf_kgd_amp or \
+            source == source_vlf_kgd_ph or source == source_lem or source == source_meteo or\
+            source == source_gps or source == source_javad_sigma:
         data_path = base_dir_serv + '/' + yr + '/' + mon + '/' + day
     elif source == source_tec or source == source_k_ind or source == source_elf:
         data_path = base_dir_serv + '/' + yr + '/' + mon
@@ -250,7 +262,7 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
         img_list = get_images(resp)
         img_list1 = []
 
-        if source == source_vlf:
+        if source == source_vlf or source == source_vlf_mikh_amp or source == source_vlf_kgd_amp or source == source_vlf_kgd_ph:
             img_list.sort(key=lambda pic: compare(get_station_name(pic)))
         elif source == source_gps or source == source_javad_sigma:
             img_list.sort(key=lambda pic: compare_sat(get_station_name_gps(pic)))
@@ -323,8 +335,12 @@ def get_img_list(yr: str, mon: str, day: str, source: str, stat: int = 0) -> lis
 def get_available_days(year: str, mon: str, source: str) -> list[int]:
     days = []
     base_dir_serv = ''
-    if source == source_vlf:
-        base_dir_serv = base_dir_serv_vlf
+    if source == source_vlf_mikh_amp:
+        base_dir_serv = base_dir_serv_vlf_mikh_amp  # base_dir_serv_vlf
+    elif source == source_vlf_kgd_amp:
+        base_dir_serv = base_dir_serv_vlf_kgd_amp
+    elif source == source_vlf_kgd_ph:
+        base_dir_serv = base_dir_serv_vlf_kgd_ph
     elif source == source_tec:
         base_dir_serv = base_dir_serv_tec
     elif source == source_gps:
@@ -347,7 +363,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                 day = '0' + day
             data_path = ''
             # TODO для gps!
-            if source == source_vlf or source == source_lem or source == source_meteo or source == source_gps or source == source_javad_sigma:
+            if source == source_vlf or source == source_vlf_mikh_amp or source == source_vlf_kgd_amp or source == source_vlf_kgd_ph or source == source_lem or source == source_meteo or source == source_gps or source == source_javad_sigma:
                 data_path = base_dir_serv + '/' + year + '/' + mon + '/' + day
             elif source == source_tec or source == source_k_ind or source == source_elf:
                 data_path = base_dir_serv + '/' + year + '/' + mon
@@ -364,7 +380,7 @@ def get_available_days(year: str, mon: str, source: str) -> list[int]:
                     r = s.post(site, data=payload)
                 resp = s.get(site, timeout=2)
                 img_list = get_images(resp)
-                if source == source_vlf:
+                if source == source_vlf_mikh_amp or source == source_vlf_kgd_amp or source == source_vlf_kgd_ph:
                     img_list.sort(key=lambda pic: compare(get_station_name(pic)))
                 elif source == source_lem or source == source_meteo:
                     img_list.sort()

@@ -204,38 +204,60 @@
             characteristics can be found in the Equipment section.</p>
 
 {#        <div class="row g-4 py-5 row-cols-1 row-cols-lg-5">#}
-        <form method="post" id="vlf">
+        <form method="post" id="vlf" action="/date-selection">
           <div class="row g-5 py-5 row-cols-1 row-cols-lg-5">
+              <input type="hidden" id="source" name="source" value="unknown">
+              <input type="hidden" id="source_e" name="source_e" value="unknown">
+
+              <script>
+                  function set_source(vlf_type){
+                      document.getElementById("source").value = vlf_type.name;
+                  }
+
+                  function set_source_e(vlf_type){
+                      document.getElementById("source_e").value = vlf_type.name;
+                  }
+              </script>
 
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                    <button type="submit" formaction="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+                    <button type="submit" class="btn" name="vlf_mikh_amp"
+                            style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;"
+                            onclick="set_source(this)"
+                    >
                         Amplitude MIK
                     </button>
-                    <input type="hidden" id="source" name="source" value="vlf">
             </div>
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                    <button type="submit" formaction="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+                    <button type="submit" class="btn" name="vlf_mikh_amp"
+                            style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;"
+                            onclick="set_source(this)"
+                    >
                         Phase MIK
                     </button>
-                    <input type="hidden" id="source" name="source" value="vlf">
             </div>
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                    <button type="submit" formaction="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+                    <button type="submit" class="btn" name="vlf_kgd_amp"
+                            style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;"
+                            onclick="set_source(this)"
+                    >
                         Amplitude KGD
                     </button>
-                    <input type="hidden" id="source" name="source" value="vlf">
             </div>
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                    <button type="submit" formaction="/date-selection" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+                    <button type="submit" class="btn" name="vlf_kgd_ph"
+                            style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;"
+                            onclick="set_source(this)"
+                    >
                         Phase KGD
                     </button>
-                    <input type="hidden" id="source" name="source" value="vlf">
             </div>
             <div class="col d-flex" style="justify-content: center; align-items: center; margin: 0; padding: 6px; border: #ffffff;">
-                    <button type="submit" formaction="/equipment" class="btn" style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;">
+                    <button type="submit" formaction="/equipment" class="btn" name="vlf_mikh_amp"
+                            style = "font-size: 16px; justify-content: center; align-items: center; vertical-align: center;"
+                            onclick="set_source_e(this)"
+                    >
                         About
                     </button>
-                    <input type="hidden" id="source" name="source" value="vlf">
             </div>
         </div>
         </form>

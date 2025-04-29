@@ -125,9 +125,11 @@ def elf(request, yr, mon, day):
 
 
 def date_selection(request):
+    print(request.method)
     if request.method == "POST":
         cache.clear()
         source = request.POST.get("source")
+        print(source)
         current_date = date.today()
         current_month = str(current_date.month)
         if len(current_month) == 1:
@@ -136,12 +138,14 @@ def date_selection(request):
         try:
             source = str(source)
             days = core.get_available_days(current_year, current_month, source)
-            return render(request, "date_selection.html", context={
+            context = {
                 "current_month": current_month,
                 "current_year": current_year,
                 "avail_days": days,
                 "source": source,
-            })
+            }
+            print(context)
+            return render(request, "date_selection.html", context=context)
         except core.ServerDownException:
             return render(request, "date_selection.html", context={
                 "server_error": 'some error',
@@ -153,7 +157,21 @@ def date_selection(request):
 
 
 def equipment(request):
-    return render(request, "equipment.html")
+    if request.method == "POST":
+        cache.clear()
+        source_e = str(request.POST.get("source_e"))
+
+        context = {
+            "success": True,
+            "source": source_e,
+        }
+        print(context)
+
+        return render(request, "equipment.html", context)
+    return render(request, "equipment.html", context={
+            "success": True,
+            "source": "vlf_mikh_amp",
+        })
 
 
 def get_data(request):

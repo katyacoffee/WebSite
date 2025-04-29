@@ -82,7 +82,7 @@
         </style>
         <form method="post" id="vlf">
             <button type="submit" formaction="/date-selection" class="btn">Browse data</button>
-            <input type="hidden" id="source" name="source" value="vlf">
+            <input type="hidden" id="source" name="source" value="{{ source }}">
         </form>
 {#        <div class="data">#}
 {#            <a href="/date-selection" class="btn" style="">Browse data</a>#}
@@ -142,9 +142,12 @@
                     - 1 Hz update rate
                     <br>
                 </p>
+                <form method="post" id="vlf">
                 <div class="data">
-                    <a href="/date-selection" class="btn" style="">Browse data</a>
+                    <button formaction="/date-selection" class="btn" style="">Browse data</button>
+                    <input type="hidden" id="source" name="source" value="javad_sigma">
                 </div>
+                </form>
             </div>
             {#        </div>#}
             <div class="column">
@@ -158,9 +161,12 @@
                     - 1 Hz update rate
                     <br>
                 </p>
+                <form method="post" id="vlf">
                 <div class="data">
-                    <a href="/date-selection" class="btn" style="">Browse data</a>
+                    <button formaction="/date-selection" class="btn" style="">Browse data</button>
+                    <input type="hidden" id="source" name="source" value="gps">
                 </div>
+                </form>
             </div>
             {#        </div>#}
             {#        <div class="col-md-4">#}
@@ -174,9 +180,12 @@
                     - 1 Hz update rate
                     <br>
                 </p>
+                <form method="post" id="vlf">
                 <div class="data">
-                    <a href="/date-selection" class="btn" style="">Browse data</a>
+                    <button formaction="/date-selection" class="btn" style="">Browse data</button>
+                    <input type="hidden" id="source" name="source" value="gps">
                 </div>
+                </form>
             </div>
         </div>
     </div>
